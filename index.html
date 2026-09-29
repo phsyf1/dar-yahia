@@ -3,98 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0d1117">
-    <title data-i18n="site_title">دار يحيي | Dar Yahia</title>
-
-    <!-- الخطوط وأيقونات Font Awesome -->
+    <meta name="theme-color" content="#0c1017" id="theme-color-meta">
+    <title>دَار يحيي | Dar Yahia</title>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- التنسيقات المدمجة (CSS) -->
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --text-color: #c9d1d9;
-            --text-heading: #f0f6fc;
-            --accent-color: #d1a153;
-            --border-color: #30363d;
-            --input-bg: #0d1117;
-            --button-bg: #21262d;
-            --button-hover: #30363d;
-            --accent-btn: #d1a153;
+            --bg-color: #0c1017;
+            --card-bg: #131b29;
+            --card-border: #1e2a3e;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --gold-primary: #e5c158;
+            --gold-gradient: linear-gradient(135deg, #f6e098 0%, #d4af37 50%, #997a15 100%);
+            --gold-border: rgba(212, 175, 55, 0.4);
+            --header-bg: rgba(12, 16, 23, 0.82);
+            --input-bg: #090d13;
+            --shadow-color: rgba(0, 0, 0, 0.5);
         }
 
         [data-theme="light"] {
-            --bg-color: #f6f8fa;
+            --bg-color: #f4f6f9;
             --card-bg: #ffffff;
-            --text-color: #24292f;
-            --text-heading: #1f2328;
-            --accent-color: #b48227;
-            --border-color: #d0d7de;
-            --input-bg: #ffffff;
-            --button-bg: #f3f4f6;
-            --button-hover: #e5e7eb;
-            --accent-btn: #b48227;
+            --card-border: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --gold-primary: #b8860b;
+            --gold-gradient: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
+            --gold-border: rgba(184, 134, 11, 0.4);
+            --header-bg: rgba(244, 246, 249, 0.85);
+            --input-bg: #f8fafc;
+            --shadow-color: rgba(0, 0, 0, 0.08);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         body {
-            font-family: 'Tajawal', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            transition: background-color 0.3s, color 0.3s;
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding-top: 75px;
+            padding-bottom: 40px;
+            overflow-x: hidden;
         }
 
-        .container {
-            width: 100%;
-            max-width: 650px;
+        /* 15. Header الثابت بالخلفية البلورية */
+        .header-sticky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            background: var(--header-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
             display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
+            justify-content: center;
+            padding: 0 15px;
         }
 
-        .header-actions {
+        .header-container {
+            width: 100%;
+            max-width: 600px;
             display: flex;
             gap: 8px;
-        }
-
-        .btn-icon {
-            background: var(--button-bg);
-            color: var(--text-heading);
-            border: 1px solid var(--border-color);
-            padding: 8px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            display: flex;
             align-items: center;
-            gap: 5px;
-            transition: 0.2s;
-        }
-
-        .btn-icon:hover {
-            background: var(--button-hover);
         }
 
         .search-box {
@@ -104,538 +93,988 @@
 
         .search-box input {
             width: 100%;
-            padding: 8px 35px 8px 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
+            padding: 9px 38px 9px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
             background: var(--input-bg);
-            color: var(--text-color);
-            font-family: 'Tajawal', sans-serif;
+            color: var(--text-primary);
+            font-size: 0.88rem;
             outline: none;
         }
 
-        html[dir="ltr"] .search-box input {
-            padding: 8px 12px 8px 35px;
+        .search-box input:focus {
+            border-color: var(--gold-primary);
         }
 
         .search-box i {
             position: absolute;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
-            color: #8b949e;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
-        html[dir="rtl"] .search-box i { right: 10px; }
-        html[dir="ltr"] .search-box i { left: 10px; }
+        html[dir="ltr"] .search-box input {
+            padding: 9px 12px 9px 38px;
+        }
+        html[dir="ltr"] .search-box i {
+            right: auto;
+            left: 12px;
+        }
 
+        .icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        /* Container الرئيسي */
+        .container {
+            width: 100%;
+            max-width: 550px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* 3 & 17. عنوان الموقع والمقولة التوضيحية */
+        .brand-header {
+            text-align: center;
+            margin: 20px 0 25px 0;
+        }
+
+        .brand-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+            line-height: 1.2;
+            letter-spacing: 1px;
+        }
+
+        .brand-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        /* 2. العناوين خارج المربعات مع الشريط الذهبي العمودي */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 25px 0 12px 0;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: var(--gold-gradient);
+            border-radius: 2px;
+        }
+
+        /* الكروت والمربعات ثابتة الأبعاد لمنع الاهتزاز (1) */
         .card {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
             padding: 20px;
+            box-shadow: 0 8px 24px var(--shadow-color);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        /* 8. الآية والحديث والترجمة */
+        .verse-card {
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid var(--gold-border);
         }
 
-        .site-title {
-            font-family: 'Amiri', serif;
-            font-size: 2.2rem;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-        }
-
-        .slogan {
+        .verse-title {
+            color: var(--gold-primary);
             font-size: 1.1rem;
-            color: var(--text-color);
-            margin-bottom: 10px;
-        }
-
-        .hadith-title {
-            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--text-heading);
             margin-bottom: 12px;
         }
 
-        .hadith-quote {
+        .verse-text {
             font-family: 'Amiri', serif;
             font-size: 1.4rem;
-            color: var(--accent-color);
-            margin: 15px 0 5px 0;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 8px;
         }
 
-        .hadith-source {
-            font-size: 0.95rem;
-            color: #8b949e;
+        .verse-translation {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            font-style: italic;
+            border-top: 1px stroke var(--card-border);
+            padding-top: 8px;
         }
 
-        .section-title {
-            font-size: 1.4rem;
-            color: var(--text-heading);
+        .verse-source {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+
+        /* 5. أزرار المدة */
+        .duration-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
             margin-bottom: 15px;
         }
 
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin: 15px 0;
-        }
-
-        .btn-option {
-            flex: 1;
-            padding: 10px;
-            background: var(--button-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-heading);
-            border-radius: 8px;
+        .duration-btn {
+            padding: 12px 8px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
             cursor: pointer;
-            font-family: 'Tajawal', sans-serif;
-            font-weight: bold;
-            transition: 0.2s;
+            text-align: center;
         }
 
-        .btn-option.active {
-            background: var(--accent-btn);
-            color: #111;
-            border-color: var(--accent-btn);
+        .duration-btn.active {
+            background: var(--gold-gradient);
+            color: #000000;
+            border-color: transparent;
+            font-weight: 700;
         }
 
-        .date-picker-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 15px 0;
+        /* خيارات التواريخ والنتائج */
+        .khatma-options {
+            display: none;
+            animation: fadeIn 0.4s ease;
         }
 
-        .date-row {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .date-group {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .date-row label {
-            font-size: 0.95rem;
-        }
-
-        .date-row input {
-            padding: 8px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
+            margin-bottom: 12px;
             background: var(--input-bg);
-            color: var(--text-color);
-            font-family: 'Tajawal', sans-serif;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
         }
 
-        .daily-target {
-            font-size: 1.3rem;
-            font-weight: bold;
+        .date-group label {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .date-group input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            outline: none;
+            color-scheme: dark;
+        }
+
+        [data-theme="light"] .date-group input {
+            color-scheme: light;
+        }
+
+        .khatma-result {
+            text-align: center;
+            padding: 12px;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px dashed var(--gold-primary);
+            border-radius: 12px;
             margin: 15px 0;
-            color: var(--accent-color);
+            font-size: 1rem;
+            color: var(--gold-primary);
+            font-weight: 700;
         }
 
+        /* 6. الأزرار الثلاثة المطلوبة */
         .action-buttons {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
 
-        .btn-primary {
+        .btn-action {
             width: 100%;
             padding: 12px;
-            background: var(--button-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-heading);
-            border-radius: 8px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
             cursor: pointer;
-            font-family: 'Tajawal', sans-serif;
-            font-size: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: 0.2s;
         }
 
-        .btn-primary:hover {
-            background: var(--button-hover);
+        .btn-action:hover {
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
         }
 
-        .about-text {
-            text-align: justify;
-            font-size: 0.95rem;
+        .btn-action.primary {
+            background: var(--gold-gradient);
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+
+        /* 13. نبذة تعريفية من أنا */
+        .bio-text {
+            font-size: 0.92rem;
             line-height: 1.8;
-            margin-top: 10px;
+            color: var(--text-secondary);
+            text-align: justify;
         }
 
-        .author-link {
-            color: var(--accent-color);
+        .bio-link {
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .bio-link:hover {
             text-decoration: underline;
-            font-weight: bold;
         }
 
-        .form-group {
+        /* 16. نموذج تواصل معي */
+        .contact-form {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-top: 15px;
-            text-align: right;
         }
 
-        html[dir="ltr"] .form-group {
-            text-align: left;
-        }
-
-        .form-group input, .form-group textarea {
+        .form-input, .form-textarea {
             width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
             background: var(--input-bg);
-            color: var(--text-color);
-            font-family: 'Tajawal', sans-serif;
+            color: var(--text-primary);
+            font-size: 0.9rem;
             outline: none;
         }
 
-        .visitor-count {
-            margin: 15px 0 10px 0;
-            font-size: 0.95rem;
-            color: #8b949e;
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--gold-primary);
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 10px;
+        .form-textarea {
+            resize: none;
+            height: 100px;
         }
 
-        .social-btn {
-            padding: 8px 12px;
-            border-radius: 8px;
-            background: var(--button-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-heading);
-            text-decoration: none;
-            font-size: 0.85rem;
+        /* 12. مربع عدد الزوار */
+        .visitor-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: space-between;
+            margin: 25px 0 15px 0;
         }
 
-        .social-btn:hover {
-            background: var(--button-hover);
+        .visitor-text {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .visitor-badge {
+            background: var(--input-bg);
+            border: 1px solid var(--gold-border);
+            color: var(--gold-primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* 9. قسم شرفني بمتابعتك بكامل الشاشة */
+        .divider-container {
+            display: flex;
+            align-items: center;
+            margin: 30px 0 20px 0;
+            width: 100%;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: var(--card-border);
+        }
+
+        .divider-text {
+            padding: 0 15px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .social-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .social-card:hover {
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        .social-card i {
+            font-size: 1.2rem;
+        }
+
+        /* 11. حقوق الملكية */
+        .footer-copyright {
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-top: 15px;
+        }
+
+        /* 10. زر يوتيوب العائم المتحرك كل 3 ثواني */
+        .yt-floating-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            height: 48px;
+            width: 48px;
+            background: #ff0000;
+            color: #ffffff;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 14px;
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+            text-decoration: none;
+            z-index: 999;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: ytPulse 3s infinite ease-in-out;
+        }
+
+        html[dir="ltr"] .yt-floating-btn {
+            right: auto;
+            left: 25px;
+            padding-left: 0;
+            padding-right: 14px;
+            justify-content: flex-end;
+        }
+
+        .yt-floating-btn i {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .yt-btn-text {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-right: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        html[dir="ltr"] .yt-btn-text {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        @keyframes ytPulse {
+            0%, 70% { width: 48px; }
+            80%, 95% { width: 145px; }
+            100% { width: 48px; }
+        }
+
+        @keyframes textFade {
+            0%, 70% { opacity: 0; }
+            80%, 95% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .yt-floating-btn {
+            animation: ytPulse 3s infinite;
+        }
+        .yt-floating-btn .yt-btn-text {
+            animation: textFade 3s infinite;
+        }
+
+        /* 7. Dialog / Modal احترافي لمشاهدة الختمة */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .modal-card {
+            background: var(--card-bg);
+            border: 1px solid var(--gold-border);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 480px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: modalUp 0.3s ease;
+        }
+
+        @keyframes modalUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            padding: 18px;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 18px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-size: 0.88rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .modal-footer {
+            padding: 15px;
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
 
-    <div class="container">
-        <!-- الهيدر -->
-        <header>
-            <div class="header-actions">
-                <button class="btn-icon" id="themeToggleBtn" title="تغيير المظهر" aria-label="تغيير المظهر">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
-                <button class="btn-icon" id="langToggleBtn" title="تغيير اللغة" aria-label="تغيير اللغة">
-                    <i class="fa-solid fa-globe"></i>
-                    <span id="currentLangText">EN</span>
-                </button>
-                <button class="btn-icon" id="shareBtn" title="مشاركة" aria-label="مشاركة">
-                    <i class="fa-solid fa-share-nodes"></i>
-                </button>
-            </div>
+    <!-- 15. Header الثابت بالخلفية البلورية -->
+    <header class="header-sticky">
+        <div class="header-container">
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" aria-label="بحث" data-i18n-placeholder="search_placeholder" placeholder="ادخل نص البحث...">
+                <input type="text" id="searchInput" placeholder="ادخل نص البحث..." data-i18n-ph="search_ph">
             </div>
-        </header>
+            <button class="icon-btn" id="shareBtn" title="مشاركة الموقع">
+                <i class="fa-solid fa-share-nodes"></i>
+            </button>
+            <button class="icon-btn" id="langBtn" title="تغيير اللغة">
+                <span id="langLabel" style="font-size:0.75rem; font-weight:bold;">EN</span>
+            </button>
+            <button class="icon-btn" id="themeBtn" title="تغيير المظهر">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+        </div>
+    </header>
 
-        <!-- العنوان الرئيسي -->
-        <section class="card">
-            <h1 class="site-title">دَار يحيي</h1>
-            <p class="slogan" data-i18n="slogan">لا نهجر القرآن.. حتي تطيب حياتنا</p>
-        </section>
+    <div class="container">
+        
+        <!-- 3 & 17. عنوان الموقع والمقولة -->
+        <div class="brand-header">
+            <h1 class="brand-title">دَار يحيي</h1>
+            <p class="brand-subtitle" data-i18n="subtitle">لا نهجر القرآن.. حتى تطيب حياتنا</p>
+        </div>
 
-        <!-- قسم الحديث -->
-        <section class="card">
-            <h2 class="hadith-title" data-i18n="why_read_quran">لماذا نقرأ القرآن ونتعلمه؟!</h2>
-            <p class="hadith-quote">«خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ»</p>
-            <p class="hadith-source">[رواه البخاري]</p>
-        </section>
+        <!-- 8. بطاقة لماذا نقرأ القرآن (الآيات والأحاديث مع الترجمة) -->
+        <h2 class="section-title" data-i18n="why_read_title">لماذا نقرأ القرآن ونتعلمه؟!</h2>
+        <div class="card verse-card">
+            <div class="verse-text" id="verseText">« خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ »</div>
+            <div class="verse-translation" id="verseTranslation" style="display:none;">"The best among you are those who learn the Quran and teach it."</div>
+            <div class="verse-source" id="verseSource">[ رواه البخاري ]</div>
+        </div>
 
-        <!-- حاسبة الختمة -->
-        <section class="card">
-            <h2 class="section-title" data-i18n="select_khatmah">حدد الختمة</h2>
-            <div class="btn-group">
-                <button class="btn-option active" id="btnWeekly" data-i18n="weekly">أسبوعية</button>
-                <button class="btn-option" id="btnMonthly" data-i18n="monthly">شهرية</button>
-                <button class="btn-option" id="btnCustom" data-i18n="custom">مخصصة</button>
+        <!-- 2 & 5. خيارات حدد الختمة -->
+        <h2 class="section-title" data-i18n="khatma_title">حدد الختمة</h2>
+        <div class="card">
+            <div class="duration-grid">
+                <button class="duration-btn" onclick="selectDuration('weekly')" id="btn-weekly" data-i18n="weekly">أسبوعية</button>
+                <button class="duration-btn" onclick="selectDuration('monthly')" id="btn-monthly" data-i18n="monthly">شهرية</button>
+                <button class="duration-btn" onclick="selectDuration('custom')" id="btn-custom" data-i18n="custom">مخصصة</button>
             </div>
 
-            <div class="date-picker-container">
-                <div class="date-row">
-                    <label for="startDate" data-i18n="start_date">تاريخ البدء</label>
-                    <input type="date" id="startDate">
+            <!-- 4 & 5. أدوات التاريخ والنتائج تظهر فقط بعد الضغط -->
+            <div class="khatma-options" id="khatmaOptions">
+                <div class="date-group">
+                    <label data-i18n="start_date">تاريخ البدء</label>
+                    <input type="date" id="startDate" onchange="calculateKhatma()">
                 </div>
-                <div class="date-row">
-                    <label for="endDate" data-i18n="end_date">تاريخ الختام</label>
-                    <input type="date" id="endDate">
+                <div class="date-group">
+                    <label data-i18n="end_date">تاريخ الختام</label>
+                    <input type="date" id="endDate" onchange="calculateKhatma()">
+                </div>
+
+                <div class="khatma-result" id="khatmaResult">
+                    <span data-i18n="daily_target">الورد اليومي:</span> <span id="pagesPerDay">0</span> <span data-i18n="pages">صفحة</span>
+                </div>
+
+                <!-- 6. الأزرار الثلاثة بعد تحديد المدة -->
+                <div class="action-buttons">
+                    <button class="btn-action primary" onclick="openScheduleModal()">
+                        <i class="fa-solid fa-list-check"></i>
+                        <span data-i18n="btn_view">عرض جدول الختمة</span>
+                    </button>
+                    <button class="btn-action" onclick="addToCalendar()">
+                        <i class="fa-regular fa-calendar-plus"></i>
+                        <span data-i18n="btn_calendar">إضافة الخريطة إلى تقويم الهاتف</span>
+                    </button>
+                    <button class="btn-action" onclick="downloadSchedule()">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                        <span data-i18n="btn_download">تحميل جدول الختمة (PDF / WORD)</span>
+                    </button>
                 </div>
             </div>
+        </div>
 
-            <div class="daily-target">
-                <span data-i18n="daily_target_label">الورد اليومي:</span>
-                <span id="pageCount">87</span>
-                <span id="pageUnit">صفحة</span>
-            </div>
-
-            <div class="action-buttons">
-                <button class="btn-primary" id="btnViewSchedule">
-                    <i class="fa-solid fa-list-check"></i>
-                    <span data-i18n="view_schedule">عرض جدول الختمة</span>
-                </button>
-                <button class="btn-primary" id="btnAddCalendar">
-                    <i class="fa-regular fa-calendar-plus"></i>
-                    <span data-i18n="add_to_calendar">إضافة الخريطة إلى تقويم الهاتف</span>
-                </button>
-                <button class="btn-primary" id="btnDownloadSchedule">
-                    <i class="fa-solid fa-download"></i>
-                    <span data-i18n="download_schedule">تحميل جدول الختمة</span>
-                </button>
-            </div>
-        </section>
-
-        <!-- من أنا -->
-        <section class="card">
-            <h2 class="section-title" data-i18n="about_me_title">من أنا "مؤسس الموقع"</h2>
-            <p class="about-text">
-                <a href="#" class="author-link" id="authorName">فارس محمد داهش</a>.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالحديد مدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.
+        <!-- 13. قسم من أنا (مؤسس الموقع) -->
+        <h2 class="section-title" data-i18n="about_title">من أنا "مؤسس الموقع"</h2>
+        <div class="card">
+            <p class="bio-text" id="bioContent">
+                <a href="https://phsyf1.github.io/physf/" target="_blank" class="bio-link" id="authorName">فارس محمد داهش</a>.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.
             </p>
-        </section>
+        </div>
 
-        <!-- تواصل معي -->
-        <section class="card">
-            <h2 class="section-title" data-i18n="contact_title">تواصل معي</h2>
-            <form class="form-group" id="contactForm">
-                <input type="text" id="senderName" aria-label="اسمك الكريم" data-i18n-placeholder="your_name" placeholder="اسمك الكريم" required>
-                <input type="email" id="senderEmail" aria-label="بريدك الإلكتروني" data-i18n-placeholder="your_email" placeholder="بريدك الإلكتروني" required>
-                <textarea id="senderMessage" rows="4" aria-label="اكتب رسالتك هنا" data-i18n-placeholder="your_message" placeholder="اكتب رسالتك هنا..." required></textarea>
-                <button type="submit" class="btn-primary" data-i18n="send_message">إرسال الرسالة</button>
+        <!-- 16. مربع تواصل معي -->
+        <h2 class="section-title" data-i18n="contact_title">تواصل معي</h2>
+        <div class="card">
+            <form class="contact-form" action="https://formspree.io/f/faris.dahesh@gmail.com" method="POST" onsubmit="handleContact(event)">
+                <input type="text" name="name" class="form-input" placeholder="اسم الكريم" required data-i18n-ph="ph_name">
+                <input type="email" name="email" class="form-input" placeholder="بريدك الإلكتروني" required data-i18n-ph="ph_email">
+                <textarea name="message" class="form-textarea" placeholder="اكتب رسالتك هنا..." required data-i18n-ph="ph_msg"></textarea>
+                <button type="submit" class="btn-action primary">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span data-i18n="btn_send">إرسال الرسالة</span>
+                </button>
             </form>
+        </div>
 
-            <div class="visitor-count">
-                <span data-i18n="visitor_welcome">ضيفنا الكريم رقم</span> <strong>#1,428</strong>
-            </div>
+        <!-- 12. مربع عدد الزوار -->
+        <div class="visitor-box">
+            <span class="visitor-text" data-i18n="visitor_text">ضيوفنا الكرام رقم</span>
+            <span class="visitor-badge" id="visitorCount">1305</span>
+        </div>
 
-            <p style="margin-top: 10px;" data-i18n="follow_us">شرفنا بمتابعتك</p>
-            <div class="social-links">
-                <a href="#" class="social-btn"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i> <span data-i18n="youtube">يوتيوب</span></a>
-                <a href="#" class="social-btn"><i class="fa-brands fa-tiktok"></i> <span data-i18n="tiktok">تيك توك</span></a>
-                <a href="#" class="social-btn"><i class="fa-brands fa-telegram" style="color: #24a1de;"></i> <span data-i18n="telegram">تيليجرام</span></a>
-                <a href="#" class="social-btn"><i class="fa-brands fa-facebook" style="color: #1877f2;"></i> <span data-i18n="facebook">فيسبوك</span></a>
-            </div>
-        </section>
+        <!-- 9. قسم شرفني بمتابعتك بكامل الشاشة -->
+        <div class="divider-container">
+            <div class="divider-line"></div>
+            <div class="divider-text" data-i18n="follow_me">شرفني بمتابعتك</div>
+            <div class="divider-line"></div>
+        </div>
+
+        <div class="social-grid">
+            <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-card">
+                <i class="fa-brands fa-youtube" style="color: #ff0000;"></i>
+                <span data-i18n="yt">يوتيوب</span>
+            </a>
+            <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="social-card">
+                <i class="fa-brands fa-tiktok"></i>
+                <span data-i18n="tt">تيك توك</span>
+            </a>
+            <a href="https://t.me/phsyf1" target="_blank" class="social-card">
+                <i class="fa-brands fa-telegram" style="color: #0088cc;"></i>
+                <span data-i18n="tg">تيليجرام</span>
+            </a>
+            <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-card">
+                <i class="fa-brands fa-facebook" style="color: #1877f2;"></i>
+                <span data-i18n="fb">فيسبوك</span>
+            </a>
+        </div>
+
+        <!-- 11. نص الحقوق بالأسفل -->
+        <div class="footer-copyright">
+            © 2026 - <span data-i18n="rights">جميع الحقوق محفوظة</span>
+        </div>
+
     </div>
 
-    <!-- السكربت المدمج (JavaScript) -->
+    <!-- 10. زر يوتيوب العائم المتحرك -->
+    <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="yt-floating-btn" id="ytFloat">
+        <i class="fa-brands fa-youtube"></i>
+        <span class="yt-btn-text" data-i18n="yt_sub">اشترك الآن</span>
+    </a>
+
+    <!-- 7. Dialog الاحترافي لعرض جدول الختمة -->
+    <div class="modal-overlay" id="scheduleModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title" data-i18n="modal_title">جدول الختمة المخصص</div>
+                <button class="close-btn" onclick="closeScheduleModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalScheduleContent">
+                <!-- سيتم توليد الجدول بالـ JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-action primary" onclick="addToCalendar()">
+                    <i class="fa-regular fa-calendar-plus"></i>
+                    <span data-i18n="btn_calendar">إضافة الخريطة إلى تقويم الهاتف</span>
+                </button>
+                <button class="btn-action" onclick="downloadSchedule()">
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                    <span data-i18n="btn_download">تحميل جدول الختمة (PDF / WORD)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const translations = {
+        // --- 14. نظام اللغات والترجمة الشامل (i18n) ---
+        const i18nData = {
             ar: {
-                site_title: "دار يحيي | Dar Yahia",
-                slogan: "لا نهجر القرآن.. حتي تطيب حياتنا",
-                why_read_quran: "لماذا نقرأ القرآن ونتعلمه؟! ",
-                select_khatmah: "حدد الختمة",
+                search_ph: "ادخل نص البحث...",
+                subtitle: "لا نهجر القرآن.. حتى تطيب حياتنا",
+                why_read_title: "لماذا نقرأ القرآن ونتعلمه؟!",
+                khatma_title: "حدد الختمة",
                 weekly: "أسبوعية",
                 monthly: "شهرية",
                 custom: "مخصصة",
                 start_date: "تاريخ البدء",
                 end_date: "تاريخ الختام",
-                daily_target_label: "الورد اليومي:",
-                view_schedule: "عرض جدول الختمة",
-                add_to_calendar: "إضافة الخريطة إلى تقويم الهاتف",
-                download_schedule: "تحميل جدول الختمة",
-                about_me_title: "من أنا \"مؤسس الموقع\"",
-                contact_title: "تواصل معي",
-                your_name: "اسمك الكريم",
-                your_email: "بريدك الإلكتروني",
-                your_message: "اكتب رسالتك هنا...",
-                send_message: "إرسال الرسالة",
-                visitor_welcome: "ضيفنا الكريم رقم",
-                follow_us: "شرفنا بمتابعتك",
-                youtube: "يوتيوب",
-                tiktok: "تيك توك",
-                telegram: "تيليجرام",
-                facebook: "فيسبوك",
-                search_placeholder: "ادخل نص البحث...",
+                daily_target: "الورد اليومي:",
+                pages: "صفحة",
+                btn_view: "عرض جدول الختمة",
+                btn_calendar: "إضافة الخريطة إلى تقويم الهاتف",
+                btn_download: "تحميل جدول الختمة (PDF / WORD)",
+                about_title: "من أنا \"مؤسس الموقع\"",
+                bio_text: ".. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.",
                 author_name: "فارس محمد داهش",
-                page_unit: "صفحة"
+                contact_title: "تواصل معي",
+                ph_name: "اسم الكريم",
+                ph_email: "بريدك الإلكتروني",
+                ph_msg: "اكتب رسالتك هنا...",
+                btn_send: "إرسال الرسالة",
+                visitor_text: "ضيوفنا الكرام رقم",
+                follow_me: "شرفني بمتابعتك",
+                yt: "يوتيوب",
+                tt: "تيك توك",
+                tg: "تيليجرام",
+                fb: "فيسبوك",
+                rights: "جميع الحقوق محفوظة",
+                yt_sub: "اشترك الآن",
+                modal_title: "جدول الختمة المخصص",
+                day: "اليوم",
+                from_page: "من صفحة",
+                to_page: "إلى صفحة"
             },
             en: {
-                site_title: "Dar Yahia | Official Website",
-                slogan: "Do not abandon the Qur'an.. so that our lives may blossom",
-                why_read_quran: "Why do we read and learn the Qur'an?!",
-                select_khatmah: "Select Khatmah Duration",
+                search_ph: "Search text here...",
+                subtitle: "Do not abandon the Quran.. so our lives may thrive",
+                why_read_title: "Why do we read and learn the Quran?!",
+                khatma_title: "Select Khatma Duration",
                 weekly: "Weekly",
                 monthly: "Monthly",
                 custom: "Custom",
                 start_date: "Start Date",
                 end_date: "End Date",
-                daily_target_label: "Daily Reading:",
-                view_schedule: "View Schedule",
-                add_to_calendar: "Add Map to Calendar",
-                download_schedule: "Download Schedule",
-                about_me_title: "About Me (Founder)",
-                contact_title: "Contact Me",
-                your_name: "Your Name",
-                your_email: "Your Email",
-                your_message: "Type your message here...",
-                send_message: "Send Message",
-                visitor_welcome: "Honored Guest No.",
-                follow_us: "Follow Us",
-                youtube: "YouTube",
-                tiktok: "TikTok",
-                telegram: "Telegram",
-                facebook: "Facebook",
-                search_placeholder: "Search text...",
+                daily_target: "Daily Portion:",
+                pages: "pages",
+                btn_view: "View Khatma Schedule",
+                btn_calendar: "Add Map to Calendar",
+                btn_download: "Download Schedule (PDF / WORD)",
+                about_title: "About Me \"Founder\"",
+                bio_text: ".. Egyptian poet and content creator, born July 3, 2003, in Assiut Governorate (El Ghanayem). I strive to leave a beneficial impact through Quran recitations, poetry, and media content.",
                 author_name: "Faris Mohammed Dahesh Ash-Shiref",
-                page_unit: "Pages"
+                contact_title: "Contact Me",
+                ph_name: "Your Name",
+                ph_email: "Your Email",
+                ph_msg: "Write your message here...",
+                btn_send: "Send Message",
+                visitor_text: "Honored Guest No.",
+                follow_me: "Honored to have you follow me",
+                yt: "YouTube",
+                tt: "TikTok",
+                tg: "Telegram",
+                fb: "Facebook",
+                rights: "All rights reserved",
+                yt_sub: "Subscribe Now",
+                modal_title: "Custom Khatma Schedule",
+                day: "Day",
+                from_page: "From Page",
+                to_page: "To Page"
             }
         };
 
-        let currentLang = localStorage.getItem('app_lang') || 'ar';
-        let khatmahType = 'weekly';
+        let currentLang = "ar";
 
-        document.addEventListener('DOMContentLoaded', () => {
-            applyLanguage(currentLang);
-            initDates();
-            calculatePages();
-
-            // خيارات الختمة
-            document.getElementById('btnWeekly').addEventListener('click', () => setKhatmahType('weekly'));
-            document.getElementById('btnMonthly').addEventListener('click', () => setKhatmahType('monthly'));
-            document.getElementById('btnCustom').addEventListener('click', () => setKhatmahType('custom'));
-
-            // تواريخ الختمة
-            document.getElementById('startDate').addEventListener('change', calculatePages);
-            document.getElementById('endDate').addEventListener('change', calculatePages);
-
-            // نموذج التواصل
-            document.getElementById('contactForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                alert(currentLang === 'ar' ? 'تم إرسال الرسالة بنجاح!' : 'Message sent successfully!');
-                e.target.reset();
-            });
-
-            // زر تغيير اللغة
-            document.getElementById('langToggleBtn').addEventListener('click', () => {
-                currentLang = currentLang === 'ar' ? 'en' : 'ar';
-                localStorage.setItem('app_lang', currentLang);
-                applyLanguage(currentLang);
-            });
-
-            // زر المظهر
-            const themeBtn = document.getElementById('themeToggleBtn');
-            themeBtn.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                if (currentTheme === 'light') {
-                    document.documentElement.removeAttribute('data-theme');
-                    themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                    themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-                }
-            });
-
-            // زر المشاركة
-            document.getElementById('shareBtn').addEventListener('click', () => {
-                if (navigator.share) {
-                    navigator.share({ title: 'دار يحيي', url: window.location.href });
-                } else {
-                    navigator.clipboard.writeText(window.location.href);
-                    alert(currentLang === 'ar' ? 'تم نسخ رابط الموقع بنجاح!' : 'Link copied successfully!');
-                }
-            });
-        });
-
-        function applyLanguage(lang) {
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
-            document.getElementById('currentLangText').innerText = lang === 'ar' ? 'EN' : 'عربي';
-
+        document.getElementById('langBtn').addEventListener('click', () => {
+            currentLang = currentLang === "ar" ? "en" : "ar";
+            document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+            document.documentElement.lang = currentLang;
+            document.getElementById('langLabel').innerText = currentLang === "ar" ? "EN" : "عربي";
+            
+            // تحديث النصوص
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    el.innerText = translations[lang][key];
-                }
+                if (i18nData[currentLang][key]) el.innerText = i18nData[currentLang][key];
             });
 
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (translations[lang] && translations[lang][key]) {
-                    el.placeholder = translations[lang][key];
-                }
+            document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+                const key = el.getAttribute('data-i18n-ph');
+                if (i18nData[currentLang][key]) el.placeholder = i18nData[currentLang][key];
             });
 
-            const authorLink = document.getElementById('authorName');
-            if (authorLink) {
-                authorLink.innerText = translations[lang].author_name;
-            }
+            // تحديث الترجمة تحت الآية/الحديث
+            document.getElementById('verseTranslation').style.display = currentLang === 'en' ? 'block' : 'none';
 
-            document.getElementById('pageUnit').innerText = translations[lang].page_unit;
+            // 13. تحديث اسم الكاتب في الترجمة
+            const authorEl = document.getElementById('authorName');
+            authorEl.innerText = i18nData[currentLang].author_name;
+        });
+
+        // --- 7. مظهر الشاشة والـ StatusBar (Dark/Light) ---
+        const themeBtn = document.getElementById('themeBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeColorMeta = document.getElementById('theme-color-meta');
+
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            themeIcon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+            themeColorMeta.setAttribute('content', isDark ? '#f4f6f9' : '#0c1017');
+        });
+
+        // --- 4. إعدادات تاريخ الختمة (منع تحديد أيام قبل 5 أيام) ---
+        const startDateInput = document.getElementById('startDate');
+        const endDateInput = document.getElementById('endDate');
+
+        function setupDates() {
+            const today = new Date();
+            const minStart = new Date(today);
+            minStart.setDate(today.getDate() + 5); // 4. اشتراط عدم البدء قبل 5 أيام
+
+            const formatDate = (d) => d.toISOString().split('T')[0];
+
+            startDateInput.min = formatDate(minStart);
+            startDateInput.value = formatDate(minStart);
+
+            const defaultEnd = new Date(minStart);
+            defaultEnd.setDate(minStart.getDate() + 7);
+            endDateInput.min = formatDate(minStart);
+            endDateInput.value = formatDate(defaultEnd);
         }
 
-        function initDates() {
-            const today = new Date();
-            const startInput = document.getElementById('startDate');
-            const endInput = document.getElementById('endDate');
+        // --- 5. اختيار نوع المدة ---
+        function selectDuration(type) {
+            document.querySelectorAll('.duration-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${type}`).classList.add('active');
 
-            startInput.valueAsDate = today;
+            document.getElementById('khatmaOptions').style.display = 'block';
 
-            const nextWeek = new Date();
-            nextWeek.setDate(today.getDate() + 7);
-            endInput.valueAsDate = nextWeek;
-        }
-
-        function setKhatmahType(type) {
-            khatmahType = type;
-            document.querySelectorAll('.btn-option').forEach(btn => btn.classList.remove('active'));
-            
-            const today = new Date();
-            const endInput = document.getElementById('endDate');
+            const start = new Date(startDateInput.value);
+            let end = new Date(start);
 
             if (type === 'weekly') {
-                document.getElementById('btnWeekly').classList.add('active');
-                const endDate = new Date();
-                endDate.setDate(today.getDate() + 7);
-                endInput.valueAsDate = endDate;
+                end.setDate(start.getDate() + 7);
             } else if (type === 'monthly') {
-                document.getElementById('btnMonthly').classList.add('active');
-                const endDate = new Date();
-                endDate.setDate(today.getDate() + 30);
-                endInput.valueAsDate = endDate;
-            } else {
-                document.getElementById('btnCustom').classList.add('active');
+                end.setDate(start.getDate() + 30);
             }
 
-            calculatePages();
+            endDateInput.value = end.toISOString().split('T')[0];
+            calculateKhatma();
         }
 
-        function calculatePages() {
-            const startDate = new Date(document.getElementById('startDate').value);
-            const endDate = new Date(document.getElementById('endDate').value);
+        function calculateKhatma() {
+            const start = new Date(startDateInput.value);
+            const end = new Date(endDateInput.value);
             
-            const diffTime = endDate - startDate;
+            const diffTime = end - start;
             let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             
-            if (isNaN(diffDays) || diffDays <= 0) diffDays = 1;
+            if (diffDays <= 0) diffDays = 1;
 
-            const totalPages = 604;
+            const totalPages = 604; // عدد صفحات المصحف الشريف
             const pagesPerDay = Math.ceil(totalPages / diffDays);
 
-            document.getElementById('pageCount').innerText = pagesPerDay;
+            document.getElementById('pagesPerDay').innerText = pagesPerDay;
         }
+
+        // --- 7. Modal / Dialog عرض جدول الختمة ---
+        function openScheduleModal() {
+            const modal = document.getElementById('scheduleModal');
+            const modalBody = document.getElementById('modalScheduleContent');
+            modalBody.innerHTML = '';
+
+            const start = new Date(startDateInput.value);
+            const end = new Date(endDateInput.value);
+            const diffDays = Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60 * 24)));
+            const pagesPerDay = Math.ceil(604 / diffDays);
+
+            let currentPage = 1;
+            for (let i = 1; i <= diffDays; i++) {
+                let nextPage = Math.min(604, currentPage + pagesPerDay - 1);
+                const item = document.createElement('div');
+                item.className = 'schedule-item';
+                item.innerHTML = `
+                    <span><strong>${i18nData[currentLang].day} ${i}:</strong></span>
+                    <span>${i18nData[currentLang].from_page} ${currentPage} ${i18nData[currentLang].to_page} ${nextPage}</span>
+                `;
+                modalBody.appendChild(item);
+                currentPage = nextPage + 1;
+                if (currentPage > 604) break;
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeScheduleModal() {
+            document.getElementById('scheduleModal').style.display = 'none';
+        }
+
+        // --- 6. إضافة التذكير إلى تقويم الهاتف (.ics) ---
+        function addToCalendar() {
+            const startDate = startDateInput.value.replace(/-/g, '');
+            const icsData = 
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Dar Yahia Khatma//NONSGML v1.0//EN
+BEGIN:VEVENT
+SUMMARY:ورد ختمة القرآن الكريم - دار يحيي
+DESCRIPTION:تذكير بوردك اليومي لختمة القرآن الكريم من موقع دار يحيي
+DTSTART:${startDate}T080000Z
+DURATION:PT30M
+RRULE:FREQ=DAILY
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'khatma-schedule.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // --- 6. تحميل الجدول (طباعة / PDF) ---
+        function downloadSchedule() {
+            window.print();
+        }
+
+        // --- 12. مربع عدد الزوار المحلي ---
+        function initVisitorCounter() {
+            let count = localStorage.getItem('dar_yahia_visitors') || 1305;
+            count = parseInt(count) + 1;
+            localStorage.setItem('dar_yahia_visitors', count);
+            document.getElementById('visitorCount').innerText = count;
+        }
+
+        // --- مشاركة الموقع ---
+        document.getElementById('shareBtn').addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'دَار يحيي',
+                    text: 'لا نهجر القرآن.. حتى تطيب حياتنا',
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert(currentLang === 'ar' ? 'تم نسخ رابط الموقع!' : 'Link copied to clipboard!');
+            }
+        });
+
+        function handleContact(e) {
+            alert(currentLang === 'ar' ? 'شكراً لتواصلك! تم تجهيز الرسالة.' : 'Thank you! Message ready.');
+        }
+
+        // التشغيل الأولي عند تحميل الصفحة
+        window.onload = () => {
+            setupDates();
+            initVisitorCounter();
+        };
     </script>
 </body>
 </html>
