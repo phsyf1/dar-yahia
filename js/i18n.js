@@ -1,7 +1,7 @@
 const translations = {
     ar: {
         slogan: "لا نهجر القرآن.. حتي تطيب حياتنا",
-        why_read_quran: "لماذا نقرأ القرآن ونتعلمه؟!",
+        why_read_quran: "لماذا نقرأ القرآن ونتعلمه؟! ",
         select_khatmah: "حدد الختمة",
         weekly: "أسبوعية",
         monthly: "شهرية",
@@ -96,7 +96,6 @@ function applyLanguage(lang) {
         }
     });
 
-    // تحديث ترجمة الاسم للإنجليزية حسب الرغبة
     const authorLink = document.getElementById('authorName');
     if (authorLink) {
         authorLink.innerText = lang === 'en' ? 'Faris Mohammed Dahesh Ash-Shiref' : 'فارس محمد داهش';
