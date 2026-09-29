@@ -1,0 +1,234 @@
+/* Color Palette Variables */
+:root[data-theme="dark"] {
+    --bg-color: #0b1329;
+    --accent-color: #d4af37;
+    --accent-hover: #b8860b;
+    --text-color: #ffffff;
+    --text-muted: #cbd5e1;
+    --card-bg-glass: rgba(21, 32, 62, 0.75);
+    --input-bg: rgba(21, 32, 62, 0.85);
+    --border-color: rgba(212, 175, 55, 0.3);
+    --shadow-glow: rgba(212, 175, 55, 0.15);
+}
+
+:root[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --accent-color: #b8860b;
+    --accent-hover: #8b5a2b;
+    --text-color: #0f172a;
+    --text-muted: #475569;
+    --card-bg-glass: rgba(255, 255, 255, 0.85);
+    --input-bg: rgba(255, 255, 255, 0.9);
+    --border-color: rgba(212, 175, 55, 0.35);
+    --shadow-glow: rgba(184, 134, 11, 0.12);
+}
+
+/* Global Reset & Styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Tajawal', sans-serif;
+    min-height: 100vh;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quran-font {
+    font-family: 'Amiri', serif;
+    font-size: 1.35rem;
+    line-height: 2.1;
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+    background: var(--card-bg-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 32px var(--shadow-glow);
+    margin-bottom: 24px;
+    width: 100%;
+    max-width: 800px;
+    animation: luxuryAppear 0.8s ease-out forwards;
+}
+
+/* Top Header Bar & Controls */
+.top-bar {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icon-btn, .lang-dropdown {
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* 1:3 Ratio Logo Box */
+.logo-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.logo-box {
+    width: 33.333%;
+    min-width: 260px;
+    text-align: center;
+    padding: 14px 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 12px;
+    background: var(--card-bg-glass);
+    box-shadow: 0 0 20px var(--shadow-glow);
+}
+
+.site-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    letter-spacing: 1px;
+}
+
+/* Dynamic Quotes Carousel */
+.quote-card {
+    text-align: center;
+    min-height: 180px;
+}
+
+.quote-header {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin-bottom: 16px;
+}
+
+.quote-body {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.quote-body.fade-out {
+    opacity: 0;
+}
+
+.quote-source {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* Tabs & Inputs */
+.khatmah-tabs, .toggle-mode-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn, .mode-btn {
+    flex: 1;
+    padding: 12px;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tab-btn.active, .mode-btn.active {
+    background: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+}
+
+.inputs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.custom-input {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--input-bg);
+    color: var(--text-color);
+    font-family: inherit;
+}
+
+/* Breakdown Results */
+.results-box {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+.result-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.res-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.res-val {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+}
+
+.gold-btn {
+    background: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.hidden { display: none !important; }
+
+/* Luxury Entry Animation */
+@keyframes luxuryAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
