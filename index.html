@@ -1,123 +1,197 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="dark">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دَار يحيي | Dar Yahya</title>
-
-    <!-- PWA Manifest & Theme Color -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0b1329">
-
-    <!-- Fonts: Tajawal for UI & Amiri/Hafs for Quranic Text -->
+    <meta name="theme-color" content="#0d1117">
+    <title>دار يحيي | Dar Yahia</title>
+    
+    <!-- الخطوط وأيقونات FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-
-    <!-- External Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-theme">
 
-    <!-- Header & Theme/Lang Controls -->
-    <header class="app-header">
-        <div class="top-bar">
-            <button id="themeToggleBtn" class="icon-btn" aria-label="Toggle Theme">🌙</button>
-            <select id="langSelect" class="lang-dropdown">
-                <option value="ar">العربية</option>
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="es">Español</option>
-            </select>
-        </div>
-
-        <!-- Site Title Container (1:3 Width Ratio) -->
-        <div class="logo-wrapper">
-            <div class="logo-box">
-                <h1 class="site-title" data-i18n="appTitle">دَار يحيي</h1>
+    <!-- الهيدر الزجاجي الثابت -->
+    <header class="sticky-header">
+        <div class="header-container">
+            <div class="header-actions">
+                <button id="themeToggleBtn" class="icon-btn" title="تغيير المظهر" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button id="langToggleBtn" class="icon-btn" title="تغيير اللغة" aria-label="Change Language">
+                    <i class="fa-solid fa-globe"></i>
+                </button>
+                <button id="shareBtn" class="icon-btn" title="مشاركة الموقع" aria-label="Share Site">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
+            </div>
+            
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="ادخل نص البحث...">
             </div>
         </div>
     </header>
 
-    <main class="main-content">
-        <!-- Interactive Quotes Card -->
-        <section class="quote-card glass-panel">
-            <h2 class="quote-header" data-i18n="whyReadQuran">لماذا نقرأ القرآن ونتعلمه؟!</h2>
-            <div class="quote-body" id="quoteContainer">
-                <p id="quoteText" class="quran-font"></p>
-                <span id="quoteSource" class="quote-source"></span>
+    <main class="main-wrapper">
+
+        <!-- واجهة البانر الرئيسية (دار يحيي) -->
+        <section class="hero-section">
+            <div class="hero-card">
+                <h1 class="brand-title" id="mainTitle">دَار يحيي</h1>
+                <p class="brand-subtitle" id="mainSubtitle" data-i18n="slogan">لا نهجر القرآن.. حتي تطيب حياتنا</p>
             </div>
         </section>
 
-        <!-- Khatmah Planner Section -->
-        <section class="khatmah-card glass-panel">
-            <h2 class="section-title" data-i18n="selectKhatmah">حدد الختمة</h2>
-            
-            <div class="khatmah-tabs">
-                <button class="tab-btn active" data-type="weekly" data-i18n="weekly">أسبوعية</button>
-                <button class="tab-btn" data-type="monthly" data-i18n="monthly">شهرية</button>
-                <button class="tab-btn" data-type="custom" data-i18n="custom">مخصصة</button>
+        <!-- اقتباس / آية اليوم -->
+        <div class="section-title-wrap">
+            <h2 class="section-title" data-i18n="why_read_quran">لماذا نقرأ القرآن ونتعلمه؟!</h2>
+        </div>
+        <div class="content-card quote-card">
+            <p class="arabic-verse" id="quranQuote">«خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ»</p>
+            <span class="quote-source" id="quoteSource">[رواه البخاري]</span>
+            <p class="translated-text" id="quoteTranslation" style="display: none;"></p>
+        </div>
+
+        <!-- أداة حاسبة الختمة -->
+        <div class="section-title-wrap">
+            <h2 class="section-title" data-i18n="select_khatmah">حدد الختمة</h2>
+        </div>
+        <div class="content-card khatmah-card">
+            <div class="duration-selector">
+                <button class="duration-btn active" data-type="weekly" data-i18n="weekly">أسبوعية</button>
+                <button class="duration-btn" data-type="monthly" data-i18n="monthly">شهرية</button>
+                <button class="duration-btn" data-type="custom" data-i18n="custom">مخصصة</button>
             </div>
 
-            <!-- Options Panel -->
-            <div class="khatmah-options">
-                <!-- Custom Mode Toggle (Visible in Custom Mode Only) -->
-                <div id="customToggleBox" class="toggle-mode-box hidden">
-                    <button id="modeDaysBtn" class="mode-btn active" data-i18n="byDays">بالأيام</button>
-                    <button id="modePagesBtn" class="mode-btn" data-i18n="byPages">بعدد الصفحات</button>
+            <div id="khatmahDetails" class="khatmah-details">
+                <div class="input-group">
+                    <label for="startDate" data-i18n="start_date">تاريخ البدء</label>
+                    <input type="date" id="startDate" class="custom-input">
                 </div>
 
-                <div class="inputs-grid">
-                    <div class="input-group">
-                        <label for="startDate" data-i18n="startDate">تاريخ البدء</label>
-                        <input type="date" id="startDate" class="custom-input">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="endDate" data-i18n="endDate">تاريخ الختام</label>
-                        <input type="date" id="endDate" class="custom-input">
-                    </div>
-
-                    <div class="input-group hidden" id="pagesInputGroup">
-                        <label for="dailyPagesInput" data-i18n="dailyPagesCount">الصفحات اليومية</label>
-                        <input type="number" id="dailyPagesInput" min="1" max="604" value="20" class="custom-input">
-                    </div>
+                <div class="input-group">
+                    <label for="endDate" data-i18n="end_date">تاريخ الختام</label>
+                    <input type="date" id="endDate" class="custom-input">
                 </div>
 
-                <!-- Khatmah Breakdown Results -->
-                <div class="results-box" id="resultsBox">
-                    <div class="result-item">
-                        <span class="res-label" data-i18n="dailyPages">الورد اليومي:</span>
-                        <strong id="resPages" class="res-val">0 صفحة</strong>
-                    </div>
-                    <div class="result-item">
-                        <span class="res-label" data-i18n="hizbRatio">نسبة الحزب:</span>
-                        <strong id="resHizb" class="res-val">0% من الحزب</strong>
-                    </div>
-                    <div class="result-item">
-                        <span class="res-label" data-i18n="juzRatio">نسبة الجزء:</span>
-                        <strong id="resJuz" class="res-val">0% من الجزء</strong>
-                    </div>
-                    <div class="result-item highlight">
-                        <span class="res-label" data-i18n="estTime">الوقت التقريبي:</span>
-                        <strong id="resTime" class="res-val">0 دقيقة</strong>
-                    </div>
+                <div class="khatmah-result">
+                    <span data-i18n="daily_target_label">الورد اليومي:</span>
+                    <strong id="dailyPagesCount">87 صفحة</strong>
+                </div>
+
+                <div class="action-buttons-group">
+                    <button id="showScheduleBtn" class="btn btn-primary">
+                        <i class="fa-solid fa-table-list"></i> <span data-i18n="view_schedule">عرض جدول الختمة</span>
+                    </button>
+                    <button id="addCalendarBtn" class="btn btn-secondary">
+                        <i class="fa-solid fa-calendar-plus"></i> <span data-i18n="add_to_calendar">إضافة الخريطة إلى تقويم الهاتف</span>
+                    </button>
+                    <button id="downloadScheduleBtn" class="btn btn-outline">
+                        <i class="fa-solid fa-file-arrow-down"></i> <span data-i18n="download_schedule">تحميل جدول الختمة</span>
+                    </button>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Notification Setup -->
-        <section class="notification-card glass-panel">
-            <h3 data-i18n="reminderTitle">التذكير اليومي بورد القرآن</h3>
-            <div class="notification-controls">
-                <input type="time" id="reminderTime" value="05:00" class="custom-input">
-                <button id="enableNotifyBtn" class="gold-btn" data-i18n="enableNotifications">تفعيل التنبيهات</button>
-            </div>
-        </section>
+        <!-- قسم من أنا (مؤسس الموقع) -->
+        <div class="section-title-wrap">
+            <h2 class="section-title" data-i18n="about_me_title">من أنا "مؤسس الموقع"</h2>
+        </div>
+        <div class="content-card bio-card">
+            <p class="bio-text" id="bioContent">
+                <a href="https://phsyf1.github.io/physf/" target="_blank" class="author-link" id="authorName">فارس محمد داهش</a>.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.
+            </p>
+        </div>
+
+        <!-- قسم تواصل معي -->
+        <div class="section-title-wrap">
+            <h2 class="section-title" data-i18n="contact_title">تواصل معي</h2>
+        </div>
+        <div class="content-card contact-card">
+            <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                <div class="input-group">
+                    <input type="text" id="contactName" required class="custom-input" data-i18n-placeholder="your_name" placeholder="اسمك الكريم">
+                </div>
+                <div class="input-group">
+                    <input type="email" id="contactEmail" required class="custom-input" data-i18n-placeholder="your_email" placeholder="بريدك الإلكتروني">
+                </div>
+                <div class="input-group">
+                    <textarea id="contactMessage" rows="4" required class="custom-input" data-i18n-placeholder="your_message" placeholder="اكتب رسالتك هنا..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-gold btn-block">
+                    <i class="fa-solid fa-paper-plane"></i> <span data-i18n="send_message">إرسال الرسالة</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- بطاقة عدد الزوار -->
+        <div class="visitor-box">
+            <i class="fa-solid fa-eye visitor-icon"></i>
+            <span data-i18n="visitor_welcome">ضيفنا الكريم رقم</span>
+            <span class="visitor-number" id="visitorCount">1305</span>
+        </div>
+
+        <!-- قسم المتابعة والتواصل الاجتماعي -->
+        <div class="social-divider">
+            <span data-i18n="follow_us">شرفنا بمتابعتك</span>
+        </div>
+
+        <div class="social-grid">
+            <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-btn youtube">
+                <i class="fa-brands fa-youtube"></i> <span data-i18n="youtube">يوتيوب</span>
+            </a>
+            <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="social-btn tiktok">
+                <i class="fa-brands fa-tiktok"></i> <span data-i18n="tiktok">تيك توك</span>
+            </a>
+            <a href="https://t.me/phsyf1" target="_blank" class="social-btn telegram">
+                <i class="fa-brands fa-telegram"></i> <span data-i18n="telegram">تيليجرام</span>
+            </a>
+            <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-btn facebook">
+                <i class="fa-brands fa-facebook-f"></i> <span data-i18n="facebook">فيسبوك</span>
+            </a>
+        </div>
+
+        <!-- حقوق النشر -->
+        <footer class="site-footer">
+            <p id="copyrightText">© 2026 - جميع الحقوق محفوظة</p>
+        </footer>
+
     </main>
 
-    <!-- Scripts -->
-    <script src="js/i18n.js"></script>
-    <script src="js/app.js"></script>
+    <!-- زر يوتيوب العائم المتردد -->
+    <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="youtube-float-btn" id="ytFloatBtn">
+        <i class="fa-brands fa-youtube"></i>
+        <span class="yt-text" data-i18n="subscribe_now">اشترك الآن</span>
+    </a>
+
+    <!-- نافذة جدول الختمة (Modal Dialog) -->
+    <div id="scheduleModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-i18n="khatmah_schedule_details">خريطة جدول الختمة</h3>
+                <button class="modal-close" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body" id="modalScheduleBody">
+                <!-- يتم توليده ديناميكياً بواسطة JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button id="modalAddCalendarBtn" class="btn btn-secondary btn-sm">
+                    <i class="fa-solid fa-calendar-plus"></i> <span data-i18n="add_to_calendar">إضافة للتقويم</span>
+                </button>
+                <button id="modalDownloadBtn" class="btn btn-outline btn-sm">
+                    <i class="fa-solid fa-file-arrow-down"></i> <span data-i18n="download">تحميل</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
