@@ -65,7 +65,6 @@
             gap: 20px;
         }
 
-        /* الهيدر وعناصر التحكم */
         header {
             display: flex;
             justify-content: space-between;
@@ -128,7 +127,6 @@
         html[dir="rtl"] .search-box i { right: 10px; }
         html[dir="ltr"] .search-box i { left: 10px; }
 
-        /* الكروت والبطاقات */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -151,7 +149,6 @@
             margin-bottom: 10px;
         }
 
-        /* قسم الحديث */
         .hadith-title {
             font-size: 1.5rem;
             font-weight: 700;
@@ -171,7 +168,6 @@
             color: #8b949e;
         }
 
-        /* حاسبة الختمة */
         .section-title {
             font-size: 1.4rem;
             color: var(--text-heading);
@@ -264,7 +260,6 @@
             background: var(--button-hover);
         }
 
-        /* من أنا والتواصل */
         .about-text {
             text-align: justify;
             font-size: 0.95rem;
@@ -373,19 +368,19 @@
         <section class="card">
             <h2 class="section-title" data-i18n="select_khatmah">حدد الختمة</h2>
             <div class="btn-group">
-                <button class="btn-option active" id="btnWeekly" onclick="setKhatmahType('weekly')" data-i18n="weekly">أسبوعية</button>
-                <button class="btn-option" id="btnMonthly" onclick="setKhatmahType('monthly')" data-i18n="monthly">شهرية</button>
-                <button class="btn-option" id="btnCustom" onclick="setKhatmahType('custom')" data-i18n="custom">مخصصة</button>
+                <button class="btn-option active" id="btnWeekly" data-i18n="weekly">أسبوعية</button>
+                <button class="btn-option" id="btnMonthly" data-i18n="monthly">شهرية</button>
+                <button class="btn-option" id="btnCustom" data-i18n="custom">مخصصة</button>
             </div>
 
             <div class="date-picker-container">
                 <div class="date-row">
                     <label data-i18n="start_date">تاريخ البدء</label>
-                    <input type="date" id="startDate" onchange="calculatePages()">
+                    <input type="date" id="startDate">
                 </div>
                 <div class="date-row">
                     <label data-i18n="end_date">تاريخ الختام</label>
-                    <input type="date" id="endDate" onchange="calculatePages()">
+                    <input type="date" id="endDate">
                 </div>
             </div>
 
@@ -419,10 +414,10 @@
             </p>
         </section>
 
-        <!-- تواصل معي ورابط الشبكات -->
+        <!-- تواصل معي -->
         <section class="card">
             <h2 class="section-title" data-i18n="contact_title">تواصل معي</h2>
-            <form class="form-group" onsubmit="event.preventDefault(); alert('تم إرسال الرسالة بنجاح!');">
+            <form class="form-group" id="contactForm">
                 <input type="text" data-i18n-placeholder="your_name" placeholder="اسمك الكريم" required>
                 <input type="email" data-i18n-placeholder="your_email" placeholder="بريدك الإلكتروني" required>
                 <textarea rows="4" data-i18n-placeholder="your_message" placeholder="اكتب رسالتك هنا..." required></textarea>
@@ -516,24 +511,39 @@
             initDates();
             calculatePages();
 
-            // زر اللغة
+            // خيارات الختمة
+            document.getElementById('btnWeekly').addEventListener('click', () => setKhatmahType('weekly'));
+            document.getElementById('btnMonthly').addEventListener('click', () => setKhatmahType('monthly'));
+            document.getElementById('btnCustom').addEventListener('click', () => setKhatmahType('custom'));
+
+            // تواريخ الختمة
+            document.getElementById('startDate').addEventListener('change', calculatePages);
+            document.getElementById('endDate').addEventListener('change', calculatePages);
+
+            // نموذج التواصل
+            document.getElementById('contactForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert(currentLang === 'ar' ? 'تم إرسال الرسالة بنجاح!' : 'Message sent successfully!');
+                e.target.reset();
+            });
+
+            // زر تغيير اللغة
             document.getElementById('langToggleBtn').addEventListener('click', () => {
                 currentLang = currentLang === 'ar' ? 'en' : 'ar';
                 localStorage.setItem('app_lang', currentLang);
                 applyLanguage(currentLang);
             });
 
-            // زر المظهر (الداكن/الفاتح)
+            // زر المظهر
             const themeBtn = document.getElementById('themeToggleBtn');
             themeBtn.addEventListener('click', () => {
                 const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                if (newTheme === 'light') {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                    themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-                } else {
+                if (currentTheme === 'light') {
                     document.documentElement.removeAttribute('data-theme');
                     themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
                 }
             });
 
@@ -543,7 +553,7 @@
                     navigator.share({ title: 'دار يحيي', url: window.location.href });
                 } else {
                     navigator.clipboard.writeText(window.location.href);
-                    alert('تم نسخ رابط الموقع بنجاح!');
+                    alert(currentLang === 'ar' ? 'تم نسخ رابط الموقع بنجاح!' : 'Link copied successfully!');
                 }
             });
         });
