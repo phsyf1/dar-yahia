@@ -334,20 +334,20 @@
         <!-- الهيدر -->
         <header>
             <div class="header-actions">
-                <button class="btn-icon" id="themeToggleBtn" title="تغيير المظهر">
+                <button class="btn-icon" id="themeToggleBtn" title="تغيير المظهر" aria-label="تغيير المظهر">
                     <i class="fa-solid fa-moon"></i>
                 </button>
-                <button class="btn-icon" id="langToggleBtn" title="تغيير اللغة">
+                <button class="btn-icon" id="langToggleBtn" title="تغيير اللغة" aria-label="تغيير اللغة">
                     <i class="fa-solid fa-globe"></i>
                     <span id="currentLangText">EN</span>
                 </button>
-                <button class="btn-icon" id="shareBtn" title="مشاركة">
+                <button class="btn-icon" id="shareBtn" title="مشاركة" aria-label="مشاركة">
                     <i class="fa-solid fa-share-nodes"></i>
                 </button>
             </div>
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" data-i18n-placeholder="search_placeholder" placeholder="ادخل نص البحث...">
+                <input type="text" id="searchInput" aria-label="بحث" data-i18n-placeholder="search_placeholder" placeholder="ادخل نص البحث...">
             </div>
         </header>
 
@@ -375,11 +375,11 @@
 
             <div class="date-picker-container">
                 <div class="date-row">
-                    <label data-i18n="start_date">تاريخ البدء</label>
+                    <label for="startDate" data-i18n="start_date">تاريخ البدء</label>
                     <input type="date" id="startDate">
                 </div>
                 <div class="date-row">
-                    <label data-i18n="end_date">تاريخ الختام</label>
+                    <label for="endDate" data-i18n="end_date">تاريخ الختام</label>
                     <input type="date" id="endDate">
                 </div>
             </div>
@@ -391,15 +391,15 @@
             </div>
 
             <div class="action-buttons">
-                <button class="btn-primary">
+                <button class="btn-primary" id="btnViewSchedule">
                     <i class="fa-solid fa-list-check"></i>
                     <span data-i18n="view_schedule">عرض جدول الختمة</span>
                 </button>
-                <button class="btn-primary">
+                <button class="btn-primary" id="btnAddCalendar">
                     <i class="fa-regular fa-calendar-plus"></i>
                     <span data-i18n="add_to_calendar">إضافة الخريطة إلى تقويم الهاتف</span>
                 </button>
-                <button class="btn-primary">
+                <button class="btn-primary" id="btnDownloadSchedule">
                     <i class="fa-solid fa-download"></i>
                     <span data-i18n="download_schedule">تحميل جدول الختمة</span>
                 </button>
@@ -418,9 +418,9 @@
         <section class="card">
             <h2 class="section-title" data-i18n="contact_title">تواصل معي</h2>
             <form class="form-group" id="contactForm">
-                <input type="text" data-i18n-placeholder="your_name" placeholder="اسمك الكريم" required>
-                <input type="email" data-i18n-placeholder="your_email" placeholder="بريدك الإلكتروني" required>
-                <textarea rows="4" data-i18n-placeholder="your_message" placeholder="اكتب رسالتك هنا..." required></textarea>
+                <input type="text" id="senderName" aria-label="اسمك الكريم" data-i18n-placeholder="your_name" placeholder="اسمك الكريم" required>
+                <input type="email" id="senderEmail" aria-label="بريدك الإلكتروني" data-i18n-placeholder="your_email" placeholder="بريدك الإلكتروني" required>
+                <textarea id="senderMessage" rows="4" aria-label="اكتب رسالتك هنا" data-i18n-placeholder="your_message" placeholder="اكتب رسالتك هنا..." required></textarea>
                 <button type="submit" class="btn-primary" data-i18n="send_message">إرسال الرسالة</button>
             </form>
 
