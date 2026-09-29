@@ -1,214 +1,235 @@
-// Quran Constants (Madinah Mushaf 604 pages)
-const TOTAL_QURAN_PAGES = 604;
-const PAGES_PER_JUZ = 20.133;
-const PAGES_PER_HIZB = 10.066;
-const MINUTES_PER_PAGE = 1.25; // Average reading pace
-
-// Quotes Data Array
-const QURAN_QUOTES = [
-    { text: "وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ", source: "[القمر - ١٧]" },
-    { text: "وَقَالَ الرَّسُولُ يَا رَبِّ إِنَّ قَوْمِي اتَّخَذُوا هَٰذَا الْقُرْآنَ مَهْجُورًا", source: "[الفرقان - ٣٠]" },
-    { text: "خَيْرُكُمْ مَنْ تَعَلَّمَ القُرْآنَ وَعَلَّمَهُ", source: "[رواه البخاري]" },
-    { text: "الْمَاهِرُ بِالْقُرْآنِ مَعَ السَّفَرَةِ الْكِرَامِ الْبَرَرَةِ، وَالَّذِي يَقْرَأُ الْقُرْآنَ وَيَتَتَعْتَعُ فِيهِ، وَهُوَ عَلَيْهِ شَاقٌّ، لَهُ أَجْرَانِ", source: "[رواه البخاري ومسلم]" },
-    { text: "تَعَاهَدُوا هذا القُرْآنَ، فَوالَّذِي نَفْسُ مُحَمَّدٍ بِيَدِهِ لَهُوَ أشَدُّ تفَلُّتًا مِنَ الإبِلِ فِي عُقُلِهَا", source: "[رواه البخاري ومسلم]" },
-    { text: "اقْرَؤُوا القُرْآنَ فإنَّه يَأْتي يَومَ القِيَامَةِ شَفِيعًا لأَصْحَابِهِ", source: "[رواه مسلم]" }
-];
-
-let activeTab = 'weekly';
-let customMode = 'days'; // 'days' or 'pages'
-
 document.addEventListener('DOMContentLoaded', () => {
-    initThemeAndLang();
-    startQuotesCarousel();
-    setupKhatmahPlanner();
-    registerServiceWorker();
+    initTheme();
+    initDatePickerRestriction();
+    initDurationSelector();
+    initModalEvents();
+    initContactForm();
+    initTranslationFetcher();
 });
 
-// Theme & Language Initialization
-function initThemeAndLang() {
-    const savedTheme = localStorage.getItem('dar_yahya_theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    document.getElementById('themeToggleBtn').textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+// 1. التحكم بالثيم وتحديث لون شريط النظام المترابط مع الهاتف
+function initTheme() {
+    const themeBtn = document.getElementById('themeToggleBtn');
+    const savedTheme = localStorage.getItem('theme') || 'dark-theme';
+    document.body.className = savedTheme;
+    updateThemeColorMeta();
 
-    document.getElementById('themeToggleBtn').addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('dar_yahya_theme', newTheme);
-        document.getElementById('themeToggleBtn').textContent = newTheme === 'dark' ? '🌙' : '☀️';
-    });
-
-    const currentLang = autoDetectLanguage();
-    document.getElementById('langSelect').value = currentLang;
-    applyLanguage(currentLang);
-
-    document.getElementById('langSelect').addEventListener('change', (e) => {
-        applyLanguage(e.target.value);
+    themeBtn.addEventListener('click', () => {
+        if (document.body.classList.contains('dark-theme')) {
+            document.body.className = 'light-theme';
+            localStorage.setItem('theme', 'light-theme');
+        } else {
+            document.body.className = 'dark-theme';
+            localStorage.setItem('theme', 'dark-theme');
+        }
+        updateThemeColorMeta();
     });
 }
 
-// Quote Carousel (Random Every 4s with Fade Animation)
-function startQuotesCarousel() {
-    const container = document.getElementById('quoteContainer');
-    const textEl = document.getElementById('quoteText');
-    const sourceEl = document.getElementById('quoteSource');
-    let lastIndex = -1;
-
-    function renderNextQuote() {
-        let randomIndex;
-        do {
-            randomIndex = Math.floor(Math.random() * QURAN_QUOTES.length);
-        } while (randomIndex === lastIndex && QURAN_QUOTES.length > 1);
-        
-        lastIndex = randomIndex;
-        const quote = QURAN_QUOTES[randomIndex];
-
-        container.classList.add('fade-out');
-        setTimeout(() => {
-            textEl.textContent = quote.text;
-            sourceEl.textContent = quote.source;
-            container.classList.remove('fade-out');
-        }, 500);
+function updateThemeColorMeta() {
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const icon = document.querySelector('#themeToggleBtn i');
+    if (document.body.classList.contains('dark-theme')) {
+        if (metaTheme) metaTheme.setAttribute('content', '#0d1117');
+        if (icon) icon.className = 'fa-solid fa-sun';
+    } else {
+        if (metaTheme) metaTheme.setAttribute('content', '#f4f6f9');
+        if (icon) icon.className = 'fa-solid fa-moon';
     }
-
-    renderNextQuote();
-    setInterval(renderNextQuote, 4000);
 }
 
-// Khatmah Mathematics & Rules Engine
-function setupKhatmahPlanner() {
+// 2. تقييم تاريخ البدء بحيث لا يكون أقدم من 5 أيام
+function initDatePickerRestriction() {
     const startDateInput = document.getElementById('startDate');
     const endDateInput = document.getElementById('endDate');
-    const pagesInput = document.getElementById('dailyPagesInput');
-    
-    // Set Today as Default Start Date
-    const today = new Date().toISOString().split('T')[0];
-    startDateInput.value = today;
 
-    // Tabs Switcher
-    document.querySelectorAll('.tab-btn').forEach(btn => {
+    const today = new Date();
+    const minDate = new Date();
+    minDate.setDate(today.getDate() - 5); // أقصى حد 5 أيام سابقة
+
+    const minDateStr = minDate.toISOString().split('T')[0];
+    const todayStr = today.toISOString().split('T')[0];
+
+    startDateInput.min = minDateStr;
+    startDateInput.value = todayStr;
+
+    // تعيين التاريخ الافتراضي للختام (بعد أسبوع)
+    const defaultEnd = new Date();
+    defaultEnd.setDate(today.getDate() + 7);
+    endDateInput.value = defaultEnd.toISOString().split('T')[0];
+
+    startDateInput.addEventListener('change', calculatePages);
+    endDateInput.addEventListener('change', calculatePages);
+    calculatePages();
+}
+
+// 3. اختيار المدة وتفاعل الخيارات
+function initDurationSelector() {
+    const buttons = document.querySelectorAll('.duration-btn');
+    buttons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            buttons.forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
-            activeTab = e.target.getAttribute('data-type');
-            
-            toggleModeUI();
-            calculateKhatmah();
+
+            const type = e.target.getAttribute('data-type');
+            const startDate = new Date(document.getElementById('startDate').value || Date.now());
+            const endDateInput = document.getElementById('endDate');
+
+            let targetEnd = new Date(startDate);
+
+            if (type === 'weekly') {
+                targetEnd.setDate(startDate.getDate() + 7);
+                endDateInput.value = targetEnd.toISOString().split('T')[0];
+            } else if (type === 'monthly') {
+                targetEnd.setDate(startDate.getDate() + 30);
+                endDateInput.value = targetEnd.toISOString().split('T')[0];
+            }
+            calculatePages();
         });
     });
-
-    // Custom Mode Sub-Toggle (Days / Pages)
-    document.getElementById('modeDaysBtn').addEventListener('click', () => {
-        customMode = 'days';
-        document.getElementById('modeDaysBtn').classList.add('active');
-        document.getElementById('modePagesBtn').classList.remove('active');
-        toggleModeUI();
-        calculateKhatmah();
-    });
-
-    document.getElementById('modePagesBtn').addEventListener('click', () => {
-        customMode = 'pages';
-        document.getElementById('modePagesBtn').classList.add('active');
-        document.getElementById('modeDaysBtn').classList.remove('active');
-        toggleModeUI();
-        calculateKhatmah();
-    });
-
-    [startDateInput, endDateInput, pagesInput].forEach(input => {
-        input.addEventListener('input', calculateKhatmah);
-    });
-
-    toggleModeUI();
-    calculateKhatmah();
 }
 
-function toggleModeUI() {
-    const customToggleBox = document.getElementById('customToggleBox');
-    const pagesGroup = document.getElementById('pagesInputGroup');
-    const endDateInput = document.getElementById('endDate');
+// حساب عدد صفحات الورد اليومي
+function calculatePages() {
+    const start = new Date(document.getElementById('startDate').value);
+    const end = new Date(document.getElementById('endDate').value);
+    const resultElement = document.getElementById('dailyPagesCount');
 
-    if (activeTab === 'custom') {
-        customToggleBox.classList.remove('hidden');
-        if (customMode === 'pages') {
-            pagesGroup.classList.remove('hidden');
-            endDateInput.readOnly = true;
-        } else {
-            pagesGroup.classList.add('hidden');
-            endDateInput.readOnly = false;
-        }
-    } else {
-        customToggleBox.classList.add('hidden');
-        pagesGroup.classList.add('hidden');
-        endDateInput.readOnly = true;
+    if (isNaN(start) || isNaN(end) || end <= start) {
+        resultElement.innerText = 'يرجى تحديد تواريخ صالحة';
+        return;
     }
+
+    const diffDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+    const totalPages = 604; // عدد صفحات المصحف الشريف
+    const pagesPerDay = Math.ceil(totalPages / diffDays);
+
+    resultElement.innerText = `${pagesPerDay} صفحة / يومياً (${diffDays} يوم)`;
 }
 
-function calculateKhatmah() {
-    const startVal = new Date(document.getElementById('startDate').value);
-    const endDateInput = document.getElementById('endDate');
-    const pagesInput = document.getElementById('dailyPagesInput');
+// 4. النافذة المنبثقة وأحداث التصدير للتقويم
+function initModalEvents() {
+    const modal = document.getElementById('scheduleModal');
+    const showBtn = document.getElementById('showScheduleBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const addCalBtn = document.getElementById('addCalendarBtn');
+    const modalAddCalBtn = document.getElementById('modalAddCalendarBtn');
+    const downloadBtn = document.getElementById('downloadScheduleBtn');
+    const modalDownloadBtn = document.getElementById('modalDownloadBtn');
 
-    if (isNaN(startVal.getTime())) return;
-
-    let dailyPages = 0;
-    let daysDiff = 0;
-
-    if (activeTab === 'weekly') {
-        daysDiff = 7;
-        const end = new Date(startVal);
-        end.setDate(end.getDate() + daysDiff);
-        endDateInput.value = end.toISOString().split('T')[0];
-        dailyPages = Math.ceil(TOTAL_QURAN_PAGES / daysDiff);
-    } 
-    else if (activeTab === 'monthly') {
-        daysDiff = 30;
-        const end = new Date(startVal);
-        end.setDate(end.getDate() + daysDiff);
-        endDateInput.value = end.toISOString().split('T')[0];
-        dailyPages = Math.ceil(TOTAL_QURAN_PAGES / daysDiff);
-    } 
-    else if (activeTab === 'custom') {
-        if (customMode === 'days') {
-            const endVal = new Date(endDateInput.value);
-            if (!isNaN(endVal.getTime()) && endVal > startVal) {
-                daysDiff = Math.ceil((endVal - startVal) / (1000 * 60 * 60 * 24));
-                dailyPages = Math.ceil(TOTAL_QURAN_PAGES / daysDiff);
-            }
-        } else {
-            dailyPages = parseInt(pagesInput.value) || 20;
-            daysDiff = Math.ceil(TOTAL_QURAN_PAGES / dailyPages);
-            const end = new Date(startVal);
-            end.setDate(end.getDate() + daysDiff);
-            endDateInput.value = end.toISOString().split('T')[0];
-        }
-    }
-
-    // Render Calculations
-    const hizbPercent = Math.round((dailyPages / PAGES_PER_HIZB) * 100);
-    const juzPercent = Math.round((dailyPages / PAGES_PER_JUZ) * 100);
-    const estMinutes = Math.round(dailyPages * MINUTES_PER_PAGE);
-
-    document.getElementById('resPages').textContent = `${dailyPages} صفحة`;
-    document.getElementById('resHizb').textContent = `${(dailyPages / PAGES_PER_HIZB).toFixed(1)} حزب (${hizbPercent}%)`;
-    document.getElementById('resJuz').textContent = `${(dailyPages / PAGES_PER_JUZ).toFixed(1)} جزء (${juzPercent}%)`;
-    document.getElementById('resTime').textContent = `~ ${estMinutes} دقيقة`;
-}
-
-// Service Worker & Notifications
-function registerServiceWorker() {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js')
-            .then(reg => console.log('PWA SW Registered'))
-            .catch(err => console.error('SW Failed', err));
-    }
-
-    document.getElementById('enableNotifyBtn').addEventListener('click', () => {
-        if ('Notification' in window) {
-            Notification.requestPermission().then(permission => {
-                if (permission === 'granted') {
-                    alert('تم تفعيل التنبيهات المحلية بنجاح!');
-                }
-            });
-        }
+    showBtn.addEventListener('click', () => {
+        generateScheduleView();
+        modal.classList.add('active');
     });
+
+    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+    });
+
+    const triggerCalendar = () => downloadICSFile();
+    const triggerDownload = () => downloadScheduleDoc();
+
+    addCalBtn.addEventListener('click', triggerCalendar);
+    modalAddCalBtn.addEventListener('click', triggerCalendar);
+    downloadBtn.addEventListener('click', triggerDownload);
+    modalDownloadBtn.addEventListener('click', triggerDownload);
+}
+
+function generateScheduleView() {
+    const body = document.getElementById('modalScheduleBody');
+    const start = new Date(document.getElementById('startDate').value);
+    const end = new Date(document.getElementById('endDate').value);
+
+    if (isNaN(start) || isNaN(end) || end <= start) {
+        body.innerHTML = '<p>يرجى اختيار تواريخ صحيحة أولاً.</p>';
+        return;
+    }
+
+    const diffDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+    const totalPages = 604;
+    const pagesPerDay = Math.ceil(totalPages / diffDays);
+
+    let html = '<div class="schedule-list" style="display:flex; flex-direction:column; gap:6px;">';
+    let currentPage = 1;
+
+    for (let i = 1; i <= diffDays; i++) {
+        let nextPage = Math.min(currentPage + pagesPerDay - 1, totalPages);
+        html += `
+            <div style="background:var(--input-bg); padding:8px 12px; border-radius:6px; display:flex; justify-shadow:space-between; font-size:0.85rem;">
+                <span>اليوم ${i}</span>
+                <strong style="color:var(--accent-gold)">من ص ${currentPage} إلى ص ${nextPage}</strong>
+            </div>
+        `;
+        currentPage = nextPage + 1;
+        if (currentPage > totalPages) break;
+    }
+
+    html += '</div>';
+    body.innerHTML = html;
+}
+
+// إنشاء وتنزيل ملف .ics الخاص بجدول تقويم الهاتف
+function downloadICSFile() {
+    const startStr = document.getElementById('startDate').value.replace(/-/g, '');
+    const endStr = document.getElementById('endDate').value.replace(/-/g, '');
+
+    const icsContent = 
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Dar Yahia//Khatmah Calendar//AR
+BEGIN:VEVENT
+SUMMARY:ورد ختمة القرآن الكريم - دار يحيي
+DESCRIPTION:لا نهجر القرآن حتى تطيب حياتنا. مراجعة وردك اليومي حسب الجدول.
+DTSTART:${startStr}T080000Z
+DTEND:${endStr}T090000Z
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR`;
+
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute('download', 'Dar_Yahia_Khatmah.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// تنزيل جدول الختمة كنص/مستند
+function downloadScheduleDoc() {
+    const start = document.getElementById('startDate').value;
+    const end = document.getElementById('endDate').value;
+    const pagesInfo = document.getElementById('dailyPagesCount').innerText;
+
+    const content = `جدول ختمة القرآن الكريم - دار يحيي\nتاريخ البدء: ${start}\nتاريخ الختام: ${end}\nالورد اليومي: ${pagesInfo}\n\n"لا نهجر القرآن.. حتى تطيب حياتنا"`;
+
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute('download', 'جدول_الختمة_دار_يحيي.txt');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// 5. استقبال رسائل تواصل معي
+function handleContactSubmit(event) {
+    event.preventDefault();
+    const name = document.getElementById('contactName').value;
+    const email = document.getElementById('contactEmail').value;
+    const message = document.getElementById('contactMessage').value;
+
+    const mailtoUrl = `mailto:faris.dahesh@gmail.com?subject=رسالة من موقع دار يحيي من ${encodeURIComponent(name)}&body=${encodeURIComponent(message + "\n\nالبريد: " + email)}`;
+    window.location.href = mailtoUrl;
+}
+
+// 6. الترجمات التلقائية للآيات
+function initTranslationFetcher() {
+    const currentLang = localStorage.getItem('app_lang') || 'ar';
+    if (currentLang !== 'ar') {
+        const quoteTranslation = document.getElementById('quoteTranslation');
+        quoteTranslation.style.display = 'block';
+        quoteTranslation.innerText = '"The best among you are those who learn the Qur\'an and teach it." [Sahih al-Bukhari]';
+    }
 }
