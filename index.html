@@ -6,7 +6,7 @@
     <meta name="theme-color" id="theme-color-meta" content="#0b1329">
     <title>دَار يحيي | Dar Yahia</title>
     
-    <!-- الخطوط والأيقونات (خط عثماني/أميري للقرآن والخطوط الأساسية) -->
+    <!-- الخطوط والأيقونات -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
             --border-color: rgba(212, 175, 55, 0.35); 
             --line-color: rgba(255, 255, 255, 0.15);
             --input-bg: rgba(21, 32, 62, 0.85);
-            --quote-bracket-color: #cbd5e1;
+            --quote-bracket-color: #d4af37;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
@@ -46,7 +46,7 @@
             --border-color: rgba(184, 134, 11, 0.35);
             --line-color: rgba(0, 0, 0, 0.12);
             --input-bg: rgba(255, 255, 255, 0.9);
-            --quote-bracket-color: #1e293b;
+            --quote-bracket-color: #b8860b;
             --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
@@ -74,7 +74,7 @@
             margin: 0 auto;
         }
 
-        /* حركات الظهور المهيبة عند فتح الموقع */
+        /* حركات الظهور عند فتح الموقع */
         .animate-fade-up {
             animation: majesticFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
@@ -89,6 +89,21 @@
         @keyframes majesticFadeUp {
             0% { opacity: 0; transform: translateY(25px) scale(0.98); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* عناوين الأقسام الخارجية */
+        .section-header-outer {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            margin: 30px 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+
+        .section-header-outer i {
+            font-size: 1.3rem;
         }
 
         /* 1. الشريط العلوي */
@@ -231,7 +246,7 @@
             border: none;
         }
 
-        /* 3. مربع الأحاديث والآيات الدوار المتحرك */
+        /* 3. مربع الأحاديث والآيات */
         .quote-box-card {
             background: var(--card-bg-glass);
             backdrop-filter: blur(16px);
@@ -239,26 +254,15 @@
             border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 22px 20px;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
             text-align: center;
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
         }
 
-        .quote-box-title {
-            color: var(--accent-color);
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
         .quote-content-wrapper {
-            min-height: 80px;
+            min-height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -268,9 +272,16 @@
 
         .quote-content-wrapper.fade-out { opacity: 0; }
 
-        .quote-text {
+        .quote-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quote-main-text {
             font-family: 'Amiri Quran', 'Amiri', serif;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             line-height: 2.1;
             color: var(--text-color);
         }
@@ -279,16 +290,14 @@
             color: var(--quote-bracket-color);
             font-family: 'Tajawal', sans-serif;
             font-size: 0.95rem;
-            margin-right: 6px;
-            margin-left: 6px;
-            opacity: 0.85;
-            display: inline-block;
+            font-weight: 500;
+            opacity: 0.9;
         }
 
         /* 4. مربع حدد الختمة الإستثنائي بحدود ذهبية دوارة */
         .khatma-special-wrapper {
             position: relative;
-            margin: 25px 0;
+            margin-bottom: 10px;
             border-radius: 22px;
             padding: 3px;
             overflow: hidden;
@@ -323,23 +332,11 @@
             text-align: center;
         }
 
-        .khatma-card-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            color: var(--accent-color);
-        }
-
-        .khatma-card-header i { font-size: 1.6rem; }
-        .khatma-card-header h2 { font-size: 1.4rem; font-weight: 700; color: var(--text-color); }
-
         .khatma-inputs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin: 20px 0 15px;
+            margin: 15px 0;
         }
 
         .input-group {
@@ -406,7 +403,7 @@
 
         .btn-action-primary:hover { transform: translateY(-2px); opacity: 0.95; }
 
-        /* 5. كروت النبذة والتواصل معي (مثل صورة المشروع) */
+        /* 5. كروت النبذة والتواصل */
         .section-card {
             background: var(--card-bg-glass);
             backdrop-filter: blur(16px);
@@ -414,24 +411,8 @@
             border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 22px 20px;
-            margin-top: 25px;
+            margin-bottom: 10px;
             box-shadow: var(--shadow);
-        }
-
-        .section-header-title {
-            font-size: 1.25rem;
-            color: var(--text-color);
-            margin-bottom: 15px;
-            border-right: 4px solid var(--accent-color);
-            padding-right: 10px;
-            font-weight: 700;
-        }
-
-        html[dir="ltr"] .section-header-title {
-            border-right: none;
-            border-left: 4px solid var(--accent-color);
-            padding-right: 0;
-            padding-left: 10px;
         }
 
         .author-link {
@@ -483,9 +464,9 @@
 
         .btn-submit:hover { transform: translateY(-2px); }
 
-        /* 6. قسم شرفني بمتابعتك وأزرار السوشيال ميديا */
+        /* 6. قسم شرفنا بمتابعتك وأزرار السوشيال ميديا المعظّمة */
         .social-section {
-            margin-top: 40px;
+            margin-top: 35px;
             text-align: center;
         }
 
@@ -493,10 +474,10 @@
             display: flex;
             align-items: center;
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: var(--accent-color);
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.05rem;
         }
 
         .divider-with-text::before, .divider-with-text::after {
@@ -511,30 +492,36 @@
 
         .social-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        @media (max-width: 480px) {
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .social-card-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             background: var(--card-bg-glass);
             border: 1px solid var(--border-color);
-            padding: 12px 15px;
-            border-radius: 14px;
+            padding: 16px 20px;
+            border-radius: 16px;
             color: var(--text-color);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
+            font-weight: 700;
+            font-size: 1rem;
             backdrop-filter: blur(8px);
             transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
         }
 
         .social-card-btn i {
             color: var(--accent-color);
-            font-size: 1.25rem;
+            font-size: 1.35rem;
         }
 
         .social-card-btn:hover {
@@ -543,7 +530,7 @@
             background: var(--accent-light);
         }
 
-        /* 7. النوافذ المنبثقة العامة ومودال الخطة (Plan Modal) */
+        /* 7. النوافذ المنبثقة العامة ومودال الخطة */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -670,6 +657,85 @@
             border-top: 1px solid var(--line-color);
             margin-top: 30px;
         }
+
+        /* 8. إعدادات الطباعة النظيفة وخالية من الأخطاء (PDF Print Optimization) */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .modal-overlay.active,
+            .modal-overlay.active * {
+                visibility: visible;
+            }
+
+            .modal-overlay.active {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                display: block !important;
+            }
+
+            .modal-box {
+                max-width: 100% !important;
+                max-height: none !important;
+                box-shadow: none !important;
+                border: none !important;
+                background: transparent !important;
+                color: #000000 !important;
+                padding: 10px !important;
+                overflow: visible !important;
+            }
+
+            .close-modal,
+            .plan-export-btns,
+            .toolbar,
+            header,
+            .quote-box-card,
+            .khatma-special-wrapper,
+            .section-card,
+            .social-section,
+            .section-header-outer,
+            footer {
+                display: none !important;
+            }
+
+            .plan-summary-bar {
+                background: #f5f5f5 !important;
+                color: #000000 !important;
+                border: 1px solid #ddd !important;
+            }
+
+            .plan-table {
+                border: 1px solid #000 !important;
+                color: #000000 !important;
+                width: 100% !important;
+            }
+
+            .plan-table th {
+                background-color: #eaeaea !important;
+                color: #000000 !important;
+                border: 1px solid #000 !important;
+            }
+
+            .plan-table td {
+                border: 1px solid #000 !important;
+                color: #000000 !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -717,25 +783,29 @@
             <hr class="simple-divider">
         </header>
 
+        <!-- العنوان الأول: لماذا نقرأ القرآن (خارج المربع) -->
+        <div class="section-header-outer animate-fade-up delay-2">
+            <i class="fa-solid fa-kaaba"></i>
+            <span id="txt-quote-title">لماذا نقرأ القرآن ونتعلمه؟!</span>
+        </div>
+
         <!-- مربع الآيات والأحاديث المتحرك -->
         <section class="quote-box-card animate-fade-up delay-2">
-            <div class="quote-box-title">
-                <i class="fa-solid fa-kaaba"></i>
-                <span id="txt-quote-title">لماذا نقرأ القرآن ونتعلمه؟!</span>
-            </div>
             <div class="quote-content-wrapper" id="quoteWrapper">
-                <p class="quote-text" id="quoteTextDisplay"></p>
+                <div class="quote-container" id="quoteTextDisplay"></div>
             </div>
         </section>
+
+        <!-- العنوان الثاني: تحديد الخطة (خارج المربع) -->
+        <div class="section-header-outer animate-fade-up delay-3">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span id="txt-khatma-header">تحديد وتعديل خطة الختمة</span>
+        </div>
 
         <!-- مربع حدد الختمة المميز بحواف ذهبية دوارة -->
         <section class="khatma-special-wrapper animate-fade-up delay-3">
             <div class="khatma-special-card">
-                <div class="khatma-card-header">
-                    <i class="fa-solid fa-calendar-check"></i>
-                    <h2 id="txt-khatma-header">تحديد وتعديل خطة الختمة</h2>
-                </div>
-                <p style="color: var(--text-muted); font-size: 0.9rem;" id="txt-khatma-desc">اختر المدة وتاريخ بداية الختمة وسيتم حساب الورد اليومي وتوزيعه تلقائياً بدءاً من اليوم الذي تحدده.</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;" id="txt-khatma-desc">اختر المدة وتاريخ بداية الختمة وسيتم حساب الورد اليومي وتوزيعه تلقائياً بدءاً من اليوم الذي تحدده.</p>
 
                 <div class="khatma-inputs-grid">
                     <div class="input-group">
@@ -773,19 +843,28 @@
             </div>
         </section>
 
+        <!-- العنوان الثالث: من أنا (خارج المربع) -->
+        <div class="section-header-outer animate-fade-up delay-4">
+            <i class="fa-solid fa-user-pen"></i>
+            <span id="txt-about-title">من أنا "مؤسس الموقع"</span>
+        </div>
+
         <!-- مربع نبذة تعريفية عني -->
         <section class="section-card animate-fade-up delay-4">
-            <h2 class="section-header-title" id="txt-about-title">من أنا "مؤسس الموقع"</h2>
             <p style="font-size: 0.95rem; line-height: 1.8; color: var(--text-color);" id="txt-about-content">
                 <a href="https://phsyf1.github.io/physf/" target="_blank" class="author-link" id="txt-author-name">فارس محمد داهش</a>.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.
             </p>
         </section>
 
+        <!-- العنوان الرابع: تواصل معي (خارج المربع) -->
+        <div class="section-header-outer animate-fade-up delay-5">
+            <i class="fa-solid fa-envelope"></i>
+            <span id="txt-contact-title">تواصل معي</span>
+        </div>
+
         <!-- مربع تواصل معي -->
         <section class="section-card animate-fade-up delay-5">
-            <h2 class="section-header-title" id="txt-contact-title">تواصل معي</h2>
             <form class="contact-form" action="https://formsubmit.co/faris.dahesh@gmail.com" method="POST">
-                <!-- توجيه الحماية والضبط لخدمة الإرسال البريدي -->
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
                 
@@ -798,23 +877,23 @@
             </form>
         </section>
 
-        <!-- قسم شرفني بمتابعتك -->
+        <!-- قسم شرفنا بمتابعتك -->
         <section class="social-section animate-fade-up delay-5">
             <div class="divider-with-text">
-                <span id="txt-follow-me">شرفني بمتابعتك</span>
+                <span id="txt-follow-me">شرفنا بمتابعتك</span>
             </div>
             <div class="social-grid">
                 <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-card-btn">
-                    <i class="fa-brands fa-youtube"></i> <span>YouTube</span>
+                    <i class="fa-brands fa-youtube"></i> <span id="lbl-social-yt">يوتيوب</span>
                 </a>
                 <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="social-card-btn">
-                    <i class="fa-brands fa-tiktok"></i> <span>TikTok</span>
+                    <i class="fa-brands fa-tiktok"></i> <span id="lbl-social-tt">تيك توك</span>
                 </a>
                 <a href="https://t.me/phsyf1" target="_blank" class="social-card-btn">
-                    <i class="fa-brands fa-telegram"></i> <span>Telegram</span>
+                    <i class="fa-brands fa-telegram"></i> <span id="lbl-social-tg">تيليجرام</span>
                 </a>
                 <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-card-btn">
-                    <i class="fa-brands fa-facebook"></i> <span>Facebook</span>
+                    <i class="fa-brands fa-facebook"></i> <span id="lbl-social-fb">فيسبوك</span>
                 </a>
             </div>
         </section>
@@ -833,9 +912,7 @@
                 <h3 id="txt-plan-modal-title" style="font-size: 1.3rem; margin-top: 5px;">جدول خطة الختمة المتكامل</h3>
             </div>
 
-            <div class="plan-summary-bar" id="planSummaryBar">
-                <!-- يتم تعبئتها ديناميكياً -->
-            </div>
+            <div class="plan-summary-bar" id="planSummaryBar"></div>
 
             <div class="plan-table-wrapper">
                 <table class="plan-table" id="planTable">
@@ -847,9 +924,7 @@
                             <th id="th-status">ملاحظة الإنجاز</th>
                         </tr>
                     </thead>
-                    <tbody id="planTableBody">
-                        <!-- الأسطر تبنى ديناميكياً -->
-                    </tbody>
+                    <tbody id="planTableBody"></tbody>
                 </table>
             </div>
 
@@ -880,11 +955,11 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // الأحاديث والآيات مع التشكيل والرموز والترجمات
+            // الأحاديث والآيات
             const quotesDatabase = [
                 {
                     ar: "وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ",
-                    bracketAr: "[القمر - ١٧]",
+                    bracketAr: "[سورة القمر - الآية ١٧]",
                     en: "And We have certainly made the Quran easy for remembrance, so is there any who will remember?",
                     bracketEn: "[Al-Qamar - 17]",
                     es: "Y en verdad hemos hecho el Corán fácil de recordar. ¿Hay, pues, quien reflexione?",
@@ -894,7 +969,7 @@
                 },
                 {
                     ar: "وَقَالَ الرَّسُولُ يَا رَبِّ إِنَّ قَوْمِي اتَّخَذُوا هَٰذَا الْقُرْآنَ مَهْجُورًا",
-                    bracketAr: "[الفرقان - ٣٠]",
+                    bracketAr: "[سورة الفرقان - الآية ٣٠]",
                     en: "And the Messenger has said: 'O my Lord, indeed my people have taken this Quran as [a thing] abandoned.'",
                     bracketEn: "[Al-Furqan - 30]",
                     es: "Y el Mensajero dirá: '¡Oh Señor mío! En verdad mi pueblo tomó este Corán como algo olvidado.'",
@@ -967,7 +1042,11 @@
                     inputEmail: "بريدك الإلكتروني",
                     inputMsg: "اكتب رسالتك هنا...",
                     btnSend: "إرسال الرسالة",
-                    followMe: "شرفني بمتابعتك",
+                    followMe: "شرفنا بمتابعتك",
+                    socialYt: "يوتيوب",
+                    socialTt: "تيك توك",
+                    socialTg: "تيليجرام",
+                    socialFb: "فيسبوك",
                     footer: "© 2026 - جميع الحقوق محفوظة",
                     notFoundTitle: "عذراً.. المحتوى غير متوفر",
                     notFoundMsg: "لم نجد نتائج تطابق بحثك في خطة الختمة الحالية.",
@@ -1003,7 +1082,11 @@
                     inputEmail: "Your Email Address",
                     inputMsg: "Write your message here...",
                     btnSend: "Send Message",
-                    followMe: "Honored to have you follow me",
+                    followMe: "Honored to have you follow us",
+                    socialYt: "YouTube",
+                    socialTt: "TikTok",
+                    socialTg: "Telegram",
+                    socialFb: "Facebook",
                     footer: "© 2026 - All Rights Reserved",
                     notFoundTitle: "Content Unavailable",
                     notFoundMsg: "No matching results found in current schedule.",
@@ -1039,7 +1122,11 @@
                     inputEmail: "Su Correo Electrónico",
                     inputMsg: "Escriba su mensaje aquí...",
                     btnSend: "Enviar Mensaje",
-                    followMe: "Honrado de que me sigas",
+                    followMe: "Honrado de que nos sigas",
+                    socialYt: "YouTube",
+                    socialTt: "TikTok",
+                    socialTg: "Telegram",
+                    socialFb: "Facebook",
                     footer: "© 2026 - Todos los derechos reservados",
                     notFoundTitle: "No Disponible",
                     notFoundMsg: "No se encontraron resultados.",
@@ -1057,7 +1144,7 @@
                 fr: {
                     title: "Dar Yahia",
                     subtitle: "Plateforme de Suivi de Lecture du Coran",
-                    bio: "Bienvenue sur Dar Yahia.. La plateforme idéale pour organiser votre programme de lectura du Coran.",
+                    bio: "Bienvenue sur Dar Yahia.. La plateforme idéale pour organiser votre programme de lecture du Coran.",
                     searchPlaceholder: "Rechercher...",
                     quoteTitle: "Pourquoi lisons-nous le Coran?!",
                     khatmaHeader: "Planifier la Lecture",
@@ -1075,7 +1162,11 @@
                     inputEmail: "Votre Email",
                     inputMsg: "Écrivez votre message ici...",
                     btnSend: "Envoyer le Message",
-                    followMe: "Honneur de me suivre",
+                    followMe: "Honneur de nous suivre",
+                    socialYt: "YouTube",
+                    socialTt: "TikTok",
+                    socialTg: "Telegram",
+                    socialFb: "Facebook",
                     footer: "© 2026 - Tous droits réservés",
                     notFoundTitle: "Indisponible",
                     notFoundMsg: "Aucun résultat trouvé.",
@@ -1094,7 +1185,7 @@
 
             let currentLang = localStorage.getItem('daryahia_lang') || 'ar';
             
-            // 2. ضبط تواريخ البداية والنهاية ومربع تقدير الوقت
+            // 2. ضبط التواريخ وتعطيل الأيام السابقة (Disable Past Dates)
             const startDateInput = document.getElementById('khatmaStartDate');
             const endDateInput = document.getElementById('khatmaEndDate');
             const durationSelect = document.getElementById('khatmaDuration');
@@ -1102,8 +1193,14 @@
             const today = new Date();
             const todayStr = today.toISOString().split('T')[0];
             startDateInput.value = todayStr;
+            startDateInput.setAttribute('min', todayStr); // تعطيل تحديد الأيام القديمة
 
             function calculateDatesAndTimes() {
+                // التأكد من عدم إدخال تاريخ قديم
+                if (startDateInput.value < todayStr) {
+                    startDateInput.value = todayStr;
+                }
+
                 const duration = parseInt(durationSelect.value);
                 const startVal = startDateInput.value ? new Date(startDateInput.value) : new Date();
 
@@ -1111,7 +1208,6 @@
                 endDate.setDate(startVal.getDate() + (duration - 1));
                 endDateInput.value = endDate.toISOString().split('T')[0];
 
-                // حساب وقت القراءة المقدر بناءً على عدد الأجزاء باليوم
                 const juzPerDay = (30 / duration);
                 const minNoTadabbur = Math.round(17 * juzPerDay);
                 const maxNoTadabbur = Math.round(32 * juzPerDay);
@@ -1143,7 +1239,7 @@
             durationSelect.addEventListener('change', calculateDatesAndTimes);
             calculateDatesAndTimes();
 
-            // 3. تبديل الثيم المضيء والمظلم
+            // 3. تبديل الثيم
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             const themeColorMeta = document.getElementById('theme-color-meta');
@@ -1162,7 +1258,7 @@
                 if (themeColorMeta) themeColorMeta.setAttribute('content', next === 'light' ? '#f8fafc' : '#0b1329');
             });
 
-            // 4. تدوير النصوص الآيات والأحاديث كل 4 ثوانٍ بعشوائية وتأثير ناعم
+            // 4. تدوير الآيات والأحاديث بحيث تظهر الآية أعلى والمصدر في سطر مستقل أسفلها
             let currentQuoteIndex = 0;
             const quoteWrapper = document.getElementById('quoteWrapper');
             const quoteTextDisplay = document.getElementById('quoteTextDisplay');
@@ -1181,15 +1277,18 @@
                     let mainTxt = item[currentLang] || item.ar;
                     let bracketTxt = item[`bracket${currentLang.charAt(0).toUpperCase() + currentLang.slice(1)}`] || item.bracketAr;
 
-                    quoteTextDisplay.innerHTML = `${mainTxt} <span class="quote-bracket">${bracketTxt}</span>`;
+                    quoteTextDisplay.innerHTML = `
+                        <div class="quote-main-text">${mainTxt}</div>
+                        <div class="quote-bracket">${bracketTxt}</div>
+                    `;
                     quoteWrapper.classList.remove('fade-out');
                 }, 600);
             }
 
             displayNextQuote();
-            setInterval(displayNextQuote, 4000);
+            setInterval(displayNextQuote, 5000);
 
-            // 5. القائمة المنزلقة للغات والتحديث المباشر
+            // 5. لغات الموقع وتغيير النصوص ديناميكياً
             const langBtn = document.getElementById('langBtn');
             const langDropdown = document.getElementById('langDropdown');
 
@@ -1234,7 +1333,6 @@
                 document.getElementById('txt-btn-build').innerText = i18n[lang].btnBuild;
                 document.getElementById('txt-about-title').innerText = i18n[lang].aboutTitle;
                 
-                // تحديث النبذة واسم الكاتب وفقاً للغة
                 if (lang === 'ar') {
                     document.getElementById('txt-about-content').innerHTML = `<a href="https://phsyf1.github.io/physf/" target="_blank" class="author-link">فارس محمد داهش</a>.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.`;
                 } else {
@@ -1247,6 +1345,13 @@
                 document.getElementById('inputMsg').placeholder = i18n[lang].inputMsg;
                 document.getElementById('txt-btn-send').innerText = i18n[lang].btnSend;
                 document.getElementById('txt-follow-me').innerText = i18n[lang].followMe;
+                
+                // ترجمة شبكات التواصل ديناميكياً
+                document.getElementById('lbl-social-yt').innerText = i18n[lang].socialYt;
+                document.getElementById('lbl-social-tt').innerText = i18n[lang].socialTt;
+                document.getElementById('lbl-social-tg').innerText = i18n[lang].socialTg;
+                document.getElementById('lbl-social-fb').innerText = i18n[lang].socialFb;
+
                 document.getElementById('txt-footer').innerText = i18n[lang].footer;
 
                 document.getElementById('txt-plan-modal-title').innerText = i18n[lang].planModalTitle;
@@ -1262,7 +1367,7 @@
                 displayNextQuote();
             }
 
-            // 6. بيلد جدول الختمة داخل المودال + التصدير
+            // 6. إنشاء الجدول وإدارة التصدير والطباعة النظيفة
             const planModal = document.getElementById('planModal');
             const closePlanModalBtn = document.getElementById('closePlanModalBtn');
             const planTableBody = document.getElementById('planTableBody');
@@ -1318,7 +1423,13 @@
             closePlanModalBtn.addEventListener('click', () => planModal.classList.remove('active'));
             planModal.addEventListener('click', (e) => { if (e.target === planModal) planModal.classList.remove('active'); });
 
-            // التصدير إلى ICS (تقويم الجهاز)
+            // صياغة اسم المَلف الموحّد المطلوبة: dar-yahia.phsyf-[تاريخ_البداية]
+            function getExportFileName(ext) {
+                const startDate = startDateInput.value || 'plan';
+                return `dar-yahia.phsyf-${startDate}.${ext}`;
+            }
+
+            // تصدير ICS (تقويم)
             document.getElementById('btnExportICS').addEventListener('click', () => {
                 let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Dar Yahia//Quran Khatma Plan//AR\nCALSCALE:GREGORIAN\n";
                 currentPlanData.forEach(item => {
@@ -1339,11 +1450,11 @@
                 const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8;' });
                 const link = document.createElement('a');
                 link.href = URL.createObjectURL(blob);
-                link.download = `Khatma_Plan_${startDateInput.value}.ics`;
+                link.download = getExportFileName('ics');
                 link.click();
             });
 
-            // التصدير إلى Word (.doc)
+            // تصدير Word (.doc)
             document.getElementById('btnExportWord').addEventListener('click', () => {
                 let html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
                 <head><meta charset='utf-8'><title>خطة الختمة - دَار يحيي</title>
@@ -1362,13 +1473,20 @@
                 const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
                 const link = document.createElement('a');
                 link.href = URL.createObjectURL(blob);
-                link.download = `Khatma_Plan_${startDateInput.value}.doc`;
+                link.download = getExportFileName('doc');
                 link.click();
             });
 
-            // الطباعة أو الحفظ كـ PDF
+            // تصدير PDF مخصص خالي من الأخطاء والرسومات الزائدة
             document.getElementById('btnExportPDF').addEventListener('click', () => {
+                const originalTitle = document.title;
+                const startDate = startDateInput.value || 'plan';
+                // ضبط عنوان الصفحة مؤقتاً ليتناسب مع اسم التنزيل التلقائي للـ PDF
+                document.title = `dar-yahia.phsyf-${startDate}`;
                 window.print();
+                setTimeout(() => {
+                    document.title = originalTitle;
+                }, 1000);
             });
 
             // 7. مربع نتائج البحث
@@ -1382,7 +1500,6 @@
                 const query = searchInput.value.trim().toLowerCase();
                 if (!query) return;
 
-                // إجراء أوتوماتيكي لفتح جدول الخطة والبحث فيه
                 document.getElementById('btnBuildPlan').click();
                 const rows = planTableBody.querySelectorAll('tr');
                 let found = 0;
@@ -1404,7 +1521,7 @@
             closeSearchModalBtn.addEventListener('click', () => searchModal.classList.remove('active'));
             searchModal.addEventListener('click', (e) => { if (e.target === searchModal) searchModal.classList.remove('active'); });
 
-            // 8. زر المشاركة
+            // 8. مشاركة الموقع
             document.getElementById('shareBtn').addEventListener('click', async () => {
                 if (navigator.share) {
                     try {
@@ -1420,7 +1537,7 @@
                 }
             });
 
-            // التشغيل الأولي للغة والتواريخ
+            // التشغيل الأولي
             setLanguage(currentLang);
         });
     </script>
