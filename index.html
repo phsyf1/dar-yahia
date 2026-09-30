@@ -189,6 +189,7 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
             <button type="button" class="btn-action-primary" id="btnBuildPlan">
                 <i class="fa-solid fa-table-list"></i> <span id="txt-btn-build">إنشاء جدول الختمة</span>
             </button>
+            <button type="button" class="btn-export btn-share-open" style="margin:8px 4px 0"><i class="fa-solid fa-share-nodes"></i> <span class="txt-share"></span></button>
         </div>
     </section>
 
@@ -254,6 +255,7 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
             <button type="button" class="btn-export" id="btnExportICS"><i class="fa-solid fa-calendar-plus"></i> <span id="txt-exp-ics">تصدير للتقويم (.ics)</span></button>
             <button type="button" class="btn-export" id="btnExportWord"><i class="fa-solid fa-file-word"></i> <span id="txt-exp-word">تحميل ملف Word</span></button>
             <button type="button" class="btn-export" id="btnExportPDF"><i class="fa-solid fa-print"></i> <span id="txt-exp-pdf">طباعة / حفظ PDF</span></button>
+            <button type="button" class="btn-export btn-share-open"><i class="fa-solid fa-share-nodes"></i> <span class="txt-share"></span></button>
         </div>
     </div>
 </div>
@@ -264,6 +266,21 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
         <i class="fa-solid fa-circle-info" style="font-size:2.5rem;color:var(--accent-color);margin-bottom:12px"></i>
         <h3 id="searchModalTitle" style="margin-bottom:8px">عذراً.. المحتوى غير متوفر</h3>
         <p id="searchModalMsg" style="font-size:.9rem;color:var(--text-muted)">لم نجد نتائج تطابق بحثك في خطة الختمة الحالية.</p>
+    </div>
+</div>
+
+<div class="modal-overlay" id="shareModal">
+    <div class="modal-box" style="max-width:480px;text-align:center">
+        <button class="close-modal" id="closeShareModalBtn">&times;</button>
+        <h3 id="txt-share-title" style="margin-bottom:12px"></h3>
+        <canvas id="shareCanvas" style="display:block;width:100%;max-width:340px;height:auto;margin:0 auto;border-radius:16px;border:1px solid var(--border-color)"></canvas>
+        <p id="shareLinkText" style="direction:ltr;font-size:.8rem;color:var(--text-muted);margin:10px 0;word-break:break-all"></p>
+        <div class="plan-export-btns">
+            <button type="button" class="btn-export" id="btnShareNative"><i class="fa-solid fa-share-nodes"></i> <span id="txt-sh-share"></span></button>
+            <button type="button" class="btn-export" id="btnShareDownload"><i class="fa-solid fa-download"></i> <span id="txt-sh-download"></span></button>
+            <button type="button" class="btn-export" id="btnShareCopy"><i class="fa-solid fa-link"></i> <span id="txt-sh-copy"></span></button>
+        </div>
+        <p id="shareStatus" style="font-size:.88rem;color:var(--accent-color);min-height:1.4em;margin-top:8px"></p>
     </div>
 </div>
 
@@ -586,6 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
         set('th-day', t.thDay); set('th-date', t.thDate); set('th-juz', t.thJuz); set('th-status', t.thStatus);
         set('txt-exp-ics', t.expIcs); set('txt-exp-word', t.expWord); set('txt-exp-pdf', t.expPdf);
 
+        updateShareLabels();
         renderFab();
         calculateDatesAndTimes();
         displayNextQuote();
@@ -803,8 +821,148 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 3000);
 
+    // ===== مشاركة الخطة: رابط ذكي + بطاقة صورة =====
+    const shareTexts = {
+        ar: { btn: 'شارك خطتي', title: 'شارك خطتك', head: 'ختمتي بإذن الله', from: 'البداية', to: 'الانتهاء', cta: 'ابدأ ختمتك الآن', share: 'مشاركة', download: 'تنزيل الصورة', copy: 'نسخ الرابط', copied: 'تم نسخ الرابط ✓', saved: 'تم تنزيل الصورة ✓', text: 'بدأت ختمتي مع دَار يحيي، انضم إليّ:' },
+        en: { btn: 'Share my plan', title: 'Share your plan', head: 'My Khatma, God willing', from: 'Start', to: 'End', cta: 'Start your Khatma now', share: 'Share', download: 'Download image', copy: 'Copy link', copied: 'Link copied ✓', saved: 'Image saved ✓', text: 'I started my Khatma with Dar Yahia, join me:' },
+        es: { btn: 'Compartir mi plan', title: 'Comparte tu plan', head: 'Mi Jatma, si Dios quiere', from: 'Inicio', to: 'Fin', cta: 'Empieza tu Jatma ahora', share: 'Compartir', download: 'Descargar imagen', copy: 'Copiar enlace', copied: 'Enlace copiado ✓', saved: 'Imagen guardada ✓', text: 'Empecé mi Jatma con Dar Yahia, ¡únete!' },
+        fr: { btn: 'Partager mon plan', title: 'Partagez votre plan', head: 'Ma Khatma, si Dieu le veut', from: 'Début', to: 'Fin', cta: 'Commencez votre Khatma', share: 'Partager', download: "Télécharger l'image", copy: 'Copier le lien', copied: 'Lien copié ✓', saved: 'Image enregistrée ✓', text: "J'ai commencé ma Khatma avec Dar Yahia, rejoignez-moi :" }
+    };
+    const shareModal = document.getElementById('shareModal');
+    const shareCanvas = document.getElementById('shareCanvas');
+    const shareStatus = document.getElementById('shareStatus');
+    let shareFile = null, shareUrl = '';
+
+    function updateShareLabels() {
+        const T = shareTexts[currentLang] || shareTexts.ar;
+        document.querySelectorAll('.txt-share').forEach(el => el.textContent = T.btn);
+        document.getElementById('txt-share-title').textContent = T.title;
+        document.getElementById('txt-sh-share').textContent = T.share;
+        document.getElementById('txt-sh-download').textContent = T.download;
+        document.getElementById('txt-sh-copy').textContent = T.copy;
+    }
+
+    function roundRectPath(c, x, y, w, h, r) {
+        c.beginPath();
+        c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r);
+        c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath();
+    }
+
+    async function drawShareCard() {
+        const T = shareTexts[currentLang] || shareTexts.ar;
+        const rtl = currentLang === 'ar';
+        try { await document.fonts.load('700 60px Tajawal'); await document.fonts.load('500 40px Tajawal'); } catch (e) {}
+
+        const W = 1080, H = 1350;
+        shareCanvas.width = W; shareCanvas.height = H;
+        const c = shareCanvas.getContext('2d');
+        c.direction = rtl ? 'rtl' : 'ltr';
+        c.textAlign = 'center';
+
+        const bg = c.createLinearGradient(0, 0, W, H);
+        bg.addColorStop(0, '#0b1329'); bg.addColorStop(1, '#15203e');
+        c.fillStyle = bg; c.fillRect(0, 0, W, H);
+        const glow = c.createRadialGradient(W, 0, 0, W, 0, 750);
+        glow.addColorStop(0, 'rgba(212,175,55,.3)'); glow.addColorStop(1, 'rgba(212,175,55,0)');
+        c.fillStyle = glow; c.fillRect(0, 0, W, H);
+        c.strokeStyle = '#d4af37'; c.lineWidth = 6; roundRectPath(c, 40, 40, W - 80, H - 80, 40); c.stroke();
+
+        const txt = (str, x, y, weight, size, color, maxW) => {
+            let sz = size; c.font = `${weight} ${sz}px Tajawal, sans-serif`;
+            while (c.measureText(str).width > maxW && sz > 20) { sz -= 4; c.font = `${weight} ${sz}px Tajawal, sans-serif`; }
+            c.fillStyle = color; c.fillText(str, x, y);
+        };
+
+        const t = i18n[currentLang];
+        txt(t.title, W / 2, 200, 700, 88, '#d4af37', W - 160);
+        txt(t.subtitle, W / 2, 272, 500, 34, '#cbd5e1', W - 160);
+        c.strokeStyle = 'rgba(212,175,55,.45)'; c.lineWidth = 2;
+        c.beginPath(); c.moveTo(200, 330); c.lineTo(W - 200, 330); c.stroke();
+
+        txt(T.head, W / 2, 450, 500, 54, '#ffffff', W - 160);
+
+        const optText = durationSelect.options[durationSelect.selectedIndex].text;
+        const m = optText.match(/^(.*?)\s*\((.*)\)$/);
+        txt(m ? m[1] : optText, W / 2, 610, 700, 140, '#d4af37', W - 160);
+        if (m) txt(m[2], W / 2, 700, 500, 52, '#ffffff', W - 160);
+
+        const start = new Date(startDateInput.value + 'T12:00:00');
+        const end = new Date(endDateInput.value + 'T12:00:00');
+        c.fillStyle = 'rgba(212,175,55,.12)'; roundRectPath(c, 110, 790, W - 220, 270, 30); c.fill();
+        c.strokeStyle = '#d4af37'; c.lineWidth = 2; c.setLineDash([12, 10]); roundRectPath(c, 110, 790, W - 220, 270, 30); c.stroke(); c.setLineDash([]);
+
+        const col = (label, d, x) => {
+            txt(label, x, 860, 500, 36, '#cbd5e1', 380);
+            txt(hijri(d, HIJRI_FULL), x, 935, 700, 50, '#ffffff', 380);
+            txt(greg(d, HIJRI_FULL), x, 992, 500, 34, '#cbd5e1', 380);
+        };
+        col(T.from, start, rtl ? W * 0.7 : W * 0.3);
+        col(T.to, end, rtl ? W * 0.3 : W * 0.7);
+
+        txt(T.cta, W / 2, 1170, 700, 62, '#d4af37', W - 160);
+        c.direction = 'ltr';
+        const pretty = (location.host ? location.host + location.pathname.replace(/index\.html$/, '') : 'Dar Yahia');
+        txt(pretty, W / 2, 1245, 500, 38, '#cbd5e1', W - 160);
+        c.direction = rtl ? 'rtl' : 'ltr';
+
+        const blob = await new Promise(r => shareCanvas.toBlob(r, 'image/png'));
+        shareFile = blob ? new File([blob], 'khatma-dar-yahia.png', { type: 'image/png' }) : null;
+    }
+
+    function buildShareUrl() {
+        const base = location.href.split(/[?#]/)[0];
+        return `${base}?d=${durationSelect.value}&s=${startDateInput.value}`;
+    }
+
+    async function openShare() {
+        shareStatus.textContent = '';
+        shareUrl = buildShareUrl();
+        document.getElementById('shareLinkText').textContent = shareUrl;
+        updateShareLabels();
+        shareModal.classList.add('active');
+        await drawShareCard();
+    }
+
+    document.querySelectorAll('.btn-share-open').forEach(b => b.addEventListener('click', openShare));
+    document.getElementById('closeShareModalBtn').addEventListener('click', () => shareModal.classList.remove('active'));
+    shareModal.addEventListener('click', (e) => { if (e.target === shareModal) shareModal.classList.remove('active'); });
+
+    document.getElementById('btnShareNative').addEventListener('click', async () => {
+        const T = shareTexts[currentLang] || shareTexts.ar;
+        try {
+            if (shareFile && navigator.canShare && navigator.canShare({ files: [shareFile] })) {
+                await navigator.share({ files: [shareFile], title: i18n[currentLang].title, text: `${T.text} ${shareUrl}` });
+            } else if (navigator.share) {
+                await navigator.share({ title: i18n[currentLang].title, text: T.text, url: shareUrl });
+            } else {
+                document.getElementById('btnShareDownload').click();
+            }
+        } catch (e) { /* أغلق المستخدم نافذة المشاركة */ }
+    });
+
+    document.getElementById('btnShareDownload').addEventListener('click', () => {
+        if (!shareFile) return;
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(shareFile);
+        a.download = shareFile.name;
+        a.click();
+        shareStatus.textContent = (shareTexts[currentLang] || shareTexts.ar).saved;
+    });
+
+    document.getElementById('btnShareCopy').addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(shareUrl); } catch (e) {}
+        shareStatus.textContent = (shareTexts[currentLang] || shareTexts.ar).copied;
+    });
+
     // التشغيل الأولي
     setLanguage(currentLang);
+
+    // الرابط الذكي: ?d=30&s=2026-10-01
+    const qp = new URLSearchParams(location.search);
+    const qd = qp.get('d'), qs = qp.get('s');
+    if (qd && Array.from(durationSelect.options).some(o => o.value === qd)) durationSelect.value = qd;
+    if (qs && /^\d{4}-\d{2}-\d{2}$/.test(qs) && qs >= todayStr) startDateInput.value = qs;
+    if (qd || qs) calculateDatesAndTimes();
 });
 </script>
 </body>
