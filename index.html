@@ -6,7 +6,7 @@
     <meta name="theme-color" id="theme-color-meta" content="#0b1329">
     <title>دَار يحيي | Dar Yahia</title>
     
-    <!-- الخطوط والأيقونات (خط عثماني للقرآن والخطوط الأساسية) -->
+    <!-- الخطوط والأيقونات (خط عثماني/أميري للقرآن والخطوط الأساسية) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -15,36 +15,40 @@
     <style>
         :root {
             --bg-color: #0b1329;
-            --bg-gradient: radial-gradient(circle at top right, rgba(212, 175, 55, 0.12), transparent 45%), 
-                            radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.08), transparent 45%), 
+            --bg-gradient: radial-gradient(circle at top right, rgba(212, 175, 55, 0.15), transparent 50%), 
+                            radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.08), transparent 50%), 
                             #0b1329;
-            --card-bg-glass: rgba(21, 32, 62, 0.75); 
-            --nav-bg-glass: rgba(11, 19, 41, 0.85);
+            --card-bg-glass: rgba(21, 32, 62, 0.78); 
+            --nav-bg-glass: rgba(11, 19, 41, 0.88);
             --text-color: #ffffff;         
             --text-muted: #cbd5e1;         
             --accent-color: #d4af37;       
-            --border-color: rgba(212, 175, 55, 0.3); 
+            --accent-light: rgba(212, 175, 55, 0.2);
+            --border-color: rgba(212, 175, 55, 0.35); 
             --line-color: rgba(255, 255, 255, 0.15);
             --input-bg: rgba(21, 32, 62, 0.85);
-            --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --quote-bracket-color: #cbd5e1;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         [data-theme="light"] {
             --bg-color: #f8fafc;
-            --bg-gradient: radial-gradient(circle at top right, rgba(212, 175, 55, 0.18), transparent 50%), 
+            --bg-gradient: radial-gradient(circle at top right, rgba(212, 175, 55, 0.2), transparent 50%), 
                             radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.12), transparent 50%), 
                             #f8fafc;
-            --card-bg-glass: rgba(255, 255, 255, 0.82);
-            --nav-bg-glass: rgba(248, 250, 252, 0.85);
-            --text-color: #0f172a;
+            --card-bg-glass: rgba(255, 255, 255, 0.88);
+            --nav-bg-glass: rgba(248, 250, 252, 0.88);
+            --text-color: #0b1329;
             --text-muted: #475569;
             --accent-color: #b8860b;
-            --border-color: rgba(212, 175, 55, 0.35);
+            --accent-light: rgba(184, 134, 11, 0.15);
+            --border-color: rgba(184, 134, 11, 0.35);
             --line-color: rgba(0, 0, 0, 0.12);
-            --input-bg: rgba(255, 255, 255, 0.85);
-            --shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --input-bg: rgba(255, 255, 255, 0.9);
+            --quote-bracket-color: #1e293b;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         * {
@@ -70,7 +74,24 @@
             margin: 0 auto;
         }
 
-        /* 1. الشريط العلوي بتأثير الزجاج البلوري */
+        /* حركات الظهور المهيبة عند فتح الموقع */
+        .animate-fade-up {
+            animation: majesticFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.15s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.45s; }
+        .delay-4 { animation-delay: 0.6s; }
+        .delay-5 { animation-delay: 0.75s; }
+
+        @keyframes majesticFadeUp {
+            0% { opacity: 0; transform: translateY(25px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* 1. الشريط العلوي */
         .toolbar {
             position: sticky;
             top: 10px;
@@ -80,8 +101,6 @@
             gap: 8px;
             margin-bottom: 25px;
             width: 100%;
-            background: transparent;
-            padding: 0;
         }
 
         .search-box {
@@ -114,10 +133,7 @@
             color: var(--accent-color);
             font-size: 1rem;
             cursor: pointer;
-            transition: transform 0.2s ease;
         }
-
-        .search-btn:active { transform: scale(0.9); }
 
         .control-btn {
             background: var(--input-bg);
@@ -135,10 +151,10 @@
             box-shadow: var(--shadow-sm);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            transition: border-color 0.3s ease, transform 0.2s ease;
+            transition: transform 0.2s ease, border-color 0.3s ease;
         }
 
-        .control-btn:hover { border-color: var(--accent-color); transform: translateY(-1px); }
+        .control-btn:hover { border-color: var(--accent-color); transform: translateY(-2px); }
 
         .lang-wrapper { position: relative; }
 
@@ -171,27 +187,22 @@
             cursor: pointer;
             font-size: 0.9rem;
             font-weight: 500;
-            width: 100%;
-            transition: background 0.2s ease;
         }
 
         .lang-option:hover {
-            background: var(--border-color);
+            background: var(--accent-light);
             color: var(--accent-color);
         }
 
         /* 2. رأس الصفحة والشعار */
-        header {
-            text-align: center;
-            padding: 10px 10px 20px;
-        }
+        header { text-align: center; padding: 10px 10px 15px; }
 
         .brand-logo-wrapper {
             display: inline-block;
             padding: 3px;
             border-radius: 50%;
             background: linear-gradient(135deg, #d4af37 0%, #b8860b 50%, #8b5a2b 100%);
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
             margin-bottom: 12px;
         }
 
@@ -208,25 +219,78 @@
             border: 2px solid var(--border-color);
         }
 
-        h1 { font-size: 2.1rem; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.5px; }
-        .subtitle { color: var(--accent-color); font-size: 1rem; margin-bottom: 10px; font-weight: 600; }
-        .bio { color: var(--text-muted); max-width: 650px; margin: 0 auto; font-size: 0.95rem; line-height: 1.8; }
+        h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .subtitle { color: var(--accent-color); font-size: 1.05rem; margin-bottom: 10px; font-weight: 600; }
+        .bio { color: var(--text-muted); max-width: 680px; margin: 0 auto; font-size: 0.95rem; line-height: 1.8; }
 
         .simple-divider {
             width: 100%;
             height: 1px;
             background-color: var(--line-color);
-            margin: 25px 0 20px;
+            margin: 25px 0;
             border: none;
         }
 
-        /* 3. مربع "حدد الختمة" الإستثنائي بحدود ذهبية دوارة أنيقة */
+        /* 3. مربع الأحاديث والآيات الدوار المتحرك */
+        .quote-box-card {
+            background: var(--card-bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-box-title {
+            color: var(--accent-color);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .quote-content-wrapper {
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+        }
+
+        .quote-content-wrapper.fade-out { opacity: 0; }
+
+        .quote-text {
+            font-family: 'Amiri Quran', 'Amiri', serif;
+            font-size: 1.25rem;
+            line-height: 2.1;
+            color: var(--text-color);
+        }
+
+        .quote-bracket {
+            color: var(--quote-bracket-color);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.95rem;
+            margin-right: 6px;
+            margin-left: 6px;
+            opacity: 0.85;
+            display: inline-block;
+        }
+
+        /* 4. مربع حدد الختمة الإستثنائي بحدود ذهبية دوارة */
         .khatma-special-wrapper {
             position: relative;
             margin: 25px 0;
             border-radius: 22px;
             padding: 3px;
-            background: transparent;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
         }
@@ -238,8 +302,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: conic-gradient(transparent, var(--accent-color), transparent 30%, #fff 50%, transparent 70%);
-            animation: rotateBorder 5s linear infinite;
+            background: conic-gradient(transparent, var(--accent-color), transparent 30%, #ffffff 50%, transparent 70%);
+            animation: rotateBorder 6s linear infinite;
             z-index: 0;
         }
 
@@ -302,12 +366,26 @@
             font-size: 0.95rem;
             outline: none;
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
         }
 
-        .custom-select:focus, .custom-date:focus {
-            border-color: var(--accent-color);
+        .custom-select:focus, .custom-date:focus { border-color: var(--accent-color); }
+
+        /* مربع تقدير وقت القراءة */
+        .time-estimate-box {
+            background: var(--accent-light);
+            border: 1px dashed var(--accent-color);
+            border-radius: 14px;
+            padding: 12px 16px;
+            margin: 15px 0 20px;
+            font-size: 0.92rem;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: center;
         }
+
+        .time-estimate-title { font-weight: 700; color: var(--accent-color); }
 
         .btn-action-primary {
             background: var(--accent-color);
@@ -322,105 +400,160 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin-top: 10px;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
             transition: transform 0.2s ease, opacity 0.2s ease;
         }
 
-        .btn-action-primary:hover {
-            transform: translateY(-2px);
-            opacity: 0.95;
+        .btn-action-primary:hover { transform: translateY(-2px); opacity: 0.95; }
+
+        /* 5. كروت النبذة والتواصل معي (مثل صورة المشروع) */
+        .section-card {
+            background: var(--card-bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-top: 25px;
+            box-shadow: var(--shadow);
         }
 
-        /* 4. كروت جدول الأيام والختمة */
-        .section-title {
-            font-size: 1.3rem;
+        .section-header-title {
+            font-size: 1.25rem;
             color: var(--text-color);
-            margin: 30px 0 15px;
+            margin-bottom: 15px;
             border-right: 4px solid var(--accent-color);
             padding-right: 10px;
             font-weight: 700;
         }
 
-        html[dir="ltr"] .section-title {
+        html[dir="ltr"] .section-header-title {
             border-right: none;
             border-left: 4px solid var(--accent-color);
             padding-right: 0;
             padding-left: 10px;
         }
 
-        .schedule-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
+        .author-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.2s ease;
         }
 
-        .day-card {
-            background: var(--card-bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 16px 18px;
-            box-shadow: var(--shadow-sm);
+        .author-link:hover { text-decoration: underline; }
+
+        /* نموذج التواصل */
+        .contact-form {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             gap: 12px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .day-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-color);
-        }
-
-        .day-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--line-color);
-            padding-bottom: 8px;
-        }
-
-        .day-title { font-weight: 700; color: var(--accent-color); font-size: 1.05rem; }
-        .day-date { font-size: 0.82rem; color: var(--text-muted); }
-
-        .day-content {
-            font-size: 0.92rem;
+        .form-input, .form-textarea {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
             color: var(--text-color);
-            line-height: 1.6;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            outline: none;
         }
 
-        .day-status {
+        .form-input:focus, .form-textarea:focus { border-color: var(--accent-color); }
+
+        .form-textarea { height: 110px; resize: vertical; }
+
+        .btn-submit {
+            background: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            cursor: pointer;
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            user-select: none;
+            transition: transform 0.2s ease;
         }
 
-        .day-status input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--accent-color);
-            cursor: pointer;
+        .btn-submit:hover { transform: translateY(-2px); }
+
+        /* 6. قسم شرفني بمتابعتك وأزرار السوشيال ميديا */
+        .social-section {
+            margin-top: 40px;
+            text-align: center;
         }
 
-        /* 5. النوافذ المنبثقة العامة (Modals) */
+        .divider-with-text {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .divider-with-text::before, .divider-with-text::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .divider-with-text span {
+            padding: 0 15px;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .social-card-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--card-bg-glass);
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            border-radius: 14px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            backdrop-filter: blur(8px);
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .social-card-btn i {
+            color: var(--accent-color);
+            font-size: 1.25rem;
+        }
+
+        .social-card-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            background: var(--accent-light);
+        }
+
+        /* 7. النوافذ المنبثقة العامة ومودال الخطة (Plan Modal) */
         .modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.65);
             z-index: 9999;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 15px;
         }
 
@@ -428,36 +561,106 @@
 
         .modal-box {
             position: relative;
-            width: 90%;
-            max-width: 400px;
+            width: 100%;
+            max-width: 750px;
+            max-height: 85vh;
             background: var(--card-bg-glass);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 25px 20px;
-            text-align: center;
             box-shadow: var(--shadow);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .close-modal {
             position: absolute;
-            top: 14px;
-            left: 14px;
+            top: 16px;
+            left: 16px;
             background: var(--input-bg);
             color: var(--text-color);
             border: 1px solid var(--border-color);
             font-size: 1.1rem;
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 10;
         }
 
-        html[dir="ltr"] .close-modal { left: auto; right: 14px; }
+        html[dir="ltr"] .close-modal { left: auto; right: 16px; }
+
+        /* جدول الخطة داخل المودال */
+        .plan-summary-bar {
+            background: var(--accent-light);
+            border-radius: 12px;
+            padding: 12px;
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .plan-table-wrapper {
+            overflow-x: auto;
+            margin: 15px 0;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .plan-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .plan-table th {
+            background: var(--input-bg);
+            color: var(--accent-color);
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .plan-table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--line-color);
+            color: var(--text-color);
+        }
+
+        .plan-export-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .btn-export {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--accent-color);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn-export:hover { border-color: var(--accent-color); transform: translateY(-2px); }
 
         footer {
             text-align: center;
@@ -465,17 +668,17 @@
             color: var(--text-muted);
             font-size: 0.88rem;
             border-top: 1px solid var(--line-color);
-            margin-top: 40px;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- الشريط العلوي الشفاف البلوري -->
-        <div class="toolbar">
+        <!-- الشريط العلوي -->
+        <div class="toolbar animate-fade-up">
             <form class="search-box" id="searchForm">
-                <input type="text" id="searchInput" placeholder="ابحث في جدول الختمة أو السور...">
+                <input type="text" id="searchInput" placeholder="ابحث في جدول الختمة أو الأجزاء...">
                 <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
 
@@ -501,7 +704,7 @@
         </div>
 
         <!-- الهيدر والشعار -->
-        <header>
+        <header class="animate-fade-up delay-1">
             <div class="brand-logo-wrapper">
                 <div class="brand-logo">
                     <i class="fa-solid fa-book-quran"></i>
@@ -514,11 +717,22 @@
             <hr class="simple-divider">
         </header>
 
+        <!-- مربع الآيات والأحاديث المتحرك -->
+        <section class="quote-box-card animate-fade-up delay-2">
+            <div class="quote-box-title">
+                <i class="fa-solid fa-kaaba"></i>
+                <span id="txt-quote-title">لماذا نقرأ القرآن ونتعلمه؟!</span>
+            </div>
+            <div class="quote-content-wrapper" id="quoteWrapper">
+                <p class="quote-text" id="quoteTextDisplay"></p>
+            </div>
+        </section>
+
         <!-- مربع حدد الختمة المميز بحواف ذهبية دوارة -->
-        <section class="khatma-special-wrapper">
+        <section class="khatma-special-wrapper animate-fade-up delay-3">
             <div class="khatma-special-card">
                 <div class="khatma-card-header">
-                    <i class="fa-solid fa-kaaba"></i>
+                    <i class="fa-solid fa-calendar-check"></i>
                     <h2 id="txt-khatma-header">تحديد وتعديل خطة الختمة</h2>
                 </div>
                 <p style="color: var(--text-muted); font-size: 0.9rem;" id="txt-khatma-desc">اختر المدة وتاريخ بداية الختمة وسيتم حساب الورد اليومي وتوزيعه تلقائياً بدءاً من اليوم الذي تحدده.</p>
@@ -539,30 +753,123 @@
                         <label id="lbl-start-date"><i class="fa-solid fa-calendar-day"></i> تاريخ البداية:</label>
                         <input type="date" id="khatmaStartDate" class="custom-date">
                     </div>
+
+                    <div class="input-group">
+                        <label id="lbl-end-date"><i class="fa-solid fa-flag-checkered"></i> تاريخ الانتهاء المتوقع:</label>
+                        <input type="date" id="khatmaEndDate" class="custom-date" readonly style="opacity: 0.85; cursor: not-allowed;">
+                    </div>
+                </div>
+
+                <!-- مربع التوقعات الزمنية -->
+                <div class="time-estimate-box">
+                    <span class="time-estimate-title" id="txt-est-title"><i class="fa-solid fa-hourglass-half"></i> الوقت اليومي المتوقع لإنجاز الورد:</span>
+                    <span id="txt-est-no-tadabbur">• بدون تدبر: من 17 إلى 32 دقيقة</span>
+                    <span id="txt-est-tadabbur">• في حالة التدبر: من 32 إلى 77 دقيقة</span>
                 </div>
 
                 <button type="button" class="btn-action-primary" id="btnBuildPlan">
-                    <i class="fa-solid fa-arrows-rotate"></i> <span id="txt-btn-build">إنشاء جدول الختمة</span>
+                    <i class="fa-solid fa-table-list"></i> <span id="txt-btn-build">إنشاء عرض جدول الختمة</span>
                 </button>
             </div>
         </section>
 
-        <!-- جدول الأجزاء اليومية -->
-        <section>
-            <h2 class="section-title" id="txt-schedule-title">جدول الورد اليومي للختمة</h2>
-            <div class="schedule-grid" id="scheduleContainer">
-                <!-- سيتم توليد الأيام ديناميكياً هنا -->
+        <!-- مربع نبذة تعريفية عني -->
+        <section class="section-card animate-fade-up delay-4">
+            <h2 class="section-header-title" id="txt-about-title">من أنا "مؤسس الموقع"</h2>
+            <p style="font-size: 0.95rem; line-height: 1.8; color: var(--text-color);" id="txt-about-content">
+                <a href="https://phsyf1.github.io/physf/" target="_blank" class="author-link" id="txt-author-name">فارس محمد داهش</a>.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.
+            </p>
+        </section>
+
+        <!-- مربع تواصل معي -->
+        <section class="section-card animate-fade-up delay-5">
+            <h2 class="section-header-title" id="txt-contact-title">تواصل معي</h2>
+            <form class="contact-form" action="https://formsubmit.co/faris.dahesh@gmail.com" method="POST">
+                <!-- توجيه الحماية والضبط لخدمة الإرسال البريدي -->
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                
+                <input type="text" name="name" class="form-input" id="inputName" placeholder="اسم الكريم" required>
+                <input type="email" name="email" class="form-input" id="inputEmail" placeholder="بريدك الإلكتروني" required>
+                <textarea name="message" class="form-textarea" id="inputMsg" placeholder="اكتب رسالتك هنا..." required></textarea>
+                <button type="submit" class="btn-submit" id="btnSendMsg">
+                    <i class="fa-solid fa-paper-plane"></i> <span id="txt-btn-send">إرسال الرسالة</span>
+                </button>
+            </form>
+        </section>
+
+        <!-- قسم شرفني بمتابعتك -->
+        <section class="social-section animate-fade-up delay-5">
+            <div class="divider-with-text">
+                <span id="txt-follow-me">شرفني بمتابعتك</span>
+            </div>
+            <div class="social-grid">
+                <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-card-btn">
+                    <i class="fa-brands fa-youtube"></i> <span>YouTube</span>
+                </a>
+                <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="social-card-btn">
+                    <i class="fa-brands fa-tiktok"></i> <span>TikTok</span>
+                </a>
+                <a href="https://t.me/phsyf1" target="_blank" class="social-card-btn">
+                    <i class="fa-brands fa-telegram"></i> <span>Telegram</span>
+                </a>
+                <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-card-btn">
+                    <i class="fa-brands fa-facebook"></i> <span>Facebook</span>
+                </a>
             </div>
         </section>
 
         <footer>
-            <p id="txt-footer">© 2026 دَار يحيي - جميع الحقوق محفوظة</p>
+            <p id="txt-footer">© 2026 - جميع الحقوق محفوظة</p>
         </footer>
     </div>
 
-    <!-- نافذة نتائج البحث غير المتوفرة -->
-    <div class="modal-overlay" id="searchModal">
+    <!-- 1. نافذة عرض جدول الختمة المتطور (Plan Modal) -->
+    <div class="modal-overlay" id="planModal">
         <div class="modal-box">
+            <button class="close-modal" id="closePlanModalBtn">&times;</button>
+            <div style="text-align: center; margin-bottom: 10px;">
+                <i class="fa-solid fa-book-open-reader" style="font-size: 2.2rem; color: var(--accent-color);"></i>
+                <h3 id="txt-plan-modal-title" style="font-size: 1.3rem; margin-top: 5px;">جدول خطة الختمة المتكامل</h3>
+            </div>
+
+            <div class="plan-summary-bar" id="planSummaryBar">
+                <!-- يتم تعبئتها ديناميكياً -->
+            </div>
+
+            <div class="plan-table-wrapper">
+                <table class="plan-table" id="planTable">
+                    <thead>
+                        <tr>
+                            <th id="th-day">اليوم</th>
+                            <th id="th-date">التاريخ</th>
+                            <th id="th-juz">الورد اليومي (الأجزاء)</th>
+                            <th id="th-status">ملاحظة الإنجاز</th>
+                        </tr>
+                    </thead>
+                    <tbody id="planTableBody">
+                        <!-- الأسطر تبنى ديناميكياً -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="plan-export-btns">
+                <button type="button" class="btn-export" id="btnExportICS">
+                    <i class="fa-solid fa-calendar-plus"></i> <span id="txt-exp-ics">تصدير للتقويم (.ics)</span>
+                </button>
+                <button type="button" class="btn-export" id="btnExportWord">
+                    <i class="fa-solid fa-file-word"></i> <span id="txt-exp-word">تحميل ملف Word</span>
+                </button>
+                <button type="button" class="btn-export" id="btnExportPDF">
+                    <i class="fa-solid fa-print"></i> <span id="txt-exp-pdf">طباعة / حفظ PDF</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. نافذة البحث غير المتوفر -->
+    <div class="modal-overlay" id="searchModal">
+        <div class="modal-box" style="max-width: 400px; text-align: center;">
             <button class="close-modal" id="closeSearchModalBtn">&times;</button>
             <i class="fa-solid fa-circle-info" style="font-size: 2.5rem; color: var(--accent-color); margin-bottom: 12px;"></i>
             <h3 id="searchModalTitle" style="margin-bottom: 8px;">عذراً.. المحتوى غير متوفر</h3>
@@ -573,94 +880,270 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
+            // الأحاديث والآيات مع التشكيل والرموز والترجمات
+            const quotesDatabase = [
+                {
+                    ar: "وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ",
+                    bracketAr: "[القمر - ١٧]",
+                    en: "And We have certainly made the Quran easy for remembrance, so is there any who will remember?",
+                    bracketEn: "[Al-Qamar - 17]",
+                    es: "Y en verdad hemos hecho el Corán fácil de recordar. ¿Hay, pues, quien reflexione?",
+                    bracketEs: "[Al-Qamar - 17]",
+                    fr: "Et en effet, Nous avons rendu le Coran facile pour la méditation. Y a-t-il quelqu'un pour s'en souvenir?",
+                    bracketFr: "[Al-Qamar - 17]"
+                },
+                {
+                    ar: "وَقَالَ الرَّسُولُ يَا رَبِّ إِنَّ قَوْمِي اتَّخَذُوا هَٰذَا الْقُرْآنَ مَهْجُورًا",
+                    bracketAr: "[الفرقان - ٣٠]",
+                    en: "And the Messenger has said: 'O my Lord, indeed my people have taken this Quran as [a thing] abandoned.'",
+                    bracketEn: "[Al-Furqan - 30]",
+                    es: "Y el Mensajero dirá: '¡Oh Señor mío! En verdad mi pueblo tomó este Corán como algo olvidado.'",
+                    bracketEs: "[Al-Furqan - 30]",
+                    fr: "Et le Messager dit: 'Seigneur, mon peuple a vraiment pris ce Coran pour une chose délaissée!'",
+                    bracketFr: "[Al-Furqan - 30]"
+                },
+                {
+                    ar: "خَيْرُكُمْ مَنْ تَعَلَّمَ القُرْآنَ وَعَلَّمَهُ",
+                    bracketAr: "[رواه البخاري]",
+                    en: "The best among you are those who learn the Quran and teach it.",
+                    bracketEn: "[Narrated by Al-Bukhari]",
+                    es: "El mejor de vosotros es quien aprende el Corán y lo enseña.",
+                    bracketEs: "[Narrado por Al-Bujari]",
+                    fr: "Le meilleur d'entre vous est celui qui apprend le Coran et l'enseigne.",
+                    bracketFr: "[Rapporté par Al-Bukhari]"
+                },
+                {
+                    ar: "الْمَاهِرُ بِالْقُرْآنِ مَعَ السَّفَرَةِ الْكِرَامِ الْبَرَرَةِ، وَالَّذِي يَقْرَأُ الْقُرْآنَ وَيَتَتَعْتَعُ فِيهِ، وَهُوَ عَلَيْهِ شَاقٌّ، لَهُ أَجْرَانِ",
+                    bracketAr: "[رواه البخاري ومسلم]",
+                    en: "One who is proficient in the Quran is with the noble obedient angels, and one who recites it with difficulty has a double reward.",
+                    bracketEn: "[Al-Bukhari & Muslim]",
+                    es: "Quien recita con maestría el Corán estará con los ángeles nobles. Y quien lo lee con dificultad tendrá doble recompensa.",
+                    bracketEs: "[Al-Bujari y Muslim]",
+                    fr: "Celui qui récite habilement le Coran sera avec les nobles anges. Et celui qui le récite avec difficulté aura une double récompense.",
+                    bracketFr: "[Rapporté par Al-Bukhari et Muslim]"
+                },
+                {
+                    ar: "تَعَاهَدُوا هذا القُرْآنَ، فَوالَّذِي نَفْسُ مُحَمَّدٍ بِيَدِهِ لَهُوَ أشَدُّ تَفَلُّتًا مِنَ الإبِلِ فِي عُقُلِهَا",
+                    bracketAr: "[رواه البخاري ومسلم]",
+                    en: "Keep refreshing your knowledge of the Quran, for by Him in Whose Hand is my soul, it escapes faster than camels from their bonds.",
+                    bracketEn: "[Al-Bukhari & Muslim]",
+                    es: "Repasad constantemente el Corán, pues se escapa más rápido que los camellos de sus ataduras.",
+                    bracketEs: "[Al-Bujari y Muslim]",
+                    fr: "Réviser régulièrement le Coran, car il s'échappe plus vite que les chameaux détachés.",
+                    bracketFr: "[Rapporté par Al-Bukhari et Muslim]"
+                },
+                {
+                    ar: "اقْرَؤُوا القُرْآنَ فإنَّه يَأْتي يَومَ القِيَامَةِ شَفِيعًا لأَصْحَابِهِ",
+                    bracketAr: "[رواه مسلم]",
+                    en: "Read the Quran, for it will come on the Day of Resurrection as an intercessor for its companions.",
+                    bracketEn: "[Narrated by Muslim]",
+                    es: "Leed el Corán, porque el Día de la Resurrección vendrá como intercesor por sus compañeros.",
+                    bracketEs: "[Narrado por Muslim]",
+                    fr: "Lisez le Coran, car il viendra au Jour de la Résurrection comme intercesseur pour ses compagnons.",
+                    bracketFr: "[Rapporté par Muslim]"
+                }
+            ];
+
             // 1. القاموس والترجمة للغات الأربع
             const i18n = {
                 ar: {
                     title: "دَار يحيي",
                     subtitle: "منصة تنظيم وتتبع ختْم القرآن الكريم",
                     bio: "مرحباً بك في دَار يحيي.. المنصة الأولى لتسهيل وتتبع جدول ختْم القُرآن الكريم وتوزيع الأجزاء بكل يسر وسهولة وفقاً لوقتك المتاح.",
-                    searchPlaceholder: "ابحث في جدول الختمة أو السور...",
+                    searchPlaceholder: "ابحث في جدول الختمة أو الأجزاء...",
+                    quoteTitle: "لماذا نقرأ القرآن ونتعلمه؟! ",
                     khatmaHeader: "تحديد وتعديل خطة الختمة",
                     khatmaDesc: "اختر المدة وتاريخ بداية الختمة وسيتم حساب الورد اليومي وتوزيعه تلقائياً بدءاً من اليوم الذي تحدده.",
                     lblDuration: "مدة الختمة:",
                     lblStartDate: "تاريخ البداية:",
-                    btnBuild: "إنشاء جدول الختمة",
-                    scheduleTitle: "جدول الورد اليومي للختمة",
-                    day: "اليوم",
-                    juz: "الجزء",
-                    completed: "تم الإنجاز",
-                    footer: "© 2026 دَار يحيي - جميع الحقوق محفوظة",
+                    lblEndDate: "تاريخ الانتهاء المتوقع:",
+                    estTitle: "الوقت اليومي المتوقع لإنجاز الورد:",
+                    btnBuild: "إنشاء عرض جدول الختمة",
+                    aboutTitle: "من أنا \"مؤسس الموقع\"",
+                    authorName: "فارس محمد داهش",
+                    aboutContent: "فارس محمد داهش.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.",
+                    contactTitle: "تواصل معي",
+                    inputName: "اسم الكريم",
+                    inputEmail: "بريدك الإلكتروني",
+                    inputMsg: "اكتب رسالتك هنا...",
+                    btnSend: "إرسال الرسالة",
+                    followMe: "شرفني بمتابعتك",
+                    footer: "© 2026 - جميع الحقوق محفوظة",
                     notFoundTitle: "عذراً.. المحتوى غير متوفر",
                     notFoundMsg: "لم نجد نتائج تطابق بحثك في خطة الختمة الحالية.",
-                    shareSuccess: "تم نسخ رابط موقع دَار يحيي بنجاح!"
+                    shareSuccess: "تم نسخ رابط موقع دَار يحيي بنجاح!",
+                    planModalTitle: "جدول خطة الختمة المتكامل",
+                    thDay: "اليوم",
+                    thDate: "التاريخ",
+                    thJuz: "الورد اليومي (الأجزاء)",
+                    thStatus: "ملاحظة الإنجاز",
+                    juzText: "الجزء",
+                    expIcs: "تصدير للتقويم (.ics)",
+                    expWord: "تحميل ملف Word",
+                    expPdf: "طباعة / حفظ PDF"
                 },
                 en: {
                     title: "Dar Yahia",
                     subtitle: "Quran Completion & Tracking Platform",
                     bio: "Welcome to Dar Yahia.. The leading platform for organizing and tracking Quran recitation schedules effortlessly.",
                     searchPlaceholder: "Search in schedule...",
+                    quoteTitle: "Why do we read and learn the Quran?!",
                     khatmaHeader: "Plan & Customize Recitation",
                     khatmaDesc: "Select duration and start date to automatically generate your daily Quran reading portion.",
                     lblDuration: "Duration:",
                     lblStartDate: "Start Date:",
-                    btnBuild: "Generate Schedule",
-                    scheduleTitle: "Daily Reading Schedule",
-                    day: "Day",
-                    juz: "Juz",
-                    completed: "Completed",
-                    footer: "© 2026 Dar Yahia - All Rights Reserved",
+                    lblEndDate: "Expected End Date:",
+                    estTitle: "Expected daily time to complete reading:",
+                    btnBuild: "Generate Plan Table View",
+                    aboutTitle: "About Me (Site Founder)",
+                    authorName: "Faris Mohammed Dahesh Ash-Shiref",
+                    aboutContent: "Faris Mohammed Dahesh Ash-Shiref.. Egyptian poet and content creator, born July 3, 2003 CE (3 Jumada al-Ula 1424 AH) in Assiut Governorate, El Ghanayem. I strive to leave a beneficial impact through Quranic recitations, poetry, and media.",
+                    contactTitle: "Contact Me",
+                    inputName: "Your Honorable Name",
+                    inputEmail: "Your Email Address",
+                    inputMsg: "Write your message here...",
+                    btnSend: "Send Message",
+                    followMe: "Honored to have you follow me",
+                    footer: "© 2026 - All Rights Reserved",
                     notFoundTitle: "Content Unavailable",
                     notFoundMsg: "No matching results found in current schedule.",
-                    shareSuccess: "Site link copied successfully!"
+                    shareSuccess: "Site link copied successfully!",
+                    planModalTitle: "Integrated Recitation Schedule",
+                    thDay: "Day",
+                    thDate: "Date",
+                    thJuz: "Daily Reading (Juz)",
+                    thStatus: "Status",
+                    juzText: "Juz",
+                    expIcs: "Export Calendar (.ics)",
+                    expWord: "Download Word File",
+                    expPdf: "Print / Save PDF"
                 },
                 es: {
                     title: "Dar Yahia",
-                    subtitle: "Plataforma de Seguimiento de Lectura del Corán",
-                    bio: "Bienvenido a Dar Yahia.. La plataforma principal para organizar y rastrear su plan de lectura del Corán.",
-                    searchPlaceholder: "Buscar en el calendario...",
+                    subtitle: "Plataforma de Seguimiento del Corán",
+                    bio: "Bienvenido a Dar Yahia.. La plataforma principal para organizar su plan de lectura del Corán.",
+                    searchPlaceholder: "Buscar...",
+                    quoteTitle: "¿Por qué leemos y aprendemos el Corán?!",
                     khatmaHeader: "Planificar la Lectura",
                     khatmaDesc: "Elija la duración y la fecha de inicio para calcular la porción diaria de lectura.",
                     lblDuration: "Duración:",
                     lblStartDate: "Fecha de Inicio:",
-                    btnBuild: "Generar Calendario",
-                    scheduleTitle: "Calendario de Lectura Diaria",
-                    day: "Día",
-                    juz: "Juz",
-                    completed: "Completado",
-                    footer: "© 2026 Dar Yahia - Todos los derechos reservados",
-                    notFoundTitle: "Contenido No Disponible",
-                    notFoundMsg: "No se encontraron resultados en el calendario.",
-                    shareSuccess: "¡Enlace copiado con éxito!"
+                    lblEndDate: "Fecha Final Estimada:",
+                    estTitle: "Tiempo diario estimado para completar:",
+                    btnBuild: "Generar Tabla del Plan",
+                    aboutTitle: "Sobre Mí (Fundador del Sitio)",
+                    authorName: "Faris Mohammed Dahesh Ash-Shiref",
+                    aboutContent: "Faris Mohammed Dahesh Ash-Shiref.. Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 en Asiut, El Ghanayem. Busco dejar un impacto beneficioso a través de recitales, poesía y redes.",
+                    contactTitle: "Contacto",
+                    inputName: "Su Nombre",
+                    inputEmail: "Su Correo Electrónico",
+                    inputMsg: "Escriba su mensaje aquí...",
+                    btnSend: "Enviar Mensaje",
+                    followMe: "Honrado de que me sigas",
+                    footer: "© 2026 - Todos los derechos reservados",
+                    notFoundTitle: "No Disponible",
+                    notFoundMsg: "No se encontraron resultados.",
+                    shareSuccess: "¡Enlace copiado!",
+                    planModalTitle: "Calendario de Lectura Integrado",
+                    thDay: "Día",
+                    thDate: "Fecha",
+                    thJuz: "Porción Diaria (Juz)",
+                    thStatus: "Estado",
+                    juzText: "Juz",
+                    expIcs: "Exportar Calendario (.ics)",
+                    expWord: "Descargar Word",
+                    expPdf: "Imprimir / Guardar PDF"
                 },
                 fr: {
                     title: "Dar Yahia",
                     subtitle: "Plateforme de Suivi de Lecture du Coran",
-                    bio: "Bienvenue sur Dar Yahia.. La plateforme idéale pour organiser votre programme de lecture du Coran.",
-                    searchPlaceholder: "Rechercher dans le programme...",
+                    bio: "Bienvenue sur Dar Yahia.. La plateforme idéale pour organiser votre programme de lectura du Coran.",
+                    searchPlaceholder: "Rechercher...",
+                    quoteTitle: "Pourquoi lisons-nous le Coran?!",
                     khatmaHeader: "Planifier la Lecture",
-                    khatmaDesc: "Choisissez la durée et la date de début pour calculer automatiquement votre lecture quotidienne.",
+                    khatmaDesc: "Choisissez la durée et la date pour calculer votre lecture quotidienne.",
                     lblDuration: "Durée:",
                     lblStartDate: "Date de Début:",
-                    btnBuild: "Générer le Programme",
-                    scheduleTitle: "Programme de Lecture Quotidienne",
-                    day: "Jour",
-                    juz: "Juz",
-                    completed: "Terminé",
-                    footer: "© 2026 Dar Yahia - Tous droits réservés",
-                    notFoundTitle: "Contenu Indisponible",
-                    notFoundMsg: "Aucun résultat trouvé dans le programme actuel.",
-                    shareSuccess: "Lien copié avec succès!"
+                    lblEndDate: "Date de Fin Prévue:",
+                    estTitle: "Temps quotidien estimé pour compléter:",
+                    btnBuild: "Générer le Tableau de Planification",
+                    aboutTitle: "À Propos de Moi (Fondateur)",
+                    authorName: "Faris Mohammed Dahesh Ash-Shiref",
+                    aboutContent: "Faris Mohammed Dahesh Ash-Shiref.. Poète et créateur de contenu égyptien, né le 3 juillet 2003 à Assiout, El Ghanayem. Cherchant à laisser une empreinte bénéfique.",
+                    contactTitle: "Contactez-moi",
+                    inputName: "Votre Nom",
+                    inputEmail: "Votre Email",
+                    inputMsg: "Écrivez votre message ici...",
+                    btnSend: "Envoyer le Message",
+                    followMe: "Honneur de me suivre",
+                    footer: "© 2026 - Tous droits réservés",
+                    notFoundTitle: "Indisponible",
+                    notFoundMsg: "Aucun résultat trouvé.",
+                    shareSuccess: "Lien copié!",
+                    planModalTitle: "Programme de Lecture Intégré",
+                    thDay: "Jour",
+                    thDate: "Date",
+                    thJuz: "Lecture Quotidienne (Juz)",
+                    thStatus: "Statut",
+                    juzText: "Juz",
+                    expIcs: "Exporter Calendrier (.ics)",
+                    expWord: "Télécharger Word",
+                    expPdf: "Imprimer / Sauvegarder PDF"
                 }
             };
 
             let currentLang = localStorage.getItem('daryahia_lang') || 'ar';
             
-            // 2. ضبط منتقي التاريخ ليكون تاريخ اليوم مباشرةً
+            // 2. ضبط تواريخ البداية والنهاية ومربع تقدير الوقت
             const startDateInput = document.getElementById('khatmaStartDate');
-            const todayStr = new Date().toISOString().split('T')[0];
+            const endDateInput = document.getElementById('khatmaEndDate');
+            const durationSelect = document.getElementById('khatmaDuration');
+
+            const today = new Date();
+            const todayStr = today.toISOString().split('T')[0];
             startDateInput.value = todayStr;
 
-            // 3. تبديل الثيم المضيء والمظلم بنفس درجات ثيم فارس الشريف
+            function calculateDatesAndTimes() {
+                const duration = parseInt(durationSelect.value);
+                const startVal = startDateInput.value ? new Date(startDateInput.value) : new Date();
+
+                const endDate = new Date(startVal);
+                endDate.setDate(startVal.getDate() + (duration - 1));
+                endDateInput.value = endDate.toISOString().split('T')[0];
+
+                // حساب وقت القراءة المقدر بناءً على عدد الأجزاء باليوم
+                const juzPerDay = (30 / duration);
+                const minNoTadabbur = Math.round(17 * juzPerDay);
+                const maxNoTadabbur = Math.round(32 * juzPerDay);
+                const minTadabbur = Math.round(32 * juzPerDay);
+                const maxTadabbur = Math.round(77 * juzPerDay);
+
+                function formatMins(mins) {
+                    if (mins >= 60) {
+                        const hrs = Math.floor(mins / 60);
+                        const remMins = mins % 60;
+                        if (currentLang === 'ar') {
+                            return `${hrs} ساعة ${remMins > 0 ? 'و ' + remMins + ' دقيقة' : ''}`;
+                        }
+                        return `${hrs}h ${remMins}m`;
+                    }
+                    return `${mins} ${currentLang === 'ar' ? 'دقيقة' : 'mins'}`;
+                }
+
+                if (currentLang === 'ar') {
+                    document.getElementById('txt-est-no-tadabbur').innerText = `• بدون تدبر: من ${formatMins(minNoTadabbur)} إلى ${formatMins(maxNoTadabbur)}`;
+                    document.getElementById('txt-est-tadabbur').innerText = `• في حالة التدبر: من ${formatMins(minTadabbur)} إلى ${formatMins(maxTadabbur)}`;
+                } else {
+                    document.getElementById('txt-est-no-tadabbur').innerText = `• Without Tadabbur: from ${formatMins(minNoTadabbur)} to ${formatMins(maxNoTadabbur)}`;
+                    document.getElementById('txt-est-tadabbur').innerText = `• With Tadabbur: from ${formatMins(minTadabbur)} to ${formatMins(maxTadabbur)}`;
+                }
+            }
+
+            startDateInput.addEventListener('change', calculateDatesAndTimes);
+            durationSelect.addEventListener('change', calculateDatesAndTimes);
+            calculateDatesAndTimes();
+
+            // 3. تبديل الثيم المضيء والمظلم
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             const themeColorMeta = document.getElementById('theme-color-meta');
@@ -679,7 +1162,34 @@
                 if (themeColorMeta) themeColorMeta.setAttribute('content', next === 'light' ? '#f8fafc' : '#0b1329');
             });
 
-            // 4. القائمة المنزلقة للغات
+            // 4. تدوير النصوص الآيات والأحاديث كل 4 ثوانٍ بعشوائية وتأثير ناعم
+            let currentQuoteIndex = 0;
+            const quoteWrapper = document.getElementById('quoteWrapper');
+            const quoteTextDisplay = document.getElementById('quoteTextDisplay');
+
+            function displayNextQuote() {
+                quoteWrapper.classList.add('fade-out');
+                setTimeout(() => {
+                    let nextIdx;
+                    do {
+                        nextIdx = Math.floor(Math.random() * quotesDatabase.length);
+                    } while (nextIdx === currentQuoteIndex && quotesDatabase.length > 1);
+                    
+                    currentQuoteIndex = nextIdx;
+                    const item = quotesDatabase[currentQuoteIndex];
+
+                    let mainTxt = item[currentLang] || item.ar;
+                    let bracketTxt = item[`bracket${currentLang.charAt(0).toUpperCase() + currentLang.slice(1)}`] || item.bracketAr;
+
+                    quoteTextDisplay.innerHTML = `${mainTxt} <span class="quote-bracket">${bracketTxt}</span>`;
+                    quoteWrapper.classList.remove('fade-out');
+                }, 600);
+            }
+
+            displayNextQuote();
+            setInterval(displayNextQuote, 4000);
+
+            // 5. القائمة المنزلقة للغات والتحديث المباشر
             const langBtn = document.getElementById('langBtn');
             const langDropdown = document.getElementById('langDropdown');
 
@@ -714,64 +1224,154 @@
                 document.getElementById('txt-subtitle').innerText = i18n[lang].subtitle;
                 document.getElementById('txt-bio').innerText = i18n[lang].bio;
                 document.getElementById('searchInput').placeholder = i18n[lang].searchPlaceholder;
+                document.getElementById('txt-quote-title').innerText = i18n[lang].quoteTitle;
                 document.getElementById('txt-khatma-header').innerText = i18n[lang].khatmaHeader;
                 document.getElementById('txt-khatma-desc').innerText = i18n[lang].khatmaDesc;
                 document.getElementById('lbl-duration').innerHTML = `<i class="fa-solid fa-clock"></i> ${i18n[lang].lblDuration}`;
                 document.getElementById('lbl-start-date').innerHTML = `<i class="fa-solid fa-calendar-day"></i> ${i18n[lang].lblStartDate}`;
+                document.getElementById('lbl-end-date').innerHTML = `<i class="fa-solid fa-flag-checkered"></i> ${i18n[lang].lblEndDate}`;
+                document.getElementById('txt-est-title').innerHTML = `<i class="fa-solid fa-hourglass-half"></i> ${i18n[lang].estTitle}`;
                 document.getElementById('txt-btn-build').innerText = i18n[lang].btnBuild;
-                document.getElementById('txt-schedule-title').innerText = i18n[lang].scheduleTitle;
-                document.getElementById('txt-footer').innerText = i18n[lang].footer;
-                document.getElementById('searchModalTitle').innerText = i18n[lang].notFoundTitle;
-                document.getElementById('searchModalMsg').innerText = i18n[lang].notFoundMsg;
+                document.getElementById('txt-about-title').innerText = i18n[lang].aboutTitle;
+                
+                // تحديث النبذة واسم الكاتب وفقاً للغة
+                if (lang === 'ar') {
+                    document.getElementById('txt-about-content').innerHTML = `<a href="https://phsyf1.github.io/physf/" target="_blank" class="author-link">فارس محمد داهش</a>.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.`;
+                } else {
+                    document.getElementById('txt-about-content').innerHTML = `<a href="https://phsyf1.github.io/physf/" target="_blank" class="author-link">Faris Mohammed Dahesh Ash-Shiref</a>.. ${i18n[lang].aboutContent}`;
+                }
 
-                buildSchedule();
+                document.getElementById('txt-contact-title').innerText = i18n[lang].contactTitle;
+                document.getElementById('inputName').placeholder = i18n[lang].inputName;
+                document.getElementById('inputEmail').placeholder = i18n[lang].inputEmail;
+                document.getElementById('inputMsg').placeholder = i18n[lang].inputMsg;
+                document.getElementById('txt-btn-send').innerText = i18n[lang].btnSend;
+                document.getElementById('txt-follow-me').innerText = i18n[lang].followMe;
+                document.getElementById('txt-footer').innerText = i18n[lang].footer;
+
+                document.getElementById('txt-plan-modal-title').innerText = i18n[lang].planModalTitle;
+                document.getElementById('th-day').innerText = i18n[lang].thDay;
+                document.getElementById('th-date').innerText = i18n[lang].thDate;
+                document.getElementById('th-juz').innerText = i18n[lang].thJuz;
+                document.getElementById('th-status').innerText = i18n[lang].thStatus;
+                document.getElementById('txt-exp-ics').innerText = i18n[lang].expIcs;
+                document.getElementById('txt-exp-word').innerText = i18n[lang].expWord;
+                document.getElementById('txt-exp-pdf').innerText = i18n[lang].expPdf;
+
+                calculateDatesAndTimes();
+                displayNextQuote();
             }
 
-            // 5. توليد جدول الأيام بناءً على تاريخ البداية
-            function buildSchedule() {
-                const container = document.getElementById('scheduleContainer');
-                container.innerHTML = '';
+            // 6. بيلد جدول الختمة داخل المودال + التصدير
+            const planModal = document.getElementById('planModal');
+            const closePlanModalBtn = document.getElementById('closePlanModalBtn');
+            const planTableBody = document.getElementById('planTableBody');
+            const planSummaryBar = document.getElementById('planSummaryBar');
 
-                const duration = parseInt(document.getElementById('khatmaDuration').value);
-                const startDateVal = document.getElementById('khatmaStartDate').value || todayStr;
-                const startDate = new Date(startDateVal);
+            let currentPlanData = [];
 
-                const juzPerDay = (30 / duration).toFixed(1);
+            document.getElementById('btnBuildPlan').addEventListener('click', () => {
+                const duration = parseInt(durationSelect.value);
+                const startVal = startDateInput.value ? new Date(startDateInput.value) : new Date();
+                
+                planTableBody.innerHTML = '';
+                currentPlanData = [];
+
+                planSummaryBar.innerHTML = `
+                    <span><strong>${i18n[currentLang].lblDuration}</strong> ${duration} ${currentLang === 'ar' ? 'يوم' : 'days'}</span>
+                    <span><strong>${i18n[currentLang].lblStartDate}</strong> ${startDateInput.value}</span>
+                    <span><strong>${i18n[currentLang].lblEndDate}</strong> ${endDateInput.value}</span>
+                `;
 
                 for (let i = 0; i < duration; i++) {
-                    const currentDate = new Date(startDate);
-                    currentDate.setDate(startDate.getDate() + i);
+                    const curDate = new Date(startVal);
+                    curDate.setDate(startVal.getDate() + i);
 
-                    const dateFormatted = currentDate.toLocaleDateString(currentLang === 'ar' ? 'ar-EG' : 'en-US', {
-                        weekday: 'short', month: 'short', day: 'numeric'
+                    const dateFormatted = curDate.toLocaleDateString(currentLang === 'ar' ? 'ar-EG' : 'en-US', {
+                        weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'
                     });
 
                     const startJuz = Math.floor(i * (30 / duration)) + 1;
                     const endJuz = Math.min(30, Math.floor((i + 1) * (30 / duration)));
-                    const juzText = (startJuz === endJuz) ? `${i18n[currentLang].juz} ${startJuz}` : `${i18n[currentLang].juz} ${startJuz} - ${endJuz}`;
+                    const juzText = (startJuz === endJuz) ? `${i18n[currentLang].juzText} ${startJuz}` : `${i18n[currentLang].juzText} ${startJuz} - ${endJuz}`;
 
-                    const card = document.createElement('div');
-                    card.className = 'day-card';
-                    card.innerHTML = `
-                        <div class="day-card-header">
-                            <span class="day-title">${i18n[currentLang].day} ${i + 1}</span>
-                            <span class="day-date">${dateFormatted}</span>
-                        </div>
-                        <div class="day-content">
-                            <strong>${juzText}</strong>
-                        </div>
-                        <label class="day-status">
-                            <input type="checkbox" onchange="this.parentElement.style.opacity = this.checked ? '0.5' : '1'">
-                            <span>${i18n[currentLang].completed}</span>
-                        </label>
+                    currentPlanData.push({
+                        dayNum: i + 1,
+                        dateStr: dateFormatted,
+                        rawDate: curDate,
+                        juzText: juzText
+                    });
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><strong>${i18n[currentLang].thDay} ${i + 1}</strong></td>
+                        <td>${dateFormatted}</td>
+                        <td><span style="color: var(--accent-color); font-weight:700;">${juzText}</span></td>
+                        <td><input type="checkbox" style="width: 18px; height: 18px; accent-color: var(--accent-color); cursor:pointer;"></td>
                     `;
-                    container.appendChild(card);
+                    planTableBody.appendChild(tr);
                 }
-            }
 
-            document.getElementById('btnBuildPlan').addEventListener('click', buildSchedule);
+                planModal.classList.add('active');
+            });
 
-            // 6. مربع نتائج البحث غير المتوفرة
+            closePlanModalBtn.addEventListener('click', () => planModal.classList.remove('active'));
+            planModal.addEventListener('click', (e) => { if (e.target === planModal) planModal.classList.remove('active'); });
+
+            // التصدير إلى ICS (تقويم الجهاز)
+            document.getElementById('btnExportICS').addEventListener('click', () => {
+                let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Dar Yahia//Quran Khatma Plan//AR\nCALSCALE:GREGORIAN\n";
+                currentPlanData.forEach(item => {
+                    const d = item.rawDate;
+                    const year = d.getFullYear();
+                    const month = String(d.getMonth() + 1).padStart(2, '0');
+                    const day = String(d.getDate()).padStart(2, '0');
+                    const dateStr = `${year}${month}${day}`;
+
+                    icsContent += "BEGIN:VEVENT\n";
+                    icsContent += `DTSTART;VALUE=DATE:${dateStr}\n`;
+                    icsContent += `SUMMARY:ورد القرآن - ${item.juzText}\n`;
+                    icsContent += `DESCRIPTION:خطة ختْم القرآن الكريم - ${i18n.ar.title} - اليوم ${item.dayNum}\n`;
+                    icsContent += "END:VEVENT\n";
+                });
+                icsContent += "END:VCALENDAR";
+
+                const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8;' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `Khatma_Plan_${startDateInput.value}.ics`;
+                link.click();
+            });
+
+            // التصدير إلى Word (.doc)
+            document.getElementById('btnExportWord').addEventListener('click', () => {
+                let html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+                <head><meta charset='utf-8'><title>خطة الختمة - دَار يحيي</title>
+                <style>body{font-family:Arial; direction:rtl; text-align:right;} table{width:100%; border-collapse:collapse;} th,td{border:1px solid #ccc; padding:8px; text-align:center;} th{background:#f2f2f2;}</style>
+                </head><body>
+                <h2 style="text-align:center;">خطة ختْم القرآن الكريم - دَار يحيي</h2>
+                <p style="text-align:center;">تاريخ البداية: ${startDateInput.value} | تاريخ الانتهاء: ${endDateInput.value}</p>
+                <table><thead><tr><th>اليوم</th><th>التاريخ</th><th>الورد اليومي (الأجزاء)</th></tr></thead><tbody>`;
+
+                currentPlanData.forEach(item => {
+                    html += `<tr><td>اليوم ${item.dayNum}</td><td>${item.dateStr}</td><td>${item.juzText}</td></tr>`;
+                });
+
+                html += `</tbody></table></body></html>`;
+
+                const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `Khatma_Plan_${startDateInput.value}.doc`;
+                link.click();
+            });
+
+            // الطباعة أو الحفظ كـ PDF
+            document.getElementById('btnExportPDF').addEventListener('click', () => {
+                window.print();
+            });
+
+            // 7. مربع نتائج البحث
             const searchForm = document.getElementById('searchForm');
             const searchInput = document.getElementById('searchInput');
             const searchModal = document.getElementById('searchModal');
@@ -782,19 +1382,21 @@
                 const query = searchInput.value.trim().toLowerCase();
                 if (!query) return;
 
-                const cards = document.querySelectorAll('.day-card');
+                // إجراء أوتوماتيكي لفتح جدول الخطة والبحث فيه
+                document.getElementById('btnBuildPlan').click();
+                const rows = planTableBody.querySelectorAll('tr');
                 let found = 0;
-                cards.forEach(card => {
-                    if (card.innerText.toLowerCase().includes(query)) {
-                        card.style.display = 'flex';
+                rows.forEach(r => {
+                    if (r.innerText.toLowerCase().includes(query)) {
+                        r.style.display = '';
                         found++;
                     } else {
-                        card.style.display = 'none';
+                        r.style.display = 'none';
                     }
                 });
 
                 if (found === 0) {
-                    cards.forEach(c => c.style.display = 'flex');
+                    planModal.classList.remove('active');
                     searchModal.classList.add('active');
                 }
             });
@@ -802,7 +1404,7 @@
             closeSearchModalBtn.addEventListener('click', () => searchModal.classList.remove('active'));
             searchModal.addEventListener('click', (e) => { if (e.target === searchModal) searchModal.classList.remove('active'); });
 
-            // 7. زر المشاركة
+            // 8. زر المشاركة
             document.getElementById('shareBtn').addEventListener('click', async () => {
                 if (navigator.share) {
                     try {
@@ -818,7 +1420,7 @@
                 }
             });
 
-            // بدء التشغيل وإظهار اللغات والجدول الابتدائي
+            // التشغيل الأولي للغة والتواريخ
             setLanguage(currentLang);
         });
     </script>
