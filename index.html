@@ -97,11 +97,11 @@
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* عناوين الأقسام بنمط موقع فارس الشريف */
+        /* عناوين الأقسام بنمط موقع فارس الشريف (خط جانبي مميز وبدون أيقونة) */
         .section-title {
             font-size: 1.3rem;
             color: var(--text-color);
-            margin: 32px 0 18px;
+            margin: 30px 0 15px;
             border-right: 4px solid var(--accent-color);
             padding-right: 10px;
             font-weight: 700;
@@ -254,7 +254,7 @@
             border: none;
         }
 
-        /* 3. مربع الأحاديث والآيات */
+        /* 3. مربع الأحاديث والآيات - ضبط التباعد السفلي */
         .quote-box-card {
             background: var(--card-bg-glass);
             backdrop-filter: blur(16px);
@@ -262,7 +262,7 @@
             border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 22px 20px;
-            margin-bottom: 25px;
+            margin-bottom: 35px; /* زيادة التباعد لإبعاد المربع السفلي */
             text-align: center;
             box-shadow: var(--shadow);
             position: relative;
@@ -315,11 +315,10 @@
             display: block;
         }
 
-        /* 4. مربع حدد الختمة المميز بمسافات متوازنة جداً */
+        /* 4. مربع حدد الختمة - زيادة التباعد العلوي والسفلي */
         .khatma-special-wrapper {
             position: relative;
-            margin-top: 35px;
-            margin-bottom: 35px;
+            margin-bottom: 35px; /* مسافة مريحة قبل العنوان والعنصر التالي */
             border-radius: 22px;
             padding: 3px;
             overflow: hidden;
@@ -502,7 +501,7 @@
 
         .btn-submit:hover { transform: translateY(-2px); }
 
-        /* 6. قسم شرفنا بمتابعتك */
+        /* 6. قسم المتابعة والسوشيال ميديا */
         .divider-with-text {
             display: flex;
             align-items: center;
@@ -620,7 +619,6 @@
 
         html[dir="ltr"] .close-modal { left: auto; right: 16px; }
 
-        /* جدول الخطة داخل المودال */
         .plan-summary-bar {
             background: var(--accent-light);
             border-radius: 12px;
@@ -695,7 +693,7 @@
             margin-top: 30px;
         }
 
-        /* 8. إعدادات الطباعة النظيفة (PDF Print Optimization) */
+        /* 8. إعدادات الطباعة النظيفة */
         @media print {
             body * { visibility: hidden; }
             body { background: #ffffff !important; color: #000000 !important; padding: 0 !important; margin: 0 !important; }
@@ -774,7 +772,7 @@
             </div>
         </section>
 
-        <!-- مربع حدد الختمة المميز بحواف ذهبية دوارة -->
+        <!-- مربع حدد الختمة المميز بحواف ذهبية دوارة وعنوانه الداخلي الذكي -->
         <section class="khatma-special-wrapper animate-fade-up delay-3">
             <div class="khatma-special-card">
                 <div class="khatma-inner-header">
@@ -788,13 +786,7 @@
                     <div class="input-group">
                         <label id="lbl-duration"><i class="fa-solid fa-clock"></i> مدة الختمة:</label>
                         <select id="khatmaDuration" class="custom-select">
-                            <option value="302">302 يوماً (صفحتان يومياً)</option>
-                            <option value="60">60 يوماً (نصف جزء يومياً)</option>
-                            <option value="30" selected>30 يوماً (جزء يومياً)</option>
-                            <option value="15">15 يوماً (جزآن يومياً)</option>
-                            <option value="10">10 أيام (3 أجزاء يومياً)</option>
-                            <option value="7">7 أيام (4.3 أجزاء يومياً)</option>
-                            <option value="3">3 أيام (10 أجزاء يومياً)</option>
+                            <!-- القائمة سيتّمر إعادة بنائها ديناميكياً مع اللغات -->
                         </select>
                     </div>
 
@@ -817,7 +809,7 @@
                 </div>
 
                 <button type="button" class="btn-action-primary" id="btnBuildPlan">
-                    <i class="fa-solid fa-table-list"></i> <span id="txt-btn-build">عرض جدول الختمة</span>
+                    <i class="fa-solid fa-table-list"></i> <span id="txt-btn-build">إنشاء وعرض جدول الختمة</span>
                 </button>
             </div>
         </section>
@@ -825,7 +817,7 @@
         <!-- العنوان الثاني: من أنا -->
         <h2 class="section-title animate-fade-up delay-4" id="txt-about-title">من أنا "مؤسس الموقع"</h2>
 
-        <!-- مربع نبذة تعريفية -->
+        <!-- مربع نبذة تعريفية عني -->
         <section class="section-card animate-fade-up delay-4">
             <p style="font-size: 0.95rem; line-height: 1.8; color: var(--text-color);" id="txt-about-content">
                 <a href="https://phsyf1.github.io/physf/" target="_blank" class="author-link" id="txt-author-name">فارس محمد داهش</a>.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.
@@ -876,7 +868,7 @@
         </footer>
     </div>
 
-    <!-- 1. نافذة عرض جدول الختمة -->
+    <!-- 1. نافذة عرض جدول الختمة المتطور -->
     <div class="modal-overlay" id="planModal">
         <div class="modal-box">
             <button class="close-modal" id="closePlanModalBtn">&times;</button>
@@ -928,7 +920,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // قاعدة بيانات الأحاديث والآيات
             const quotesDatabase = [
                 {
                     type: 'quran',
@@ -1000,7 +991,46 @@
                 }
             ];
 
-            // 1. القاموس الكامل لجميع اللغات شامل ترجمات القائمة المنسدلة
+            // ترجمات خيارات مدة الختمة المتعددة اللغات
+            const khatmaOptions = {
+                ar: [
+                    { val: "302", text: "302 يوماً (صفحتان يومياً)" },
+                    { val: "60", text: "60 يوماً (نصف جزء يومياً)" },
+                    { val: "30", text: "30 يوماً (جزء يومياً)" },
+                    { val: "15", text: "15 يوماً (جزآن يومياً)" },
+                    { val: "10", text: "10 أيام (3 أجزاء يومياً)" },
+                    { val: "7", text: "7 أيام (4.3 أجزاء يومياً)" },
+                    { val: "3", text: "3 أيام (10 أجزاء يومياً)" }
+                ],
+                en: [
+                    { val: "302", text: "302 Days (2 Pages daily)" },
+                    { val: "60", text: "60 Days (Half Juz daily)" },
+                    { val: "30", text: "30 Days (1 Juz daily)" },
+                    { val: "15", text: "15 Days (2 Juz daily)" },
+                    { val: "10", text: "10 Days (3 Juz daily)" },
+                    { val: "7", text: "7 Days (4.3 Juz daily)" },
+                    { val: "3", text: "3 Days (10 Juz daily)" }
+                ],
+                es: [
+                    { val: "302", text: "302 Días (2 Páginas al día)" },
+                    { val: "60", text: "60 Días (Medio Juz al día)" },
+                    { val: "30", text: "30 Días (1 Juz al día)" },
+                    { val: "15", text: "15 Días (2 Juz al día)" },
+                    { val: "10", text: "10 Días (3 Juz al día)" },
+                    { val: "7", text: "7 Días (4.3 Juz al día)" },
+                    { val: "3", text: "3 Días (10 Juz al día)" }
+                ],
+                fr: [
+                    { val: "302", text: "302 Jours (2 Pages par jour)" },
+                    { val: "60", text: "60 Jours (Demi-Juz par jour)" },
+                    { val: "30", text: "30 Jours (1 Juz par jour)" },
+                    { val: "15", text: "15 Jours (2 Juz par jour)" },
+                    { val: "10", text: "10 Jours (3 Juz par jour)" },
+                    { val: "7", text: "7 Jours (4.3 Juz par jour)" },
+                    { val: "3", text: "3 Jours (10 Juz par jour)" }
+                ]
+            };
+
             const i18n = {
                 ar: {
                     title: "دَار يحيي",
@@ -1011,19 +1041,10 @@
                     khatmaHeader: "تحديد وتعديل خطة الختمة",
                     khatmaDesc: "اختر المدة وتاريخ بداية الختمة وسيتم حساب الورد اليومي وتوزيعه تلقائياً بدءاً من اليوم الذي تحدده.",
                     lblDuration: "مدة الختمة:",
-                    durationOptions: {
-                        302: "302 يوماً (صفحتان يومياً)",
-                        60: "60 يوماً (نصف جزء يومياً)",
-                        30: "30 يوماً (جزء يومياً)",
-                        15: "15 يوماً (جزآن يومياً)",
-                        10: "10 أيام (3 أجزاء يومياً)",
-                        7: "7 أيام (4.3 أجزاء يومياً)",
-                        3: "3 أيام (10 أجزاء يومياً)"
-                    },
                     lblStartDate: "تاريخ البداية:",
                     lblEndDate: "تاريخ الانتهاء المتوقع:",
                     estTitle: "الوقت اليومي المتوقع لإنجاز الورد:",
-                    btnBuild: "عرض جدول الختمة",
+                    btnBuild: "إنشاء وعرض جدول الختمة",
                     aboutTitle: "من أنا \"مؤسس الموقع\"",
                     aboutContentDesc: "شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.",
                     contactTitle: "تواصل معي",
@@ -1059,19 +1080,10 @@
                     khatmaHeader: "Plan & Customize Recitation",
                     khatmaDesc: "Select duration and start date to automatically generate your daily Quran reading portion.",
                     lblDuration: "Duration:",
-                    durationOptions: {
-                        302: "302 Days (2 pages daily)",
-                        60: "60 Days (Half a Juz daily)",
-                        30: "30 Days (1 Juz daily)",
-                        15: "15 Days (2 Juzs daily)",
-                        10: "10 Days (3 Juzs daily)",
-                        7: "7 Days (4.3 Juzs daily)",
-                        3: "3 Days (10 Juzs daily)"
-                    },
                     lblStartDate: "Start Date:",
                     lblEndDate: "Expected End Date:",
                     estTitle: "Expected daily time to complete reading:",
-                    btnBuild: "Generate Khatma Schedule",
+                    btnBuild: "Generate and View Schedule",
                     aboutTitle: "About Me (Site Founder)",
                     aboutContentDesc: "Egyptian poet and content creator, born July 3, 2003 CE (3 Jumada al-Ula 1424 AH) in Assiut Governorate, El Ghanayem. I strive to leave a beneficial impact through Quranic recitations, poetry, and media.",
                     contactTitle: "Contact Me",
@@ -1107,19 +1119,10 @@
                     khatmaHeader: "Planificar la Lectura",
                     khatmaDesc: "Elija la duración y la fecha de inicio para calcular la porción diaria de lectura.",
                     lblDuration: "Duración:",
-                    durationOptions: {
-                        302: "302 Días (2 páginas al día)",
-                        60: "60 Días (Medio Juz al día)",
-                        30: "30 Días (1 Juz al día)",
-                        15: "15 Días (2 Juzs al día)",
-                        10: "10 Días (3 Juzs al día)",
-                        7: "7 Días (4.3 Juzs al día)",
-                        3: "3 Días (10 Juzs al día)"
-                    },
                     lblStartDate: "Fecha de Inicio:",
                     lblEndDate: "Fecha Final Estimada:",
                     estTitle: "Tiempo diario estimado para completar:",
-                    btnBuild: "Ver Tabla de Lectura",
+                    btnBuild: "Generar y Ver Calendario",
                     aboutTitle: "Sobre Mí (Fundador del Sitio)",
                     aboutContentDesc: "Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 en Asiut, El Ghanayem. Busco dejar un impacto beneficioso a través de recitales, poesía y redes.",
                     contactTitle: "Contacto",
@@ -1155,19 +1158,10 @@
                     khatmaHeader: "Planifier la Lecture",
                     khatmaDesc: "Choisissez la durée et la date pour calculer votre lecture quotidienne.",
                     lblDuration: "Durée:",
-                    durationOptions: {
-                        302: "302 Jours (2 pages par jour)",
-                        60: "60 Jours (Demi-Juz par jour)",
-                        30: "30 Jours (1 Juz par jour)",
-                        15: "15 Jours (2 Juzs par jour)",
-                        10: "10 Jours (3 Juzs par jour)",
-                        7: "7 Jours (4.3 Juzs par jour)",
-                        3: "3 Jours (10 Juzs par jour)"
-                    },
                     lblStartDate: "Date de Début:",
                     lblEndDate: "Date de Fin Prévue:",
                     estTitle: "Temps quotidien estimé pour compléter:",
-                    btnBuild: "Afficher le Programme",
+                    btnBuild: "Générer et Afficher le Programme",
                     aboutTitle: "À Propos de Moi (Fondateur)",
                     aboutContentDesc: "Poète et créateur de contenu égyptien, né le 3 juillet 2003 à Assiout, El Ghanayem. Cherchant à laisser une empreinte bénéfique.",
                     contactTitle: "Contactez-moi",
@@ -1198,7 +1192,6 @@
 
             let currentLang = localStorage.getItem('daryahia_lang') || 'ar';
             
-            // 2. ضبط التواريخ وتعطيل الأيام السابقة
             const startDateInput = document.getElementById('khatmaStartDate');
             const endDateInput = document.getElementById('khatmaEndDate');
             const durationSelect = document.getElementById('khatmaDuration');
@@ -1208,12 +1201,27 @@
             startDateInput.value = todayStr;
             startDateInput.setAttribute('min', todayStr);
 
+            function updateDurationSelectOptions(lang) {
+                const currentSelected = durationSelect.value || "30";
+                durationSelect.innerHTML = '';
+                const opts = khatmaOptions[lang] || khatmaOptions.ar;
+                opts.forEach(opt => {
+                    const el = document.createElement('option');
+                    el.value = opt.val;
+                    el.innerText = opt.text;
+                    if (opt.val === currentSelected) {
+                        el.selected = true;
+                    }
+                    durationSelect.appendChild(el);
+                });
+            }
+
             function calculateDatesAndTimes() {
                 if (startDateInput.value < todayStr) {
                     startDateInput.value = todayStr;
                 }
 
-                const duration = parseInt(durationSelect.value);
+                const duration = parseInt(durationSelect.value) || 30;
                 const startVal = startDateInput.value ? new Date(startDateInput.value) : new Date();
 
                 const endDate = new Date(startVal);
@@ -1249,7 +1257,6 @@
 
             startDateInput.addEventListener('change', calculateDatesAndTimes);
             durationSelect.addEventListener('change', calculateDatesAndTimes);
-            calculateDatesAndTimes();
 
             // 3. تبديل الثيم
             const themeToggle = document.getElementById('themeToggle');
@@ -1270,7 +1277,7 @@
                 if (themeColorMeta) themeColorMeta.setAttribute('content', next === 'light' ? '#f8fafc' : '#0b1329');
             });
 
-            // 4. تدوير الأحاديث والآيات
+            // 4. تدوير الآيات والأحاديث
             let currentQuoteIndex = 0;
             const quoteWrapper = document.getElementById('quoteWrapper');
             const quoteTextDisplay = document.getElementById('quoteTextDisplay');
@@ -1320,7 +1327,7 @@
             displayNextQuote();
             setInterval(displayNextQuote, 5000);
 
-            // 5. لغات الموقع وتحديث جميع النصوص والقوائم
+            // 5. لغات الموقع وتغيير النصوص ديناميكياً
             const langBtn = document.getElementById('langBtn');
             const langDropdown = document.getElementById('langDropdown');
 
@@ -1351,6 +1358,8 @@
                 document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
                 document.documentElement.setAttribute('lang', lang);
 
+                updateDurationSelectOptions(lang);
+
                 document.getElementById('txt-title').innerText = i18n[lang].title;
                 document.getElementById('txt-subtitle').innerText = i18n[lang].subtitle;
                 document.getElementById('txt-bio').innerText = i18n[lang].bio;
@@ -1359,16 +1368,6 @@
                 document.getElementById('txt-khatma-header').innerText = i18n[lang].khatmaHeader;
                 document.getElementById('txt-khatma-desc').innerText = i18n[lang].khatmaDesc;
                 document.getElementById('lbl-duration').innerHTML = `<i class="fa-solid fa-clock"></i> ${i18n[lang].lblDuration}`;
-                
-                // تحديث نصوص الخيارات داخل قائمة مدة الختمة ديناميكياً
-                if (i18n[lang].durationOptions) {
-                    Array.from(durationSelect.options).forEach(opt => {
-                        if (i18n[lang].durationOptions[opt.value]) {
-                            opt.text = i18n[lang].durationOptions[opt.value];
-                        }
-                    });
-                }
-
                 document.getElementById('lbl-start-date').innerHTML = `<i class="fa-solid fa-calendar-day"></i> ${i18n[lang].lblStartDate}`;
                 document.getElementById('lbl-end-date').innerHTML = `<i class="fa-solid fa-flag-checkered"></i> ${i18n[lang].lblEndDate}`;
                 document.getElementById('txt-est-title').innerHTML = `<i class="fa-solid fa-hourglass-half"></i> ${i18n[lang].estTitle}`;
@@ -1509,7 +1508,7 @@
                 link.click();
             });
 
-            // تصدير Word
+            // تصدير Word (.doc)
             document.getElementById('btnExportWord').addEventListener('click', () => {
                 let html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
                 <head><meta charset='utf-8'><title>خطة الختمة - دَار يحيي</title>
@@ -1543,7 +1542,7 @@
                 }, 1000);
             });
 
-            // البحث
+            // 7. نتائج البحث
             const searchForm = document.getElementById('searchForm');
             const searchInput = document.getElementById('searchInput');
             const searchModal = document.getElementById('searchModal');
@@ -1575,7 +1574,7 @@
             closeSearchModalBtn.addEventListener('click', () => searchModal.classList.remove('active'));
             searchModal.addEventListener('click', (e) => { if (e.target === searchModal) searchModal.classList.remove('active'); });
 
-            // مشاركة المنصة
+            // 8. مشاركة الموقع
             document.getElementById('shareBtn').addEventListener('click', async () => {
                 if (navigator.share) {
                     try {
@@ -1597,4 +1596,3 @@
     </script>
 </body>
 </html>
-
