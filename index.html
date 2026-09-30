@@ -210,6 +210,7 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
             <input type="email" name="email" class="form-input" id="inputEmail" placeholder="بريدك الإلكتروني" required>
             <textarea name="message" class="form-textarea" id="inputMsg" placeholder="اكتب رسالتك هنا..." required></textarea>
             <button type="submit" class="btn-submit" id="btnSendMsg"><i class="fa-solid fa-paper-plane"></i> <span id="txt-btn-send">إرسال الرسالة</span></button>
+            <p id="formStatus" style="font-size:.88rem;text-align:center;min-height:1.4em" aria-live="polite"></p>
         </form>
     </section>
 
@@ -359,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnSend:"إرسال الرسالة", followMe:"شرفنا بمتابعتك", socialYt:"يوتيوب", socialTt:"تيك توك", socialTg:"تيليجرام", socialFb:"فيسبوك",
             footer:"© 2026 - جميع الحقوق محفوظة", notFoundTitle:"عذراً.. المحتوى غير متوفر",
             notFoundMsg:"لم نجد نتائج تطابق بحثك في خطة الختمة الحالية.", shareSuccess:"تم نسخ رابط موقع دَار يحيي بنجاح!",
-            planModalTitle:"جدول خطة الختمة المتكامل", thDay:"اليوم", thDate:"التاريخ", thJuz:"الورد اليومي (الأجزاء / الصفحات)",
+            planModalTitle:"جدول خطة الختمة المتكامل", thDay:"اليوم", thDate:"التاريخ (هجري / ميلادي)", thJuz:"الورد اليومي (الأجزاء / الصفحات)",
             thStatus:"ملاحظة الإنجاز", juzText:"الجزء", expIcs:"تصدير للتقويم (.ics)", expWord:"تحميل ملف Word", expPdf:"طباعة / حفظ PDF" },
         en: { title:"Dar Yahia", subtitle:"Quran Completion & Tracking Platform",
             bio:"Welcome to Dar Yahia.. The leading platform for organizing and tracking Quran recitation schedules effortlessly.",
@@ -374,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnSend:"Send Message", followMe:"Honored to have you follow us", socialYt:"YouTube", socialTt:"TikTok", socialTg:"Telegram", socialFb:"Facebook",
             footer:"© 2026 - All Rights Reserved", notFoundTitle:"Content Unavailable",
             notFoundMsg:"No matching results found in current schedule.", shareSuccess:"Site link copied successfully!",
-            planModalTitle:"Integrated Recitation Schedule", thDay:"Day", thDate:"Date", thJuz:"Daily Reading (Juz / Pages)",
+            planModalTitle:"Integrated Recitation Schedule", thDay:"Day", thDate:"Date (Hijri / Gregorian)", thJuz:"Daily Reading (Juz / Pages)",
             thStatus:"Status", juzText:"Juz", expIcs:"Export Calendar (.ics)", expWord:"Download Word File", expPdf:"Print / Save PDF" },
         es: { title:"Dar Yahia", subtitle:"Plataforma de Seguimiento del Corán",
             bio:"Bienvenido a Dar Yahia.. La plataforma principal para organizar su plan de lectura del Corán.",
@@ -389,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnSend:"Enviar Mensaje", followMe:"Honrado de que nos sigas", socialYt:"YouTube", socialTt:"TikTok", socialTg:"Telegram", socialFb:"Facebook",
             footer:"© 2026 - Todos los derechos reservados", notFoundTitle:"No Disponible",
             notFoundMsg:"No se encontraron resultados.", shareSuccess:"¡Enlace copiado!",
-            planModalTitle:"Calendario de Lectura Integrado", thDay:"Día", thDate:"Fecha", thJuz:"Porción Diaria (Juz / Páginas)",
+            planModalTitle:"Calendario de Lectura Integrado", thDay:"Día", thDate:"Fecha (Hijri / Gregoriana)", thJuz:"Porción Diaria (Juz / Páginas)",
             thStatus:"Estado", juzText:"Juz", expIcs:"Exportar Calendario (.ics)", expWord:"Descargar Word", expPdf:"Imprimir / Guardar PDF" },
         fr: { title:"Dar Yahia", subtitle:"Plateforme de Suivi de Lecture du Coran",
             bio:"Bienvenue sur Dar Yahia.. La plateforme idéale pour organiser votre programme de lecture du Coran.",
@@ -404,7 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnSend:"Envoyer le Message", followMe:"Honneur de nous suivre", socialYt:"YouTube", socialTt:"TikTok", socialTg:"Telegram", socialFb:"Facebook",
             footer:"© 2026 - Tous droits réservés", notFoundTitle:"Indisponible",
             notFoundMsg:"Aucun résultat trouvé.", shareSuccess:"Lien copié!",
-            planModalTitle:"Programme de Lecture Intégré", thDay:"Jour", thDate:"Date", thJuz:"Lecture Quotidienne (Juz / Pages)",
+            planModalTitle:"Programme de Lecture Intégré", thDay:"Jour", thDate:"Date (Hégirien / Grégorien)", thJuz:"Lecture Quotidienne (Juz / Pages)",
             thStatus:"Statut", juzText:"Juz", expIcs:"Exporter Calendrier (.ics)", expWord:"Télécharger Word", expPdf:"Imprimer / Sauvegarder PDF" }
     };
 
@@ -427,6 +428,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const loc = { ar: 'ar-EG', en: 'en-US', es: 'es-ES', fr: 'fr-FR' }[currentLang] || 'ar-EG';
         try { return new Intl.DateTimeFormat(loc + '-u-ca-islamic-umalqura', opts).format(d); }
         catch (e) { return d.toLocaleDateString(loc, opts); }
+    }
+
+    const DATE_ROW = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    function greg(d, opts) {
+        const loc = { ar: 'ar-EG', en: 'en-US', es: 'es-ES', fr: 'fr-FR' }[currentLang] || 'ar-EG';
+        return new Intl.DateTimeFormat(loc + '-u-ca-gregory', opts).format(d);
     }
 
     const today = new Date();
@@ -458,30 +465,26 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('startHijri').textContent = hijri(startVal, HIJRI_FULL);
         document.getElementById('endHijri').textContent = hijri(endDate, HIJRI_FULL);
 
-        // التقدير على أساس الصفحة: بدون تدبر 2-4 دقائق، مع التدبر 6-14 دقيقة
+        // التقدير على أساس الصفحة: بدون تدبر 1-3 دقائق، مع التدبر 4-13 دقيقة
         const pagesPerDay = 604 / duration;
-        const minNoTadabbur = Math.max(2, Math.round(pagesPerDay * 2));
-        const maxNoTadabbur = Math.max(4, Math.round(pagesPerDay * 4));
-        const minTadabbur = Math.max(6, Math.round(pagesPerDay * 6));
-        const maxTadabbur = Math.max(14, Math.round(pagesPerDay * 14));
+        const est = (perPage) => Math.round(pagesPerDay * perPage);
+        const L = {
+            ar: { no: 'بدون تدبر', yes: 'في حالة التدبر', from: 'من', to: 'إلى', min: 'دقيقة', hr: 'ساعة' },
+            en: { no: 'Without Tadabbur', yes: 'With Tadabbur', from: 'from', to: 'to', min: 'min', hr: 'h' },
+            es: { no: 'Sin tadabbur', yes: 'Con tadabbur', from: 'de', to: 'a', min: 'min', hr: 'h' },
+            fr: { no: 'Sans tadabbur', yes: 'Avec tadabbur', from: 'de', to: 'à', min: 'min', hr: 'h' }
+        }[currentLang] || {};
 
         function formatMins(mins) {
-            if (mins >= 60) {
-                const hrs = Math.floor(mins / 60);
-                const rem = mins % 60;
-                if (currentLang === 'ar') return `${hrs} ساعة ${rem > 0 ? 'و ' + rem + ' دقيقة' : ''}`;
-                return `${hrs}h ${rem}m`;
-            }
-            return `${mins} ${currentLang === 'ar' ? 'دقيقة' : 'mins'}`;
+            if (mins < 60) return `${mins} ${L.min}`;
+            const h = Math.floor(mins / 60), r = mins % 60;
+            const rest = r ? (currentLang === 'ar' ? ' و ' : ' ') + `${r} ${L.min}` : '';
+            return `${h} ${L.hr}${rest}`;
         }
+        const line = (label, a, b) => `• ${label}: ${L.from} ${formatMins(a)} ${L.to} ${formatMins(b)}`;
 
-        if (currentLang === 'ar') {
-            document.getElementById('txt-est-no-tadabbur').innerText = `• بدون تدبر: من ${formatMins(minNoTadabbur)} إلى ${formatMins(maxNoTadabbur)}`;
-            document.getElementById('txt-est-tadabbur').innerText = `• في حالة التدبر: من ${formatMins(minTadabbur)} إلى ${formatMins(maxTadabbur)}`;
-        } else {
-            document.getElementById('txt-est-no-tadabbur').innerText = `• Without Tadabbur: from ${formatMins(minNoTadabbur)} to ${formatMins(maxNoTadabbur)}`;
-            document.getElementById('txt-est-tadabbur').innerText = `• With Tadabbur: from ${formatMins(minTadabbur)} to ${formatMins(maxTadabbur)}`;
-        }
+        document.getElementById('txt-est-no-tadabbur').innerText = line(L.no, Math.max(1, est(1)), Math.max(3, est(3)));
+        document.getElementById('txt-est-tadabbur').innerText = line(L.yes, Math.max(4, est(4)), Math.max(13, est(13)));
     }
 
     startDateInput.addEventListener('change', calculateDatesAndTimes);
@@ -604,14 +607,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         planSummaryBar.innerHTML = `
             <span><strong>${i18n[currentLang].lblDuration}</strong> ${duration} ${currentLang === 'ar' ? 'يوم' : 'days'}</span>
-            <span><strong>${i18n[currentLang].lblStartDate}</strong> ${hijri(startVal, HIJRI_FULL)}</span>
-            <span><strong>${i18n[currentLang].lblEndDate}</strong> ${hijri(endVal, HIJRI_FULL)}</span>`;
+            <span><strong>${i18n[currentLang].lblStartDate}</strong> ${hijri(startVal, HIJRI_FULL)} <small>(${greg(startVal, HIJRI_FULL)})</small></span>
+            <span><strong>${i18n[currentLang].lblEndDate}</strong> ${hijri(endVal, HIJRI_FULL)} <small>(${greg(endVal, HIJRI_FULL)})</small></span>`;
 
         for (let i = 0; i < duration; i++) {
             const curDate = new Date(startVal);
             curDate.setDate(startVal.getDate() + i);
 
-            const dateFormatted = hijri(curDate, { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+            const dateFormatted = hijri(curDate, DATE_ROW);
+            const gregFormatted = greg(curDate, DATE_ROW);
 
             let readingText = '';
             if (duration === 604) {
@@ -637,12 +641,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     : `${i18n[currentLang].juzText} ${startJuz} - ${endJuz}`;
             }
 
-            currentPlanData.push({ dayNum: i + 1, dateStr: dateFormatted, rawDate: curDate, juzText: readingText });
+            currentPlanData.push({ dayNum: i + 1, dateStr: dateFormatted, gregStr: gregFormatted, rawDate: curDate, juzText: readingText });
 
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td><strong>${i18n[currentLang].thDay} ${i + 1}</strong></td>
-                <td>${dateFormatted}</td>
+                <td>${dateFormatted}<br><small style="color:var(--text-muted)">${gregFormatted}</small></td>
                 <td><span style="color:var(--accent-color);font-weight:700">${readingText}</span></td>
                 <td><input type="checkbox" style="width:18px;height:18px;accent-color:var(--accent-color);cursor:pointer"></td>`;
             planTableBody.appendChild(tr);
@@ -684,8 +688,8 @@ document.addEventListener('DOMContentLoaded', () => {
         </head><body>
         <h2 style="text-align:center">خطة ختْم القرآن الكريم - دَار يحيي</h2>
         <p style="text-align:center">تاريخ البداية: ${s} | تاريخ الانتهاء: ${e}</p>
-        <table><thead><tr><th>اليوم</th><th>التاريخ</th><th>الورد اليومي (الأجزاء / الصفحات)</th></tr></thead><tbody>`;
-        currentPlanData.forEach(item => { html += `<tr><td>اليوم ${item.dayNum}</td><td>${item.dateStr}</td><td>${item.juzText}</td></tr>`; });
+        <table><thead><tr><th>اليوم</th><th>التاريخ الهجري</th><th>التاريخ الميلادي</th><th>الورد اليومي (الأجزاء / الصفحات)</th></tr></thead><tbody>`;
+        currentPlanData.forEach(item => { html += `<tr><td>اليوم ${item.dayNum}</td><td>${item.dateStr}</td><td>${item.gregStr}</td><td>${item.juzText}</td></tr>`; });
         html += `</tbody></table></body></html>`;
         const link = document.createElement('a');
         link.href = URL.createObjectURL(new Blob(['\ufeff', html], { type: 'application/msword' }));
@@ -717,6 +721,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById('closeSearchModalBtn').addEventListener('click', () => searchModal.classList.remove('active'));
     searchModal.addEventListener('click', (e) => { if (e.target === searchModal) searchModal.classList.remove('active'); });
+
+    // ===== إرسال نموذج التواصل (AJAX + بديل البريد لو فشل) =====
+    const formMsgs = {
+        ar: { sending: 'جارٍ الإرسال...', ok: 'تم إرسال رسالتك بنجاح، شكراً لتواصلك!', fail: 'تعذر الإرسال تلقائياً، سيُفتح تطبيق البريد لإرسال رسالتك.' },
+        en: { sending: 'Sending...', ok: 'Your message was sent. Thank you!', fail: "Couldn't send automatically. Opening your email app." },
+        es: { sending: 'Enviando...', ok: '¡Mensaje enviado! Gracias por contactarnos.', fail: 'No se pudo enviar automáticamente. Abriendo su aplicación de correo.' },
+        fr: { sending: 'Envoi...', ok: 'Message envoyé ! Merci de nous avoir contactés.', fail: "Envoi automatique impossible. Ouverture de votre application de messagerie." }
+    };
+    const CONTACT_EMAIL = 'faris.dahesh@gmail.com';
+    const contactForm = document.querySelector('.contact-form');
+    const formStatus = document.getElementById('formStatus');
+    const sendBtn = document.getElementById('btnSendMsg');
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const M = formMsgs[currentLang] || formMsgs.ar;
+        const name = document.getElementById('inputName').value.trim();
+        const email = document.getElementById('inputEmail').value.trim();
+        const message = document.getElementById('inputMsg').value.trim();
+        sendBtn.disabled = true;
+        formStatus.style.color = 'var(--text-muted)';
+        formStatus.textContent = M.sending;
+        try {
+            const res = await fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({ name, email, message, _captcha: 'false', _template: 'table', _subject: 'رسالة جديدة من دَار يحيي' })
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || !(data.success === true || data.success === 'true')) throw new Error('send failed');
+            formStatus.style.color = 'var(--accent-color)';
+            formStatus.textContent = M.ok;
+            contactForm.reset();
+        } catch (err) {
+            formStatus.style.color = 'var(--accent-color)';
+            formStatus.textContent = M.fail;
+            const body = `${message}\n\n— ${name} (${email})`;
+            window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('رسالة من دَار يحيي')}&body=${encodeURIComponent(body)}`;
+        } finally {
+            sendBtn.disabled = false;
+        }
+    });
 
     // ===== المشاركة =====
     document.getElementById('shareBtn').addEventListener('click', async () => {
