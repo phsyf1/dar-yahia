@@ -118,7 +118,7 @@ html[dir="ltr"] .input-group{text-align:left}
 .close-modal{position:absolute;top:16px;left:16px;background:var(--input-bg);color:var(--text-color);border:1px solid var(--border-color);font-size:1.1rem;width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10}
 html[dir="ltr"] .close-modal{left:auto;right:16px}
 
-/* تصميم دايالوج المناسبات الهجرية الخاص (الكحلي والذهبي) */
+/* تصميم دايالوج المناسبات الهجرية الخاص */
 .event-dialog-box{background:linear-gradient(145deg, #0b1329 0%, #15203e 100%);border:2px solid var(--accent-color);border-radius:24px;padding:25px 20px;color:#fff;text-align:center;box-shadow:0 15px 40px rgba(0,0,0,.6);max-width:550px;margin:auto}
 .event-dialog-title{font-size:1.6rem;font-weight:700;color:#ffffff;margin-bottom:15px}
 .event-time-box{background:rgba(255,255,255,0.04);border:2px dotted var(--accent-color);border-radius:16px;padding:14px;margin:15px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -176,7 +176,7 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
             <input type="text" id="searchInput" placeholder="اكتب للبحث..">
             <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
-        <button class="control-btn" id="shareBtn" type="button" title="مشاركة المنصة" aria-label="Share"><i class="fa-solid fa-share-nodes"></i></button>
+        <button class="control-btn btn-share-open" id="shareBtn" type="button" title="مشاركة المنصة" aria-label="Share"><i class="fa-solid fa-share-nodes"></i></button>
         <div class="lang-wrapper">
             <button class="control-btn" id="langBtn" type="button" aria-label="Language Menu"><i class="fa-solid fa-globe"></i></button>
             <div class="lang-dropdown" id="langDropdown">
@@ -199,7 +199,7 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
 
     <!-- شريط المناسبات الهجرية الأفقي -->
     <div class="events-bar-wrapper animate-fade-up delay-1">
-        <div class="events-bar-title"><i class="fa-solid fa-kaaba"></i> <span>المناسبات الهجرية القادمة</span></div>
+        <div class="events-bar-title"><i class="fa-solid fa-kaaba"></i> <span id="txt-events-bar-title">المناسبات الهجرية القادمة</span></div>
         <div class="events-bar" id="eventsBar"></div>
     </div>
 
@@ -249,15 +249,15 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
             </div>
 
             <div class="backup-tools-bar">
-                <button type="button" class="btn-secondary-tool" id="btnExportBackup"><i class="fa-solid fa-download"></i> تصدير نسخة احتياطية</button>
-                <button type="button" class="btn-secondary-tool" id="btnImportBackup"><i class="fa-solid fa-upload"></i> استيراد تقدم حفظ</button>
+                <button type="button" class="btn-secondary-tool" id="btnExportBackup"><i class="fa-solid fa-download"></i> <span id="txt-btn-exp-backup">تصدير نسخة احتياطية</span></button>
+                <button type="button" class="btn-secondary-tool" id="btnImportBackup"><i class="fa-solid fa-upload"></i> <span id="txt-btn-imp-backup">استيراد تقدم حفظ</span></button>
                 <input type="file" id="backupFileInput" accept=".json" style="display:none">
             </div>
 
             <button type="button" class="btn-action-primary" id="btnBuildPlan">
                 <i class="fa-solid fa-table-list"></i> <span id="txt-btn-build">عرض جدول الختمة والتتبع</span>
             </button>
-            <button type="button" class="btn-export btn-share-open" style="margin:8px 4px 0"><i class="fa-solid fa-share-nodes"></i> <span class="txt-share"></span></button>
+            <button type="button" class="btn-export btn-share-open" style="margin:8px 4px 0"><i class="fa-solid fa-share-nodes"></i> <span class="txt-share">مشاركة</span></button>
         </div>
     </section>
 
@@ -312,7 +312,7 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
         
         <div style="text-align:center;margin:10px 0">
             <button type="button" class="btn-secondary-tool" id="btnMissedDays" style="background:rgba(239,68,68,0.15);border-color:rgba(239,68,68,0.4);color:#f87171">
-                <i class="fa-solid fa-calendar-minus"></i> فاتني أيام (إعادة توزيع الورد المتبقي)
+                <i class="fa-solid fa-calendar-minus"></i> <span id="txt-btn-missed">فاتني أيام (إعادة توزيع الورد المتبقي)</span>
             </button>
         </div>
 
@@ -323,17 +323,17 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
                     <th id="th-day">اليوم</th>
                     <th id="th-date">التاريخ</th>
                     <th id="th-juz">الورد اليومي (الأجزاء / الصفحات)</th>
-                    <th>قراءة الورد</th>
+                    <th id="th-read">قراءة الورد</th>
                     <th id="th-status">ملاحظة الإنجاز</th>
                 </tr></thead>
                 <tbody id="planTableBody"></tbody>
             </table>
         </div>
         <div class="plan-export-btns">
-            <button type="button" class="btn-export" id="btnExportICS"><i class="fa-solid fa-calendar-plus"></i> <span id="txt-exp-ics">تصدير للتقويم (.ics) مع منبّه</span></button>
-            <button type="button" class="btn-export" id="btnExportWord"><i class="fa-solid fa-file-word"></i> <span id="txt-exp-word">تحميل ملف Word</span></button>
-            <button type="button" class="btn-export" id="btnExportPDF"><i class="fa-solid fa-print"></i> <span id="txt-exp-pdf">طباعة / حفظ PDF</span></button>
-            <button type="button" class="btn-export btn-share-open"><i class="fa-solid fa-share-nodes"></i> <span class="txt-share"></span></button>
+            <button type="button" class="btn-export" id="btnExportICS"><i class="fa-solid fa-calendar-plus"></i> <span id="expIcsText">تصدير للتقويم (.ics) مع منبّه</span></button>
+            <button type="button" class="btn-export" id="btnExportWord"><i class="fa-solid fa-file-word"></i> <span id="expWordText">تحميل ملف Word</span></button>
+            <button type="button" class="btn-export" id="btnExportPDF"><i class="fa-solid fa-print"></i> <span id="expPdfText">طباعة / حفظ PDF</span></button>
+            <button type="button" class="btn-export btn-share-open"><i class="fa-solid fa-share-nodes"></i> <span class="txt-share">مشاركة</span></button>
         </div>
     </div>
 </div>
@@ -346,12 +346,12 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
         
         <div class="event-time-box">
             <div class="event-time-col">
-                <span class="event-time-sub">بداية:</span>
+                <span class="event-time-sub" id="lbl-ev-start">بداية:</span>
                 <span class="event-time-hijri" id="evStartHijri">مغرب ١٤ شعبان</span>
                 <span class="event-time-greg" id="evStartGreg">٢ مارس ٢٠٢٦ م</span>
             </div>
             <div class="event-time-col" style="border-right:1px dotted var(--accent-color);padding-right:10px">
-                <span class="event-time-sub">انتهاء:</span>
+                <span class="event-time-sub" id="lbl-ev-end">انتهاء:</span>
                 <span class="event-time-hijri" id="evEndHijri">فجر ١٥ شعبان</span>
                 <span class="event-time-greg" id="evEndGreg">٣ مارس ٢٠٢٦ م</span>
             </div>
@@ -359,15 +359,15 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
 
         <div class="event-hadith-box" id="evHadithBox" title="انقر لتغيير الحديث">
             <div class="event-hadith-text" id="evHadithText">إذا كانَ النِّصفُ مِن شعبانَ فأمسِكوا عن الصِّيامِ، حتَّى يَكونَ رمضانُ</div>
-            <div class="event-hadith-hint"><i class="fa-solid fa-hand-pointer"></i> انقر للتنقل بين الأحاديث الواردة</div>
+            <div class="event-hadith-hint" id="txt-ev-hadith-hint"><i class="fa-solid fa-hand-pointer"></i> انقر للتنقل بين الأحاديث الواردة</div>
         </div>
 
         <div class="plan-export-btns" style="margin-top:15px">
-            <button type="button" class="btn-export" id="btnDownloadEvImg"><i class="fa-solid fa-image"></i> تحميل الصورة</button>
-            <button type="button" class="btn-export" id="btnShareEvImg"><i class="fa-solid fa-share-nodes"></i> مشاركة الصورة (JPG)</button>
+            <button type="button" class="btn-export" id="btnDownloadEvImg"><i class="fa-solid fa-image"></i> <span id="txt-btn-dl-ev">تحميل الصورة</span></button>
+            <button type="button" class="btn-export" id="btnShareEvImg"><i class="fa-solid fa-share-nodes"></i> <span id="txt-btn-sh-ev">مشاركة الصورة (JPG)</span></button>
         </div>
 
-        <div class="event-site-desc">منصة تنظيم وتتبع ختم القرآن الكريم</div>
+        <div class="event-site-desc" id="txt-ev-site-desc">منصة تنظيم وتتبع ختم القرآن الكريم</div>
     </div>
 </div>
 
@@ -383,13 +383,13 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
 <div class="modal-overlay" id="shareModal">
     <div class="modal-box" style="max-width:480px;text-align:center">
         <button class="close-modal" id="closeShareModalBtn">&times;</button>
-        <h3 id="txt-share-title" style="margin-bottom:12px"></h3>
+        <h3 id="txt-share-title" style="margin-bottom:12px">مشاركة خطة الختمة</h3>
         <canvas id="shareCanvas" style="display:block;width:100%;max-width:340px;height:auto;margin:0 auto;border-radius:16px;border:1px solid var(--border-color)"></canvas>
         <p id="shareLinkText" style="direction:ltr;font-size:.8rem;color:var(--text-muted);margin:10px 0;word-break:break-all"></p>
         <div class="plan-export-btns">
-            <button type="button" class="btn-export" id="btnShareNative"><i class="fa-solid fa-share-nodes"></i> <span id="txt-sh-share"></span></button>
-            <button type="button" class="btn-export" id="btnShareDownload"><i class="fa-solid fa-download"></i> <span id="txt-sh-download"></span></button>
-            <button type="button" class="btn-export" id="btnShareCopy"><i class="fa-solid fa-link"></i> <span id="txt-sh-copy"></span></button>
+            <button type="button" class="btn-export" id="btnShareNative"><i class="fa-solid fa-share-nodes"></i> <span id="txt-sh-share">مشاركة عبر التطبيقات</span></button>
+            <button type="button" class="btn-export" id="btnShareDownload"><i class="fa-solid fa-download"></i> <span id="txt-sh-download">تحميل الصورة</span></button>
+            <button type="button" class="btn-export" id="btnShareCopy"><i class="fa-solid fa-link"></i> <span id="txt-sh-copy">نسخ الرابط</span></button>
         </div>
         <p id="shareStatus" style="font-size:.88rem;color:var(--accent-color);min-height:1.4em;margin-top:8px"></p>
     </div>
@@ -430,12 +430,12 @@ document.addEventListener('DOMContentLoaded', () => {
           en:"And We have certainly made the Quran easy for remembrance, so is there any who will remember?",
           es:"Y en verdad hemos hecho el Corán fácil de recordar. ¿Hay, pues, quien reflexione?",
           fr:"Et en effet, Nous avons rendu le Coran facile pour la méditation. Y a-t-il quelqu'un pour s'en souvenir?",
-          bracketAr:"[سورة القمر - الآية ١٧]", bracketEn:"[Al-Qamar - 17]", bracketEs:"[Al-Qamar - 17]", bracketFr:"[Al-Qamar - 17]" },
+          bracketAr:"[سورة القمر - الآية ١٧]", bracketEn:"[Surah Al-Qamar - 17]", bracketEs:"[Sura Al-Qamar - 17]", bracketFr:"[Sourate Al-Qamar - 17]" },
         { type:'quran', ar:"وَقَالَ الرَّسُولُ يَا رَبِّ إِنَّ قَوْمِي اتَّخَذُوا هَٰذَا الْقُرْآنَ مَهْجُورًا", franco:"Wa qalar-rasoolu ya rabbi inna qawmit-takhadhoo hadhal-Qur'ana mahjoora",
           en:"And the Messenger has said: 'O my Lord, indeed my people have taken this Quran as [a thing] abandoned.'",
           es:"Y el Mensajero dirá: '¡Oh Señor mío! En verdad mi pueblo tomó este Corán como algo olvidado.'",
           fr:"Et le Messager dit: 'Seigneur, mon peuple a vraiment pris ce Coran pour une chose délaissée!'",
-          bracketAr:"[سورة الفرقان - الآية ٣٠]", bracketEn:"[Al-Furqan - 30]", bracketEs:"[Al-Furqan - 30]", bracketFr:"[Al-Furqan - 30]" },
+          bracketAr:"[سورة الفرقان - الآية ٣٠]", bracketEn:"[Surah Al-Furqan - 30]", bracketEs:"[Sura Al-Furqan - 30]", bracketFr:"[Sourate Al-Furqan - 30]" },
         { type:'hadith', ar:"خَيْرُكُمْ مَنْ تَعَلَّمَ القُرْآنَ وَعَلَّمَهُ",
           en:"The best among you are those who learn the Quran and teach it.",
           es:"El mejor de vosotros es quien aprende el Corán y lo enseña.",
@@ -449,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { type:'hadith', ar:"تَعَاهَدُوا هذا القُرْآنَ، فَوالَّذِي نَفْسُ مُحَمَّدٍ بِيَدِهِ لَهُوَ أشَدُّ تَفَلُّتًا مِنَ الإبِلِ فِي عُقُلِهَا",
           en:"Keep refreshing your knowledge of the Quran, for by Him in Whose Hand is my soul, it escapes faster than camels from their bonds.",
           es:"Repasad constantemente el Corán, pues se escapa más rápido que los camellos de sus ataduras.",
-          fr:"Réviser régulièrement le Coran, car il s'échappe plus vite que les chameaux détachés.",
+          fr:"Révisez régulièrement le Coran, car il s'échappe plus vite que les chameaux détachés.",
           bracketAr:"[رواه البخاري ومسلم]", bracketEn:"[Al-Bukhari & Muslim]", bracketEs:"[Al-Bujari y Muslim]", bracketFr:"[Rapporté par Al-Bukhari et Muslim]" },
         { type:'hadith', ar:"اقْرَؤُوا القُرْآنَ فإنَّه يَأْتي يَومَ القِيَامَةِ شَفِيعًا لأَصْحَابِهِ",
           en:"Read the Quran, for it will come on the Day of Resurrection as an intercessor for its companions.",
@@ -502,41 +502,109 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const i18n = {
-        ar: { title:"دَار يحيي", subtitle:"منصة تنظيم وتتبع ختْم القرآن الكريم",
-            bio:"مرحباً بك في دَار يحيي.. المنصة الأولى لتسهيل وتتبع جدول ختْم القُرآن الكريم وتوزيع الأجزاء بكل يسر وسهولة وفقاً لوقتك المتاح.",
-            searchPlaceholder:"اكتب للبحث..", quoteTitle:"لماذا نقرأ القرآن ونتعلمه؟! ",
-            khatmaHeader:"تحديد وتعديل خطة الختمة",
-            khatmaDesc:"اختر المدة وتاريخ بداية الختمة وسيتم حساب الورد اليومي وتوزيعه تلقائياً بدءاً من اليوم الذي تحدده.",
-            lblDuration:"مدة الختمة:", lblStartDate:"تاريخ البداية:", lblEndDate:"تاريخ الانتهاء المتوقع:",
-            estTitle:"الوقت اليومي المتوقع لإنجاز الورد:", btnBuild:"عرض جدول الختمة والتتبع",
-            aboutTitle:"من أنا \"مؤسس الموقع\"",
-            aboutContentDesc:"شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.",
-            contactTitle:"تواصل معنا", inputName:"اسم الكريم", inputEmail:"بريدك الإلكتروني", inputMsg:"اكتب رسالتك هنا...",
-            btnSend:"إرسال الرسالة", followMe:"شرفنا بمتابعتك", socialYt:"يوتيوب", socialTt:"تيك توك", socialTg:"تيليجرام", socialFb:"فيسبوك",
-            footer:"© 2026 - جميع الحقوق محفوظة", notFoundTitle:"عذراً.. المحتوى غير متوفر",
-            notFoundMsg:"لم نجد نتائج تطابق بحثك في خطة الختمة الحالية.", shareSuccess:"تم نسخ رابط موقع دَار يحيي بنجاح!",
-            planModalTitle:"جدول خطة الختمة والتتبع اليومي", thDay:"اليوم", thDate:"التاريخ (هجري / ميلادي)", thJuz:"الورد اليومي (الأجزاء / الصفحات)",
-            thStatus:"ملاحظة الإنجاز", juzText:"الجزء", expIcs:"تصدير للتقويم (.ics) مع منبّه", expWord:"تحميل ملف Word", expPdf:"طباعة / حفظ PDF" },
-        en: { title:"Dar Yahia", subtitle:"Quran Completion & Tracking Platform",
-            bio:"Welcome to Dar Yahia.. The leading platform for organizing and tracking Quran recitation schedules effortlessly.",
-            searchPlaceholder:"Type to search..", quoteTitle:"Why do we read and learn the Quran?!",
-            khatmaHeader:"Plan & Customize Recitation",
-            khatmaDesc:"Select duration and start date to automatically generate your daily Quran reading portion.",
-            lblDuration:"Duration:", lblStartDate:"Start Date:", lblEndDate:"Expected End Date:",
-            estTitle:"Expected daily time to complete reading:", btnBuild:"View Plan & Track",
-            aboutTitle:"About Me (Site Founder)",
-            aboutContentDesc:"Egyptian poet and content creator, born July 3, 2003 CE (3 Jumada al-Ula 1424 AH) in Assiut Governorate, El Ghanayem. I strive to leave a beneficial impact through Quranic recitations, poetry, and media.",
-            contactTitle:"Contact Us", inputName:"Your Honorable Name", inputEmail:"Your Email Address", inputMsg:"Write your message here...",
-            btnSend:"Send Message", followMe:"Honored to have you follow us", socialYt:"YouTube", socialTt:"TikTok", socialTg:"Telegram", socialFb:"Facebook",
-            footer:"© 2026 - All Rights Reserved", notFoundTitle:"Content Unavailable",
-            notFoundMsg:"No matching results found in current schedule.", shareSuccess:"Site link copied successfully!",
-            planModalTitle:"Integrated Recitation Schedule", thDay:"Day", thDate:"Date (Hijri / Gregorian)", thJuz:"Daily Reading (Juz / Pages)",
-            thStatus:"Status", juzText:"Juz", expIcs:"Export Calendar (.ics) w/ Alarm", expWord:"Download Word File", expPdf:"Print / Save PDF" }
+        ar: {
+            title: "دَار يحيي", subtitle: "منصة تنظيم وتتبع ختْم القرآن الكريم",
+            bio: "مرحباً بك في دَار يحيي.. المنصة الأولى لتسهيل وتتبع جدول ختْم القُرآن الكريم وتوزيع الأجزاء بكل يسر وسهولة وفقاً لوقتك المتاح.",
+            searchPlaceholder: "اكتب للبحث..", eventsBarTitle: "المناسبات الهجرية القادمة", quoteTitle: "لماذا نقرأ القرآن ونتعلمه؟! ",
+            khatmaHeader: "تحديد وتعديل خطة الختمة", khatmaDesc: "اختر المدة وتاريخ بداية الختمة وسيتم حساب الورد اليومي وتوزيعه تلقائياً بدءاً من اليوم الذي تحدده.",
+            lblDuration: "مدة الختمة:", lblStartDate: "تاريخ البداية:", lblEndDate: "تاريخ الانتهاء المتوقع:",
+            estTitle: "الوقت اليومي المتوقع لإنجاز الورد:", btnExpBackup: "تصدير نسخة احتياطية", btnImpBackup: "استيراد تقدم حفظ",
+            btnBuild: "عرض جدول الختمة والتتبع", btnMissed: "فاتني أيام (إعادة توزيع الورد المتبقي)", btnReadQuran: "اقرأ ورد اليوم",
+            aboutTitle: "من أنا \"مؤسس الموقع\"",
+            aboutContentDesc: "شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.",
+            contactTitle: "تواصل معنا", inputName: "اسم الكريم", inputEmail: "بريدك الإلكتروني", inputMsg: "اكتب رسالتك هنا...",
+            btnSend: "إرسال الرسالة", followMe: "شرفنا بمتابعتك", socialYt: "يوتيوب", socialTt: "تيك توك", socialTg: "تيليجرام", socialFb: "فيسبوك",
+            footer: "© 2026 - جميع الحقوق محفوظة", notFoundTitle: "عذراً.. المحتوى غير متوفر",
+            notFoundMsg: "لم نجد نتائج تطابق بحثك في خطة الختمة الحالية.", shareSuccess: "تم نسخ رابط موقع دَار يحيي بنجاح!",
+            planModalTitle: "جدول خطة الختمة والتتبع اليومي", thDay: "اليوم", thDate: "التاريخ (هجري / ميلادي)", thJuz: "الورد اليومي (الأجزاء / الصفحات)",
+            thRead: "قراءة الورد", thStatus: "ملاحظة الإنجاز", juzText: "الجزء", pageText: "صفحة", pagesText: "صفحتان", halfJuzText: "نصف جزء",
+            expIcs: "تصدير للتقويم (.ics) مع منبّه", expWord: "تحميل ملف Word", expPdf: "طباعة / حفظ PDF",
+            lblEvStart: "بداية:", lblEvEnd: "انتهاء:", evHadithHint: "انقر للتنقل بين الأحاديث الواردة", btnDlEv: "تحميل الصورة", btnShEv: "مشاركة الصورة (JPG)", evSiteDesc: "منصة تنظيم وتتبع ختم القرآن الكريم",
+            txtShareTitle: "مشاركة خطة الختمة", txtShShare: "مشاركة عبر التطبيقات", txtShDownload: "تحميل الصورة", txtShCopy: "نسخ الرابط", txtShareBtn: "مشاركة",
+            progressDone: "أنجزت", progressOf: "من", progressDay: "يوم", streakText: "الأيام المتتالية:",
+            missedAlertCompleted: "لقد أكملت جميع الأيام بنجاح! مبارك الختمة.",
+            missedConfirm: "فاتك بعض الأيام؟ سيتم إعادة توزيع الورد المتبقي ({remPortions} يوم) على الأيام المتبقية ({remDays} يوم). هل تريد الاستمرار؟",
+            importSuccess: "تم استيراد النسخة الاحتياطية بنجاح!", importInvalid: "ملف غير صالح."
+        },
+        en: {
+            title: "Dar Yahia", subtitle: "Quran Completion & Tracking Platform",
+            bio: "Welcome to Dar Yahia.. The leading platform for organizing and tracking Quran recitation schedules effortlessly according to your available time.",
+            searchPlaceholder: "Type to search..", eventsBarTitle: "Upcoming Hijri Occasions", quoteTitle: "Why do we read and learn the Quran?!",
+            khatmaHeader: "Plan & Customize Recitation", khatmaDesc: "Select duration and start date to automatically generate and distribute your daily Quran reading portion starting from your chosen date.",
+            lblDuration: "Duration:", lblStartDate: "Start Date:", lblEndDate: "Expected End Date:",
+            estTitle: "Expected daily time to complete reading:", btnExpBackup: "Export Backup", btnImpBackup: "Import Saved Progress",
+            btnBuild: "View Schedule & Track", btnMissed: "Missed Days (Redistribute Remaining Portions)", btnReadQuran: "Read Portion Today",
+            aboutTitle: "About Me (Site Founder)",
+            aboutContentDesc: "Egyptian poet and content creator, born July 3, 2003 CE (3 Jumada al-Ula 1424 AH) in Assiut Governorate, El Ghanayem. I strive to leave a beneficial impact through Quranic recitations, poetry, and media.",
+            contactTitle: "Contact Us", inputName: "Your Honorable Name", inputEmail: "Your Email Address", inputMsg: "Write your message here...",
+            btnSend: "Send Message", followMe: "Honored to have you follow us", socialYt: "YouTube", socialTt: "TikTok", socialTg: "Telegram", socialFb: "Facebook",
+            footer: "© 2026 - All Rights Reserved", notFoundTitle: "Content Unavailable",
+            notFoundMsg: "No matching results found in current schedule.", shareSuccess: "Site link copied successfully!",
+            planModalTitle: "Daily Recitation Schedule & Tracker", thDay: "Day", thDate: "Date (Hijri / Gregorian)", thJuz: "Daily Reading (Juz / Pages)",
+            thRead: "Read Portion", thStatus: "Status", juzText: "Juz", pageText: "Page", pagesText: "Pages", halfJuzText: "Half Juz",
+            expIcs: "Export Calendar (.ics) w/ Alarm", expWord: "Download Word File", expPdf: "Print / Save PDF",
+            lblEvStart: "Starts:", lblEvEnd: "Ends:", evHadithHint: "Click to cycle through narrated Hadiths", btnDlEv: "Download Image", btnShEv: "Share Image (JPG)", evSiteDesc: "Quran Completion & Tracking Platform",
+            txtShareTitle: "Share Recitation Plan", txtShShare: "Share via Apps", txtShDownload: "Download Image", txtShCopy: "Copy Link", txtShareBtn: "Share",
+            progressDone: "Completed", progressOf: "of", progressDay: "days", streakText: "Consecutive Days:",
+            missedAlertCompleted: "You have completed all days successfully! Congratulations on completing the Quran.",
+            missedConfirm: "Missed some days? The remaining portion ({remPortions} days) will be redistributed over the remaining time ({remDays} days). Do you want to continue?",
+            importSuccess: "Backup imported successfully!", importInvalid: "Invalid backup file."
+        },
+        es: {
+            title: "Dar Yahia", subtitle: "Plataforma de Seguimiento y Organización del Corán",
+            bio: "Bienvenido a Dar Yahia.. La plataforma líder para organizar y rastrear la lectura del Sagrado Corán de manera fácil y adaptada a tu tiempo disponible.",
+            searchPlaceholder: "Escribe para buscar..", eventsBarTitle: "Próximas Ocasiones Hijri", quoteTitle: "¿Por qué leemos y aprendemos el Corán?!",
+            khatmaHeader: "Planificar y Personalizar Recitación", khatmaDesc: "Selecciona la duración y fecha de inicio para calcular y distribuir automáticamente tu lectura diaria.",
+            lblDuration: "Duración:", lblStartDate: "Fecha de Inicio:", lblEndDate: "Fecha de Finalización Prevista:",
+            estTitle: "Tiempo diario estimado para la lectura:", btnExpBackup: "Exportar Copia de Seguridad", btnImpBackup: "Importar Progreso",
+            btnBuild: "Ver Calendario y Seguimiento", btnMissed: "Días Perdidos (Redistribuir Lectura Restante)", btnReadQuran: "Leer Recitación de Hoy",
+            aboutTitle: "Sobre Mí (Fundador del Sitio)",
+            aboutContentDesc: "Poeta y creador de contenido egipcio, nacido el 3 de julio de 2003 (3 de Yumada al-Ula 1424 AH) en la gobernación de Asyut, El Ghanayem. Busco dejar un impacto positivo a través de recitaciones, poesía y medios.",
+            contactTitle: "Contáctanos", inputName: "Tu Nombre Completo", inputEmail: "Tu Correo Electrónico", inputMsg: "Escribe tu mensaje aquí...",
+            btnSend: "Enviar Mensaje", followMe: "Honrados de que nos sigas", socialYt: "YouTube", socialTt: "TikTok", socialTg: "Telegram", socialFb: "Facebook",
+            footer: "© 2026 - Todos los Derechos Reservados", notFoundTitle: "Contenido No Disponible",
+            notFoundMsg: "No se encontraron resultados en el plan actual.", shareSuccess: "¡Enlace copiado con éxito!",
+            planModalTitle: "Plan Diario de Recitación y Seguimiento", thDay: "Día", thDate: "Fecha (Hijri / Gregoriano)", thJuz: "Lectura Diaria (Juz / Páginas)",
+            thRead: "Leer Recitación", thStatus: "Estado de Progreso", juzText: "Juz", pageText: "Página", pagesText: "Páginas", halfJuzText: "Medio Juz",
+            expIcs: "Exportar Calendario (.ics) con Alarma", expWord: "Descargar Archivo Word", expPdf: "Imprimir / Guardar PDF",
+            lblEvStart: "Inicio:", lblEvEnd: "Fin:", evHadithHint: "Haz clic para cambiar entre Hadices", btnDlEv: "Descargar Imagen", btnShEv: "Compartir Imagen (JPG)", evSiteDesc: "Plataforma de Seguimiento y Organización del Corán",
+            txtShareTitle: "Compartir Plan de Recitación", txtShShare: "Compartir mediante Apps", txtShDownload: "Descargar Imagen", txtShCopy: "Copiar Enlace", txtShareBtn: "Compartir",
+            progressDone: "Completado", progressOf: "de", progressDay: "días", streakText: "Días Consecutivos:",
+            missedAlertCompleted: "¡Has completado todos los días con éxito! Felicidades por terminar el Corán.",
+            missedConfirm: "¿Perdiste algunos días? La lectura restante ({remPortions} días) se redistribuirá en los días restantes ({remDays} días). ¿Deseas continuar?",
+            importSuccess: "¡Copia de seguridad importada con éxito!", importInvalid: "Archivo no válido."
+        },
+        fr: {
+            title: "Dar Yahia", subtitle: "Plateforme d'Organisation et de Suivi du Coran",
+            bio: "Bienvenue sur Dar Yahia.. La plateforme idéale pour organiser et suivre votre programme de lecture du Saint Coran en toute simplicité.",
+            searchPlaceholder: "Tapez pour rechercher..", eventsBarTitle: "Prochaines Occasions Hégiriennes", quoteTitle: "Pourquoi lisons-nous et apprenons-nous le Coran?!",
+            khatmaHeader: "Planifier et Personnaliser la Récitation", khatmaDesc: "Sélectionnez la durée et la date de début pour calculer et distribuer automatiquement votre lecture quotidienne.",
+            lblDuration: "Durée:", lblStartDate: "Date de Début:", lblEndDate: "Date de Fin Estimée:",
+            estTitle: "Temps quotidien estimé pour la lecture:", btnExpBackup: "Exporter Sauvegarde", btnImpBackup: "Importer Progrès",
+            btnBuild: "Voir le Programme & Suivi", btnMissed: "Jours Manqués (Redistribuer Lecture Restante)", btnReadQuran: "Lire la Portion du Jour",
+            aboutTitle: "À Propos (Fondateur du Site)",
+            aboutContentDesc: "Poète et créateur de contenu égyptien, né le 3 juillet 2003 (3 Joumada al-Oula 1424 AH) dans le gouvernorat d'Assiout, El Ghanayem. Je m'efforce de laisser un impact bénéfique à travers des récitations, de la poésie et des médias.",
+            contactTitle: "Contactez-nous", inputName: "Votre Nom", inputEmail: "Votre Adresse Email", inputMsg: "Écrivez votre message ici...",
+            btnSend: "Envoyer le Message", followMe: "Honorés de vous compter parmi nos abonnés", socialYt: "YouTube", socialTt: "TikTok", socialTg: "Telegram", socialFb: "Facebook",
+            footer: "© 2026 - Tous Droits Réservés", notFoundTitle: "Contenu Indisponible",
+            notFoundMsg: "Aucun résultat ne correspond à votre recherche.", shareSuccess: "Lien du site copié avec succès!",
+            planModalTitle: "Programme Quotidien de Récitation et Suivi", thDay: "Jour", thDate: "Date (Hégirienne / Grégorienne)", thJuz: "Lecture Quotidienne (Juz / Pages)",
+            thRead: "Lire la Portion", thStatus: "Statut", juzText: "Juz", pageText: "Page", pagesText: "Pages", halfJuzText: "Demi-Juz",
+            expIcs: "Exporter Calendrier (.ics) avec Alarme", expWord: "Télécharger Fichier Word", expPdf: "Imprimer / Enregistrer PDF",
+            lblEvStart: "Début:", lblEvEnd: "Fin:", evHadithHint: "Cliquez pour faire défiler les Hadiths", btnDlEv: "Télécharger L'image", btnShEv: "Partager L'image (JPG)", evSiteDesc: "Plateforme d'Organisation et de Suivi du Coran",
+            txtShareTitle: "Partager le Plan de Récitation", txtShShare: "Partager via Apps", txtShDownload: "Télécharger L'image", txtShCopy: "Copier le Lien", txtShareBtn: "Partager",
+            progressDone: "Accompli", progressOf: "sur", progressDay: "jours", streakText: "Jours Consécutifs:",
+            missedAlertCompleted: "Vous avez terminé tous les jours avec succès ! Félicitations.",
+            missedConfirm: "Avez-vous manqué des jours ? La portion restante ({remPortions} jours) sera redistribuée sur les jours restants ({remDays} jours). Voulez-vous continuer ?",
+            importSuccess: "Sauvegarde importée avec succès !", importInvalid: "Fichier non valide."
+        }
     };
 
     const fabTexts = {
         ar: ["شرفنا بالمتابعة", "اضغط للمتابعة", "اشترك بالقناة", "انقر للانضمام"],
-        en: ["Follow us", "Tap to follow", "Subscribe", "Tap to join"]
+        en: ["Follow us", "Tap to follow", "Subscribe", "Tap to join"],
+        es: ["Síguenos", "Toca para seguir", "Suscríbete", "Toca para unirte"],
+        fr: ["Suivez-nous", "Cliquez pour suivre", "S'abonner", "Rejoignez-nous"]
     };
 
     let currentLang = localStorage.getItem('daryahia_lang') || 'ar';
@@ -545,17 +613,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const endDateInput = document.getElementById('khatmaEndDate');
     const durationSelect = document.getElementById('khatmaDuration');
 
-    // ===== التاريخ الهجري =====
+    // ===== التاريخ الهجري والميلادي =====
     const HIJRI_FULL = { day: 'numeric', month: 'long', year: 'numeric' };
     function hijri(d, opts) {
-        const loc = { ar: 'ar-EG', en: 'en-US' }[currentLang] || 'ar-EG';
+        const loc = { ar: 'ar-EG', en: 'en-US', es: 'es-ES', fr: 'fr-FR' }[currentLang] || 'ar-EG';
         try { return new Intl.DateTimeFormat(loc + '-u-ca-islamic-umalqura', opts).format(d); }
         catch (e) { return d.toLocaleDateString(loc, opts); }
     }
 
     const DATE_ROW = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
     function greg(d, opts) {
-        const loc = { ar: 'ar-EG', en: 'en-US' }[currentLang] || 'ar-EG';
+        const loc = { ar: 'ar-EG', en: 'en-US', es: 'es-ES', fr: 'fr-FR' }[currentLang] || 'ar-EG';
         return new Intl.DateTimeFormat(loc + '-u-ca-gregory', opts).format(d);
     }
 
@@ -592,8 +660,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const est = (perPage) => Math.round(pagesPerDay * perPage);
         const L = {
             ar: { no: 'بدون تدبر', yes: 'في حالة التدبر', from: 'من', to: 'إلى', min: 'دقيقة', hr: 'ساعة' },
-            en: { no: 'Without Tadabbur', yes: 'With Tadabbur', from: 'from', to: 'to', min: 'min', hr: 'h' }
-        }[currentLang] || {};
+            en: { no: 'Without Tadabbur', yes: 'With Tadabbur', from: 'from', to: 'to', min: 'min', hr: 'hours' },
+            es: { no: 'Sin reflexión', yes: 'Con reflexión', from: 'de', to: 'a', min: 'min', hr: 'horas' },
+            fr: { no: 'Sans méditation', yes: 'Avec méditation', from: 'de', to: 'à', min: 'min', hr: 'heures' }
+        }[currentLang] || { no: 'بدون تدبر', yes: 'في حالة التدبر', from: 'من', to: 'إلى', min: 'دقيقة', hr: 'ساعة' };
 
         function formatMins(mins) {
             if (mins < 60) return `${mins} ${L.min}`;
@@ -640,7 +710,8 @@ document.addEventListener('DOMContentLoaded', () => {
             while (nextIdx === currentQuoteIndex && quotesDatabase.length > 1);
             currentQuoteIndex = nextIdx;
             const item = quotesDatabase[currentQuoteIndex];
-            const bracketTxt = item[`bracket${currentLang.charAt(0).toUpperCase() + currentLang.slice(1)}`] || item.bracketAr;
+            const langKey = currentLang.charAt(0).toUpperCase() + currentLang.slice(1);
+            const bracketTxt = item[`bracket${langKey}`] || item.bracketAr;
 
             let extraHtml = '';
             if (item.type === 'quran') {
@@ -661,49 +732,158 @@ document.addEventListener('DOMContentLoaded', () => {
     displayNextQuote();
     setInterval(displayNextQuote, 5000);
 
-    // ===== شريط المناسبات الهجرية الأفقي والديالوغ =====
+    // ===== شريط المناسبات الهجرية الأفقي والديالوغ المتعدد اللغات =====
     const eventModal = document.getElementById('eventModal');
     const eventsBar = document.getElementById('eventsBar');
 
     const islamicEventsList = [
-        { id: 'shaaban_mid', title: 'ليلة النصف من شعبان', startHijri: 'مغرب ١٤ شعبان', endHijri: 'فجر ١٥ شعبان', startGreg: '٢ مارس ٢٠٢٦ م', endGreg: '٣ مارس ٢٠٢٦ م',
-          hadiths: [
-            "إذا كانَ النِّصفُ مِن شعبانَ فأمسِكوا عن الصِّيامِ، حتَّى يَكونَ رمضانُ",
-            "في ليلةِ النصفِ من شعبانَ يغفرُ اللهُ لأهْلِ الأرْضِ، إلَّا لمشرِكٍ أوْ مُشَاحِنٍ"
-          ]
+        { id: 'shaaban_mid',
+          title: { ar: 'ليلة النصف من شعبان', en: 'Mid-Sha\'ban Night', es: 'Noche de Mitad de Sha\'ban', fr: 'Nuit du Milieu de Cha\'ban' },
+          startHijri: { ar: 'مغرب ١٤ شعبان', en: 'Sunset 14 Sha\'ban', es: 'Puesta del sol 14 Sha\'ban', fr: 'Coucher du soleil 14 Cha\'ban' },
+          endHijri: { ar: 'فجر ١٥ شعبان', en: 'Dawn 15 Sha\'ban', es: 'Amanecer 15 Sha\'ban', fr: 'Aube 15 Cha\'ban' },
+          startGreg: { ar: '٢ مارس ٢٠٢٦ م', en: 'March 2, 2026', es: '2 de marzo de 2026', fr: '2 mars 2026' },
+          endGreg: { ar: '٣ مارس ٢٠٢٦ م', en: 'March 3, 2026', es: '3 de marzo de 2026', fr: '3 mars 2026' },
+          hadiths: {
+            ar: [
+              "إذا كانَ النِّصفُ مِن شعبانَ فأمسِكوا عن الصِّيامِ، حتَّى يَكونَ رمضانُ",
+              "في ليلةِ النصفِ من شعبانَ يغفرُ اللهُ لأهْلِ الأرْضِ، إلَّا لمشرِكٍ أوْ مُشَاحِنٍ"
+            ],
+            en: [
+              "When it is the middle of Sha'ban, refrain from fasting until Ramadan arrives.",
+              "On the night of mid-Sha'ban, Allah forgives the inhabitants of Earth except a polytheist or one with enmity."
+            ],
+            es: [
+              "En la noche de mitad de Sha'ban, Allah perdona a las criaturas de la Tierra excepto al idólatra y al rencoroso.",
+              "Aprovechad la noche de mitad de Sha'ban con oración y su día con ayuno."
+            ],
+            fr: [
+              "La nuit du milieu de Cha'ban, Allah pardonne à Ses créatures, sauf à un polythéiste ou une personne pleine de rancœur.",
+              "Profitez de la nuit du milieu de Cha'ban pour prier et du jour pour jeûner."
+            ]
+          }
         },
-        { id: 'ramadan', title: 'شهر رمضان المبارك', startHijri: '١ رمضان', endHijri:30 + ' رمضان', startGreg: '١٩ مارس ٢٠٢٦ م', endGreg: '١٧ أبريل ٢٠٢٦ م',
-          hadiths: [
-            "مَنْ صَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ",
-            "إِذَا جَاءَ رَمَضَانُ فُتِّحَتْ أَبْوَابُ الْجَنَّةِ وَغُلِّقَتْ أَبْوَابُ النَّارِ"
-          ]
+        { id: 'ramadan',
+          title: { ar: 'شهر رمضان المبارك', en: 'Blessed Month of Ramadan', es: 'Bendito Mes de Ramadan', fr: 'Mois Béni de Ramadan' },
+          startHijri: { ar: '١ رمضان', en: '1 Ramadan', es: '1 de Ramadan', fr: '1er Ramadan' },
+          endHijri: { ar: '٣٠ رمضان', en: '30 Ramadan', es: '30 de Ramadan', fr: '30 Ramadan' },
+          startGreg: { ar: '١٩ مارس ٢٠٢٦ م', en: 'March 19, 2026', es: '19 de marzo de 2026', fr: '19 mars 2026' },
+          endGreg: { ar: '١٧ أبريل ٢٠٢٦ م', en: 'April 17, 2026', es: '17 de abril de 2026', fr: '17 avril 2026' },
+          hadiths: {
+            ar: [
+              "مَنْ صَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ",
+              "إِذَا جَاءَ رَمَضَانُ فُتِّحَتْ أَبْوَابُ الْجَنَّةِ وَغُلِّقَتْ أَبْوَابُ النَّارِ"
+            ],
+            en: [
+              "Whoever fasts Ramadan out of faith and seeking reward, his past sins will be forgiven.",
+              "When Ramadan arrives, the gates of Paradise are opened and the gates of Hell are locked."
+            ],
+            es: [
+              "Quien ayune en Ramadan con fe y esperando la recompensa, sus pecados pasados serán perdonados.",
+              "Cuando llega Ramadan, se abren las puertas del Paraíso y se cierran las del Infierno."
+            ],
+            fr: [
+              "Quiconque jeûne le mois de Ramadan avec foi et espoir de récompense, ses péchés passés seront pardonnés.",
+              "Lorsque le Ramadan arrive, les portes du Paradis sont ouvertes et celles de l'Enfer sont fermées."
+            ]
+          }
         },
-        { id: 'arafah', title: 'يوم عرفة المبارك', startHijri: '٩ ذو الحجة', endHijri: '٩ ذو الحجة', startGreg: '٢٦ مايو ٢٠٢٦ م', endGreg: '٢٦ مايو ٢٠٢٦ م',
-          hadiths: [
-            "صِيَامُ يَوْمِ عَرَفَةَ أَحْتَسِبُ عَلَى اللَّهِ أَنْ يُكَفِّرَ السَّنَةَ الَّتِي قَبْلَهُ وَالَّتِي بَعْدَهُ",
-            "خَيْرُ الدُّعَاءِ دُعَاءُ يَوْمِ عَرَفَةَ"
-          ]
+        { id: 'arafah',
+          title: { ar: 'يوم عرفة المبارك', en: 'Blessed Day of Arafah', es: 'Bendito Día de Arafah', fr: 'Jour Béni d\'Arafah' },
+          startHijri: { ar: '٩ ذو الحجة', en: '9 Dhul-Hijjah', es: '9 de Dhul-Hijjah', fr: '9 Dhoul-Hijjah' },
+          endHijri: { ar: '٩ ذو الحجة', en: '9 Dhul-Hijjah', es: '9 de Dhul-Hijjah', fr: '9 Dhoul-Hijjah' },
+          startGreg: { ar: '٢٦ مايو ٢٠٢٦ م', en: 'May 26, 2026', es: '26 de mayo de 2026', fr: '26 mai 2026' },
+          endGreg: { ar: '٢٦ مايو ٢٠٢٦ م', en: 'May 26, 2026', es: '26 de mayo de 2026', fr: '26 mai 2026' },
+          hadiths: {
+            ar: [
+              "صِيَامُ يَوْمِ عَرَفَةَ أَحْتَسِبُ عَلَى اللَّهِ أَنْ يُكَفِّرَ السَّنَةَ الَّتِي قَبْلَهُ وَالَّتِي بَعْدَهُ",
+              "خَيْرُ الدُّعَاءِ دُعَاءُ يَوْمِ عَرَفَةَ"
+            ],
+            en: [
+              "Fasting the day of Arafah expiates the sins of the preceding year and the coming year.",
+              "The best supplication is the supplication on the Day of Arafah."
+            ],
+            es: [
+              "El ayuno del día de Arafah expía los pecados del año anterior y del año posterior.",
+              "La mejor súplica es la realizada en el Día de Arafah."
+            ],
+            fr: [
+              "Le jeûne du jour d'Arafah expie les péchés de l'année précédente et de l'année suivante.",
+              "La meilleure des invocations est celle du jour d'Arafah."
+            ]
+          }
         },
-        { id: 'white_days', title: 'الأيام البيض (الشهر الحالي)', startHijri: '١٣ - ١٥ الشهر', endHijri: '١٥ الشهر', startGreg: 'منتصف الشهر', endGreg: 'منتصف الشهر',
-          hadiths: [
-            "صِيَامُ ثَلاَثَةِ أَيَّامٍ مِنْ كُلِّ شَهْرٍ صِيَامُ الدَّهْرِ كُلِّهِ",
-            "أَوْصَانِي خَلِيلِي بِثَلاَثٍ: صِيَامِ ثَلاَثَةِ أَيَّامٍ مِنْ كُلِّ شَهْرٍ..."
-          ]
+        { id: 'white_days',
+          title: { ar: 'الأيام البيض (الشهر الحالي)', en: 'White Days (Current Month)', es: 'Días Blancos (Mes Actual)', fr: 'Jours Blancs (Mois Actuel)' },
+          startHijri: { ar: '١٣ - ١٥ الشهر', en: '13 - 15 of Month', es: '13 - 15 del Mes', fr: '13 - 15 du Mois' },
+          endHijri: { ar: '١٥ الشهر', en: '15 of Month', es: '15 del Mes', fr: '15 du Mois' },
+          startGreg: { ar: 'منتصف الشهر', en: 'Mid Month', es: 'Mitad del Mes', fr: 'Milieu du Mois' },
+          endGreg: { ar: 'منتصف الشهر', en: 'Mid Month', es: 'Mitad del Mes', fr: 'Milieu du Mois' },
+          hadiths: {
+            ar: [
+              "صِيَامُ ثَلاَثَةِ أَيَّامٍ مِنْ كُلِّ شَهْرٍ صِيَامُ الدَّهْرِ كُلِّهِ",
+              "أَوْصَانِي خَلِيلِي بِثَلاَثٍ: صِيَامِ ثَلاَثَةِ أَيَّامٍ مِنْ كُلِّ شَهْرٍ..."
+            ],
+            en: [
+              "Fasting three days of every month is equal to fasting a lifetime.",
+              "My friend advised me to do three things: fast three days of every month..."
+            ],
+            es: [
+              "Ayunar tres días de cada mes equivale a ayunar toda la vida.",
+              "Mi amigo me aconsejó tres cosas: ayunar tres días de cada mes..."
+            ],
+            fr: [
+              "Jeûner trois jours chaque mois équivaut au jeûne de toute une vie.",
+              "Mon ami m'a recommandé trois choses : jeûner trois jours par mois..."
+            ]
+          }
         },
-        { id: 'ashura', title: 'يوم عاشوراء (٩ - ١٠ محرم)', startHijri: '٩ - ١٠ محرم', endHijri: '١٠ محرم', startGreg: 'بداية السنة الهجرية', endGreg: 'بداية السنة الهجرية',
-          hadiths: [
-            "صِيَامُ يَوْمِ عَاشُورَاءَ أَحْتَسِبُ عَلَى اللَّهِ أَنْ يُكَفِّرَ السَّنَةَ الَّتِي قَبْلَهُ",
-            "لَئِنْ بَقِيتُ إِلَى قَابِلٍ لأَصُومَنَّ التَّاسِعَ"
-          ]
+        { id: 'ashura',
+          title: { ar: 'يوم عاشوراء (٩ - ١٠ محرم)', en: 'Day of Ashura (9 - 10 Muharram)', es: 'Día de Ashura (9 - 10 Muharram)', fr: 'Jour d\'Ashura (9 - 10 Mouharram)' },
+          startHijri: { ar: '٩ - ١٠ محرم', en: '9 - 10 Muharram', es: '9 - 10 Muharram', fr: '9 - 10 Mouharram' },
+          endHijri: { ar: '١٠ محرم', en: '10 Muharram', es: '10 Muharram', fr: '10 Mouharram' },
+          startGreg: { ar: 'بداية السنة الهجرية', en: 'Beginning of Hijri Year', es: 'Inicio del Año Hijri', fr: 'Début de l\'Année Hégirienne' },
+          endGreg: { ar: 'بداية السنة الهجرية', en: 'Beginning of Hijri Year', es: 'Inicio del Año Hijri', fr: 'Début de l\'Année Hégirienne' },
+          hadiths: {
+            ar: [
+              "صِيَامُ يَوْمِ عَاشُورَاءَ أَحْتَسِبُ عَلَى اللَّهِ أَنْ يُكَفِّرَ السَّنَةَ الَّتِي قَبْلَهُ",
+              "لَئِنْ بَقِيتُ إِلَى قَابِلٍ لأَصُومَنَّ التَّاسِعَ"
+            ],
+            en: [
+              "Fasting the Day of Ashura expiates the sins of the preceding year.",
+              "If I remain until next year, I will surely fast the ninth day as well."
+            ],
+            es: [
+              "El ayuno del Día de Ashura expía los pecados del año anterior.",
+              "Si vivo hasta el próximo año, ayunaré también el noveno día."
+            ],
+            fr: [
+              "Le jeûne du jour d'Ashura expie les péchés de l'année écoulée.",
+              "Si je suis vivant l'année prochaine, je jeûnerai certainement le neuvième jour."
+            ]
+          }
         }
     ];
 
     let currentEvHadithIdx = 0;
-    let selectedEvent = null;
+    let selectedEventRaw = null;
+
+    function getEventData(ev) {
+        const lang = currentLang in ev.title ? currentLang : 'ar';
+        return {
+            id: ev.id,
+            title: ev.title[lang] || ev.title.ar,
+            startHijri: ev.startHijri[lang] || ev.startHijri.ar,
+            endHijri: ev.endHijri[lang] || ev.endHijri.ar,
+            startGreg: ev.startGreg[lang] || ev.startGreg.ar,
+            endGreg: ev.endGreg[lang] || ev.endGreg.ar,
+            hadiths: ev.hadiths[lang] || ev.hadiths.ar
+        };
+    }
 
     function renderEventsBar() {
         eventsBar.innerHTML = '';
-        islamicEventsList.forEach(ev => {
+        islamicEventsList.forEach(rawEv => {
+            const ev = getEventData(rawEv);
             const btn = document.createElement('div');
             btn.className = 'event-card-btn';
             btn.innerHTML = `
@@ -711,15 +891,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="ev-days"><i class="fa-solid fa-moon"></i> ${ev.startHijri}</div>
                 <div class="ev-sub">${ev.startGreg}</div>
             `;
-            btn.addEventListener('click', () => openEventModal(ev));
+            btn.addEventListener('click', () => openEventModal(rawEv));
             eventsBar.appendChild(btn);
         });
     }
-    renderEventsBar();
 
-    function openEventModal(ev) {
-        selectedEvent = ev;
+    function openEventModal(rawEv) {
+        selectedEventRaw = rawEv;
         currentEvHadithIdx = 0;
+        const ev = getEventData(rawEv);
         document.getElementById('evDialogTitle').textContent = ev.title;
         document.getElementById('evStartHijri').textContent = ev.startHijri;
         document.getElementById('evStartGreg').textContent = ev.startGreg;
@@ -731,36 +911,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('closeEventModalBtn').addEventListener('click', () => eventModal.classList.remove('active'));
     document.getElementById('evHadithBox').addEventListener('click', () => {
-        if (!selectedEvent) return;
-        currentEvHadithIdx = (currentEvHadithIdx + 1) % selectedEvent.hadiths.length;
-        document.getElementById('evHadithText').textContent = selectedEvent.hadiths[currentEvHadithIdx];
+        if (!selectedEventRaw) return;
+        const ev = getEventData(selectedEventRaw);
+        currentEvHadithIdx = (currentEvHadithIdx + 1) % ev.hadiths.length;
+        document.getElementById('evHadithText').textContent = ev.hadiths[currentEvHadithIdx];
     });
 
     // توليد صورة JPG للمناسبة للتحميل أو المشاركة
     async function generateEventJPG() {
+        if (!selectedEventRaw) return;
+        const ev = getEventData(selectedEventRaw);
         const canvas = document.createElement('canvas');
         canvas.width = 1080; canvas.height = 1080;
         const ctx = canvas.getContext('2d');
 
-        // الخلفية كحلي فاخر
         const grad = ctx.createLinearGradient(0,0,1080,1080);
         grad.addColorStop(0, '#0b1329');
         grad.addColorStop(1, '#15203e');
         ctx.fillStyle = grad;
         ctx.fillRect(0,0,1080,1080);
 
-        // إطار ذهبي
         ctx.strokeStyle = '#d4af37';
         ctx.lineWidth = 10;
         ctx.strokeRect(40,40,1000,1000);
 
-        // العنوان
         ctx.textAlign = 'center';
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 58px Tajawal, sans-serif';
-        ctx.fillText(selectedEvent.title, 540, 160);
+        ctx.fillText(ev.title, 540, 160);
 
-        // المربع الشفاف المنقط
         ctx.fillStyle = 'rgba(255,255,255,0.05)';
         ctx.fillRect(140, 220, 800, 200);
         ctx.strokeStyle = '#d4af37';
@@ -769,17 +948,17 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.strokeRect(140, 220, 800, 200);
         ctx.setLineDash([]);
 
-        // تواريخ البداية والانتهاء
-        ctx.fillStyle = '#cbd5e1'; ctx.font = '300 28px Tajawal';
-        ctx.fillText("بداية: " + selectedEvent.startHijri + " (" + selectedEvent.startGreg + ")", 540, 290);
-        ctx.fillText("انتهاء: " + selectedEvent.endHijri + " (" + selectedEvent.endGreg + ")", 540, 360);
+        const lblStart = i18n[currentLang]?.lblEvStart || "بداية:";
+        const lblEnd = i18n[currentLang]?.lblEvEnd || "انتهاء:";
 
-        // الحديث الشريف
+        ctx.fillStyle = '#cbd5e1'; ctx.font = '300 28px Tajawal';
+        ctx.fillText(`${lblStart} ${ev.startHijri} (${ev.startGreg})`, 540, 290);
+        ctx.fillText(`${lblEnd} ${ev.endHijri} (${ev.endGreg})`, 540, 360);
+
         ctx.fillStyle = '#d4af37';
         ctx.font = 'bold 42px Hafs, Tajawal, serif';
-        const text = selectedEvent.hadiths[currentEvHadithIdx];
+        const text = ev.hadiths[currentEvHadithIdx];
         
-        // Wrap text
         const words = text.split(' ');
         let line = '';
         let y = 520;
@@ -796,31 +975,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         ctx.fillText(line, 540, y);
 
-        // الحقوق في أسفل الصورة
+        const downloadedFrom = currentLang === 'ar' ? "تم تحميلها من موقع دار يحيي" : "Downloaded from Dar Yahia Platform";
         ctx.fillStyle = '#ffffff';
         ctx.font = '400 28px Tajawal';
-        ctx.fillText("تم تحميلها من موقع دار يحيي", 540, 940);
+        ctx.fillText(downloadedFrom, 540, 940);
 
         ctx.fillStyle = '#cbd5e1';
         ctx.font = '300 22px Tajawal';
-        ctx.fillText("منصة تنظيم وتتبع ختم القرآن الكريم", 540, 990);
+        ctx.fillText(i18n[currentLang]?.evSiteDesc || "منصة تنظيم وتتبع ختم القرآن الكريم", 540, 990);
 
         return new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.92));
     }
 
     document.getElementById('btnDownloadEvImg').addEventListener('click', async () => {
         const blob = await generateEventJPG();
+        if (!blob) return;
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = `${selectedEvent.id}-daryahia.jpg`;
+        a.download = `${selectedEventRaw.id}-daryahia.jpg`;
         a.click();
     });
 
     document.getElementById('btnShareEvImg').addEventListener('click', async () => {
         const blob = await generateEventJPG();
-        const file = new File([blob], `${selectedEvent.id}.jpg`, { type: 'image/jpeg' });
+        if (!blob) return;
+        const file = new File([blob], `${selectedEventRaw.id}.jpg`, { type: 'image/jpeg' });
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            try { await navigator.share({ files: [file], title: selectedEvent.title }); } catch(e){}
+            try { await navigator.share({ files: [file], title: getEventData(selectedEventRaw).title }); } catch(e){}
         } else {
             document.getElementById('btnDownloadEvImg').click();
         }
@@ -846,14 +1027,22 @@ document.addEventListener('DOMContentLoaded', () => {
         updateDurationSelectOptions(lang);
 
         const t = i18n[lang] || i18n.ar;
-        const set = (id, v) => { if(document.getElementById(id)) document.getElementById(id).innerText = v; };
+        const set = (id, v) => {
+            const el = document.getElementById(id);
+            if (el) el.innerText = v;
+        };
+
         set('txt-title', t.title); set('txt-subtitle', t.subtitle); set('txt-bio', t.bio);
         document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+        set('txt-events-bar-title', t.eventsBarTitle);
         set('txt-quote-title', t.quoteTitle); set('txt-khatma-header', t.khatmaHeader); set('txt-khatma-desc', t.khatmaDesc);
+
         document.getElementById('lbl-duration').innerHTML = `<i class="fa-solid fa-clock"></i> ${t.lblDuration}`;
         document.getElementById('lbl-start-date').innerHTML = `<i class="fa-solid fa-calendar-day"></i> ${t.lblStartDate}`;
         document.getElementById('lbl-end-date').innerHTML = `<i class="fa-solid fa-flag-checkered"></i> ${t.lblEndDate}`;
         document.getElementById('txt-est-title').innerHTML = `<i class="fa-solid fa-hourglass-half"></i> ${t.estTitle}`;
+
+        set('txt-btn-exp-backup', t.btnExpBackup); set('txt-btn-imp-backup', t.btnImpBackup);
         set('txt-btn-build', t.btnBuild); set('txt-about-title', t.aboutTitle);
 
         const authorName = lang === 'ar' ? "فارس محمد داهش" : "Faris Mohammed Dahesh Ash-Shiref";
@@ -866,15 +1055,26 @@ document.addEventListener('DOMContentLoaded', () => {
         set('txt-btn-send', t.btnSend); set('txt-follow-me', t.followMe);
         set('lbl-social-yt', t.socialYt); set('lbl-social-tt', t.socialTt); set('lbl-social-tg', t.socialTg); set('lbl-social-fb', t.socialFb);
         set('txt-footer', t.footer);
-        set('searchModalTitle', t.notFoundTitle); set('searchModalMsg', t.notFoundMsg);
-        set('txt-plan-modal-title', t.planModalTitle);
-        set('th-day', t.thDay); set('th-date', t.thDate); set('th-juz', t.thJuz); set('th-status', t.thStatus);
-        set('txt-exp-ics', t.expIcs); set('txt-exp-word', t.expWord); set('txt-exp-pdf', t.expPdf);
 
-        updateShareLabels();
+        set('searchModalTitle', t.notFoundTitle); set('searchModalMsg', t.notFoundMsg);
+        set('txt-plan-modal-title', t.planModalTitle); set('txt-btn-missed', t.btnMissed);
+        set('th-day', t.thDay); set('th-date', t.thDate); set('th-juz', t.thJuz); set('th-read', t.thRead); set('th-status', t.thStatus);
+
+        set('expIcsText', t.expIcs); set('expWordText', t.expWord); set('expPdfText', t.expPdf);
+
+        set('lbl-ev-start', t.lblEvStart); set('lbl-ev-end', t.lblEvEnd);
+        set('txt-ev-hadith-hint', t.evHadithHint); set('txt-btn-dl-ev', t.btnDlEv); set('txt-btn-sh-ev', t.btnShEv); set('txt-ev-site-desc', t.evSiteDesc);
+
+        set('txt-share-title', t.txtShareTitle); set('txt-sh-share', t.txtShShare); set('txt-sh-download', t.txtShDownload); set('txt-sh-copy', t.txtShCopy);
+        document.querySelectorAll('.txt-share').forEach(el => el.innerText = t.txtShareBtn);
+
+        renderEventsBar();
         renderFab();
         calculateDatesAndTimes();
         displayNextQuote();
+        if (planModal.classList.contains('active')) {
+            buildPlanTable();
+        }
     }
 
     // ===== جدول الختمة والتتبع =====
@@ -892,6 +1092,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateProgressDisplay() {
         const total = currentPlanData.length;
         if (!total) return;
+        const t = i18n[currentLang] || i18n.ar;
         let checkedCount = 0;
         let streak = 0;
         let currentStreakTemp = 0;
@@ -908,8 +1109,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const percent = Math.round((checkedCount / total) * 100);
         document.getElementById('mainProgressContainer').style.display = 'block';
-        document.getElementById('txt-progress-status').textContent = `أنجزت ${checkedCount} من ${total} يوم (${percent}%)`;
-        document.getElementById('txt-streak-status').innerHTML = `<i class="fa-solid fa-fire" style="color:#f59e0b"></i> الأيام المتتالية: ${streak} يوم`;
+        document.getElementById('txt-progress-status').textContent = `${t.progressDone} ${checkedCount} ${t.progressOf} ${total} ${t.progressDay} (${percent}%)`;
+        document.getElementById('txt-streak-status').innerHTML = `<i class="fa-solid fa-fire" style="color:#f59e0b"></i> ${t.streakText} ${streak} ${t.progressDay}`;
         document.getElementById('mainProgressBar').style.width = percent + '%';
     }
 
@@ -919,14 +1120,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const duration = parseInt(durationSelect.value);
         const startVal = new Date(startDateInput.value + 'T12:00:00');
         const endVal = new Date(endDateInput.value + 'T12:00:00');
+        const t = i18n[currentLang] || i18n.ar;
 
         planTableBody.innerHTML = '';
         currentPlanData = [];
 
         planSummaryBar.innerHTML = `
-            <span><strong>${i18n[currentLang].lblDuration}</strong> ${duration} ${currentLang === 'ar' ? 'يوم' : 'days'}</span>
-            <span><strong>${i18n[currentLang].lblStartDate}</strong> ${hijri(startVal, HIJRI_FULL)} <small>(${greg(startVal, HIJRI_FULL)})</small></span>
-            <span><strong>${i18n[currentLang].lblEndDate}</strong> ${hijri(endVal, HIJRI_FULL)} <small>(${greg(endVal, HIJRI_FULL)})</small></span>`;
+            <span><strong>${t.lblDuration}</strong> ${duration} ${t.progressDay}</span>
+            <span><strong>${t.lblStartDate}</strong> ${hijri(startVal, HIJRI_FULL)} <small>(${greg(startVal, HIJRI_FULL)})</small></span>
+            <span><strong>${t.lblEndDate}</strong> ${hijri(endVal, HIJRI_FULL)} <small>(${greg(endVal, HIJRI_FULL)})</small></span>`;
 
         for (let i = 0; i < duration; i++) {
             const curDate = new Date(startVal);
@@ -941,24 +1143,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (duration === 604) {
                 const pg = i + 1;
                 const juzNum = Math.min(30, Math.floor((pg - 1) / 20) + 1);
-                readingText = currentLang === 'ar' ? `صفحة ${pg} - [الجزء ${juzNum}]` : `Page ${pg} - [Juz ${juzNum}]`;
+                readingText = `${t.pageText} ${pg} - [${t.juzText} ${juzNum}]`;
                 quranLink = `https://quran.com/page/${pg}`;
             } else if (duration === 302) {
                 const startPg = (i * 2) + 1;
                 const endPg = Math.min(604, (i + 1) * 2);
                 const juzNum = Math.min(30, Math.floor((startPg - 1) / 20) + 1);
-                readingText = currentLang === 'ar' ? `صفحتان (ص ${startPg} - ${endPg}) - [الجزء ${juzNum}]` : `2 Pages (p. ${startPg}-${endPg}) - [Juz ${juzNum}]`;
+                readingText = `${t.pagesText} (${t.pageText} ${startPg} - ${endPg}) - [${t.juzText} ${juzNum}]`;
                 quranLink = `https://quran.com/page/${startPg}`;
             } else if (duration === 60) {
                 const juzNum = Math.floor(i / 2) + 1;
-                readingText = currentLang === 'ar' ? `نصف جزء (الجزء ${juzNum})` : `Half Juz (Juz ${juzNum})`;
+                readingText = `${t.halfJuzText} (${t.juzText} ${juzNum})`;
                 quranLink = `https://quran.com/juz/${juzNum}`;
             } else {
                 const startJuz = Math.floor(i * (30 / duration)) + 1;
                 const endJuz = Math.min(30, Math.floor((i + 1) * (30 / duration)));
                 readingText = (startJuz === endJuz)
-                    ? `${i18n[currentLang].juzText} ${startJuz}`
-                    : `${i18n[currentLang].juzText} ${startJuz} - ${endJuz}`;
+                    ? `${t.juzText} ${startJuz}`
+                    : `${t.juzText} ${startJuz} - ${endJuz}`;
                 quranLink = `https://quran.com/juz/${startJuz}`;
             }
 
@@ -967,10 +1169,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const tr = document.createElement('tr');
             const isChecked = !!checkedState[i + 1];
             tr.innerHTML = `
-                <td><strong>${i18n[currentLang].thDay} ${i + 1}</strong></td>
+                <td><strong>${t.thDay} ${i + 1}</strong></td>
                 <td>${dateFormatted}<br><small style="color:var(--text-muted)">${gregFormatted}</small></td>
                 <td><span style="color:var(--accent-color);font-weight:700">${readingText}</span></td>
-                <td><a href="${quranLink}" target="_blank" class="btn-read-quran"><i class="fa-solid fa-book-open"></i> اقرأ ورد اليوم</a></td>
+                <td><a href="${quranLink}" target="_blank" class="btn-read-quran"><i class="fa-solid fa-book-open"></i> ${t.btnReadQuran}</a></td>
                 <td><input type="checkbox" data-day="${i + 1}" ${isChecked ? 'checked' : ''} style="width:20px;height:20px;accent-color:var(--accent-color);cursor:pointer"></td>`;
             
             tr.querySelector('input[type="checkbox"]').addEventListener('change', (e) => {
@@ -988,13 +1190,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnMissedDays').addEventListener('click', () => {
         const total = currentPlanData.length;
         if (!total) return;
+        const t = i18n[currentLang] || i18n.ar;
         
         let completedCount = 0;
         currentPlanData.forEach(d => { if(checkedState[d.dayNum]) completedCount++; });
 
         const remainingPortions = total - completedCount;
         if (remainingPortions <= 0) {
-            alert("لقد أكملت جميع الأيام بنجاح! مبارك الختمة.");
+            alert(t.missedAlertCompleted);
             return;
         }
 
@@ -1003,7 +1206,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const diffTime = endVal - todayDate;
         const remainingDays = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
 
-        if (confirm(`فاتك بعض الأيام؟ سيتم إعادة توزيع الورد المتبقي (${remainingPortions} يوم) على الأيام المتبقية (${remainingDays} يوم). هل تريد الاستمرار؟`)) {
+        const confirmMsg = t.missedConfirm.replace('{remPortions}', remainingPortions).replace('{remDays}', remainingDays);
+        if (confirm(confirmMsg)) {
             durationSelect.value = remainingDays.toString();
             startDateInput.value = todayStr;
             calculateDatesAndTimes();
@@ -1035,6 +1239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('backupFileInput').addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (!file) return;
+        const t = i18n[currentLang] || i18n.ar;
         const reader = new FileReader();
         reader.onload = (evt) => {
             try {
@@ -1045,10 +1250,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (imported.startDate) startDateInput.value = imported.startDate;
                     saveProgressState();
                     calculateDatesAndTimes();
-                    alert("تم استيراد النسخة الاحتياطية بنجاح!");
+                    alert(t.importSuccess);
                 }
             } catch(err) {
-                alert("ملف غير صالح.");
+                alert(t.importInvalid);
             }
         };
         reader.readAsText(file);
@@ -1061,18 +1266,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // تصدير ICS للتقويم مع المنبه
     document.getElementById('btnExportICS').addEventListener('click', () => {
+        const t = i18n[currentLang] || i18n.ar;
         let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Dar Yahia//Quran Khatma Plan//AR\nCALSCALE:GREGORIAN\n";
         currentPlanData.forEach(item => {
             const d = item.rawDate;
             const ds = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
             ics += "BEGIN:VEVENT\n";
             ics += `DTSTART;VALUE=DATE:${ds}\n`;
-            ics += `SUMMARY:ورد القرآن - ${item.juzText}\n`;
-            ics += `DESCRIPTION:خطة ختْم القرآن الكريم - ${i18n.ar.title} - اليوم ${item.dayNum}\n`;
+            ics += `SUMMARY:${t.btnReadQuran} - ${item.juzText}\n`;
+            ics += `DESCRIPTION:${t.planModalTitle} - ${t.title} - ${t.thDay} ${item.dayNum}\n`;
             ics += "BEGIN:VALARM\n";
             ics += "TRIGGER:-PT15M\n";
             ics += "ACTION:DISPLAY\n";
-            ics += "DESCRIPTION:تذكير: حان وقت قراءة ورد القرآن اليومي\n";
+            ics += `DESCRIPTION:${t.btnReadQuran}\n`;
             ics += "END:VALARM\n";
             ics += "END:VEVENT\n";
         });
@@ -1085,16 +1291,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // تصدير Word
     document.getElementById('btnExportWord').addEventListener('click', () => {
+        const t = i18n[currentLang] || i18n.ar;
         const s = hijri(new Date(startDateInput.value + 'T12:00:00'), HIJRI_FULL);
         const e = hijri(new Date(endDateInput.value + 'T12:00:00'), HIJRI_FULL);
         let html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-        <head><meta charset='utf-8'><title>خطة الختمة - دَار يحيي</title>
-        <style>body{font-family:Arial;direction:rtl;text-align:right}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:8px;text-align:center}th{background:#f2f2f2}</style>
+        <head><meta charset='utf-8'><title>${t.planModalTitle} - ${t.title}</title>
+        <style>body{font-family:Arial;direction:${currentLang==='ar'?'rtl':'ltr'};text-align:${currentLang==='ar'?'right':'left'}}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:8px;text-align:center}th{background:#f2f2f2}</style>
         </head><body>
-        <h2 style="text-align:center">خطة ختْم القرآن الكريم - دَار يحيي</h2>
-        <p style="text-align:center">تاريخ البداية: ${s} | تاريخ الانتهاء: ${e}</p>
-        <table><thead><tr><th>اليوم</th><th>التاريخ الهجري</th><th>التاريخ الميلادي</th><th>الورد اليومي (الأجزاء / الصفحات)</th></tr></thead><tbody>`;
-        currentPlanData.forEach(item => { html += `<tr><td>اليوم ${item.dayNum}</td><td>${item.dateStr}</td><td>${item.gregStr}</td><td>${item.juzText}</td></tr>`; });
+        <h2 style="text-align:center">${t.planModalTitle} - ${t.title}</h2>
+        <p style="text-align:center">${t.lblStartDate} ${s} | ${t.lblEndDate} ${e}</p>
+        <table><thead><tr><th>${t.thDay}</th><th>${t.thDate} (Hijri)</th><th>${t.thDate} (Gregorian)</th><th>${t.thJuz}</th></tr></thead><tbody>`;
+        currentPlanData.forEach(item => { html += `<tr><td>${t.thDay} ${item.dayNum}</td><td>${item.dateStr}</td><td>${item.gregStr}</td><td>${item.juzText}</td></tr>`; });
         html += `</tbody></table></body></html>`;
         const link = document.createElement('a');
         link.href = URL.createObjectURL(new Blob(['\ufeff', html], { type: 'application/msword' }));
@@ -1130,7 +1337,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===== نموذج التواصل =====
     const formMsgs = {
         ar: { sending: 'جارٍ الإرسال...', ok: 'تم إرسال رسالتك بنجاح، شكراً لتواصلك!', fail: 'تعذر الإرسال تلقائياً، سيُفتح تطبيق البريد لإرسال رسالتك.' },
-        en: { sending: 'Sending...', ok: 'Your message was sent. Thank you!', fail: "Couldn't send automatically. Opening your email app." }
+        en: { sending: 'Sending...', ok: 'Your message was sent. Thank you!', fail: "Couldn't send automatically. Opening your email app." },
+        es: { sending: 'Enviando...', ok: '¡Tu mensaje ha sido enviado con éxito!', fail: "No se pudo enviar automáticamente. Abriendo la app de correo." },
+        fr: { sending: 'Envoi en cours...', ok: 'Votre message a été envoyé avec succès !', fail: "Impossible d'envoyer automatiquement. Ouverture de l'application e-mail." }
     };
     const CONTACT_EMAIL = 'faris.dahesh@gmail.com';
     const contactForm = document.querySelector('.contact-form');
@@ -1167,14 +1376,105 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ===== المشاركة =====
-    document.getElementById('shareBtn').addEventListener('click', async () => {
+    // ===== نافذة المشاركة =====
+    const shareModal = document.getElementById('shareModal');
+    const shareCanvas = document.getElementById('shareCanvas');
+    const shareLinkText = document.getElementById('shareLinkText');
+    const shareStatus = document.getElementById('shareStatus');
+
+    function openShareModal() {
+        shareLinkText.textContent = window.location.href;
+        shareStatus.textContent = '';
+        renderShareCanvas();
+        shareModal.classList.add('active');
+    }
+
+    document.querySelectorAll('.btn-share-open').forEach(btn => {
+        btn.addEventListener('click', openShareModal);
+    });
+
+    document.getElementById('closeShareModalBtn').addEventListener('click', () => shareModal.classList.remove('active'));
+
+    async function renderShareCanvas() {
+        const ctx = shareCanvas.getContext('2d');
+        shareCanvas.width = 600; shareCanvas.height = 600;
+
+        const grad = ctx.createLinearGradient(0, 0, 600, 600);
+        grad.addColorStop(0, '#0b1329');
+        grad.addColorStop(1, '#15203e');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 600, 600);
+
+        ctx.strokeStyle = '#d4af37';
+        ctx.lineWidth = 6;
+        ctx.strokeRect(20, 20, 560, 560);
+
+        const t = i18n[currentLang] || i18n.ar;
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#d4af37';
+        ctx.font = 'bold 36px Tajawal, sans-serif';
+        ctx.fillText(t.title, 300, 90);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '22px Tajawal, sans-serif';
+        ctx.fillText(t.subtitle, 300, 135);
+
+        ctx.strokeStyle = 'rgba(212,175,55,0.4)';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(80, 165); ctx.lineTo(520, 165); ctx.stroke();
+
+        const duration = durationSelect.value || "30";
+        const startVal = new Date((startDateInput.value || todayStr) + 'T12:00:00');
+        const endVal = new Date((endDateInput.value || todayStr) + 'T12:00:00');
+
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = '20px Tajawal, sans-serif';
+        ctx.fillText(`${t.lblDuration} ${duration} ${t.progressDay}`, 300, 230);
+        ctx.fillText(`${t.lblStartDate} ${hijri(startVal, HIJRI_FULL)}`, 300, 280);
+        ctx.fillText(`${t.lblEndDate} ${hijri(endVal, HIJRI_FULL)}`, 300, 330);
+
+        ctx.fillStyle = 'rgba(212,175,55,0.1)';
+        ctx.fillRect(80, 380, 440, 100);
+        ctx.strokeStyle = '#d4af37';
+        ctx.strokeRect(80, 380, 440, 100);
+
+        ctx.fillStyle = '#d4af37';
+        ctx.font = 'bold 22px Tajawal, sans-serif';
+        ctx.fillText(t.planModalTitle, 300, 438);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '16px Tajawal, sans-serif';
+        ctx.fillText(window.location.hostname || "daryahia.com", 300, 530);
+    }
+
+    document.getElementById('btnShareNative').addEventListener('click', async () => {
+        const t = i18n[currentLang] || i18n.ar;
         if (navigator.share) {
-            try { await navigator.share({ title: 'دَار يحيي', text: 'منصة تنظيم وتتبع ختْم القرآن الكريم', url: window.location.href }); } catch (e) {}
+            try {
+                await navigator.share({
+                    title: t.title,
+                    text: t.subtitle,
+                    url: window.location.href
+                });
+            } catch (e) {}
         } else {
             navigator.clipboard.writeText(window.location.href);
-            alert(i18n[currentLang].shareSuccess);
+            shareStatus.textContent = t.shareSuccess;
         }
+    });
+
+    document.getElementById('btnShareDownload').addEventListener('click', () => {
+        const a = document.createElement('a');
+        a.href = shareCanvas.toDataURL('image/png');
+        a.download = `dar-yahia-khatma.png`;
+        a.click();
+    });
+
+    document.getElementById('btnShareCopy').addEventListener('click', () => {
+        const t = i18n[currentLang] || i18n.ar;
+        navigator.clipboard.writeText(window.location.href);
+        shareStatus.textContent = t.shareSuccess;
     });
 
     // ===== زر المتابعة العائم =====
@@ -1196,87 +1496,20 @@ document.addEventListener('DOMContentLoaded', () => {
         fabIcon.className = s.icon;
         fabText.textContent = (fabTexts[currentLang] || fabTexts.ar)[fabIdx];
     }
-    renderFab();
+
     setInterval(() => {
         if (!fabOpen) {
             fab.classList.add('open'); fabOpen = true;
         } else {
             fab.classList.remove('open'); fabOpen = false;
-            setTimeout(() => { fabIdx = (fabIdx + 1) % fabSteps.length; renderFab(); }, 500);
+            setTimeout(() => {
+                fabIdx = (fabIdx + 1) % fabSteps.length;
+                renderFab();
+            }, 500);
         }
-    }, 3000);
+    }, 3500);
 
-    // ===== مشاركة الخطة =====
-    const shareTexts = {
-        ar: { btn: 'شارك خطتي', title: 'شارك خطتك', head: 'ختمتي بإذن الله', from: 'البداية', to: 'الانتهاء', cta: 'ابدأ ختمتك الآن', share: 'مشاركة', download: 'تنزيل الصورة', copy: 'نسخ الرابط', copied: 'تم نسخ الرابط ✓', saved: 'تم تنزيل الصورة ✓', text: 'بدأت ختمتي مع دَار يحيي، انضم إليّ:' },
-        en: { btn: 'Share my plan', title: 'Share your plan', head: 'My Khatma, God willing', from: 'Start', to: 'End', cta: 'Start your Khatma now', share: 'Share', download: 'Download image', copy: 'Copy link', copied: 'Link copied ✓', saved: 'Image saved ✓', text: 'I started my Khatma with Dar Yahia, join me:' }
-    };
-    const shareModal = document.getElementById('shareModal');
-    const shareCanvas = document.getElementById('shareCanvas');
-    const shareStatus = document.getElementById('shareStatus');
-    let shareFile = null, shareUrl = '';
-
-    function updateShareLabels() {
-        const T = shareTexts[currentLang] || shareTexts.ar;
-        document.querySelectorAll('.txt-share').forEach(el => el.textContent = T.btn);
-        document.getElementById('txt-share-title').textContent = T.title;
-        document.getElementById('txt-sh-share').textContent = T.share;
-        document.getElementById('txt-sh-download').textContent = T.download;
-        document.getElementById('txt-sh-copy').textContent = T.copy;
-    }
-
-    function roundRectPath(c, x, y, w, h, r) {
-        c.beginPath();
-        c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r);
-        c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath();
-    }
-
-    async function drawShareCard() {
-        const T = shareTexts[currentLang] || shareTexts.ar;
-        const rtl = currentLang === 'ar';
-        try { await document.fonts.load('700 60px Tajawal'); } catch (e) {}
-
-        const W = 1080, H = 1350;
-        shareCanvas.width = W; shareCanvas.height = H;
-        const c = shareCanvas.getContext('2d');
-        c.direction = rtl ? 'rtl' : 'ltr';
-        c.textAlign = 'center';
-
-        const bg = c.createLinearGradient(0, 0, W, H);
-        bg.addColorStop(0, '#0b1329'); bg.addColorStop(1, '#15203e');
-        c.fillStyle = bg; c.fillRect(0, 0, W, H);
-
-        const txt = (str, x, y, weight, size, color, maxW) => {
-            let sz = size; c.font = `${weight} ${sz}px Tajawal, sans-serif`;
-            while (c.measureText(str).width > maxW && sz > 20) { sz -= 4; c.font = `${weight} ${sz}px Tajawal, sans-serif`; }
-            c.fillStyle = color; c.fillText(str, x, y);
-        };
-
-        const t = i18n[currentLang] || i18n.ar;
-        txt(t.title, W / 2, 200, 700, 88, '#d4af37', W - 160);
-        txt(t.subtitle, W / 2, 272, 500, 34, '#cbd5e1', W - 160);
-
-        const blob = await new Promise(r => shareCanvas.toBlob(r, 'image/png'));
-        shareFile = blob ? new File([blob], 'khatma-dar-yahia.png', { type: 'image/png' }) : null;
-    }
-
-    function buildShareUrl() {
-        const base = location.href.split(/[?#]/)[0];
-        return `${base}?d=${durationSelect.value}&s=${startDateInput.value}`;
-    }
-
-    async function openShare() {
-        shareStatus.textContent = '';
-        shareUrl = buildShareUrl();
-        document.getElementById('shareLinkText').textContent = shareUrl;
-        updateShareLabels();
-        shareModal.classList.add('active');
-        await drawShareCard();
-    }
-
-    document.querySelectorAll('.btn-share-open').forEach(b => b.addEventListener('click', openShare));
-    document.getElementById('closeShareModalBtn').addEventListener('click', () => shareModal.classList.remove('active'));
-
+    // تهيئة الصفحة باللغة الافتراضية
     setLanguage(currentLang);
 });
 </script>
