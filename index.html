@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" id="theme-color-meta" content="#0b1329">
+<meta name="description" content="منصة تنظيم وتتبع ختْم القرآن الكريم: اختر مدتك واحصل على جدول يومي بالتاريخ الهجري، وتابع تقدمك.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="دَار يحيي | منصة تنظيم وتتبع ختْم القرآن الكريم">
+<meta property="og:description" content="اختر مدة ختمتك واحصل على جدول يومي بالتاريخ الهجري وتابع تقدمك.">
+<meta property="og:locale" content="ar_AR">
+<meta name="twitter:card" content="summary">
 <title>دَار يحيي | Dar Yahia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,10 +54,10 @@ h1{font-size:2.2rem;font-weight:700;margin-bottom:6px;letter-spacing:.5px}
 .quote-franco-text{font-size:.88rem;color:var(--text-muted);font-style:italic;direction:ltr}
 .quote-translation-text{font-size:.92rem;color:var(--text-muted)}
 .quote-bracket{color:var(--quote-bracket-color);font-size:.82rem;font-weight:500;margin-top:6px;display:block}
-.khatma-special-wrapper{position:relative;margin-bottom:35px;border-radius:22px;padding:3px;overflow:hidden;box-shadow:0 10px 30px rgba(212,175,55,.15)}
-.khatma-special-wrapper::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(transparent,var(--accent-color),transparent 30%,#fff 50%,transparent 70%);animation:rotateBorder 6s linear infinite;z-index:0}
-@keyframes rotateBorder{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-.khatma-special-card{position:relative;z-index:1;background:var(--card-bg-glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:20px;padding:25px 20px;text-align:center}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+.khatma-special-wrapper{position:relative;margin-bottom:35px;border-radius:22px;padding:3px;box-shadow:0 10px 30px rgba(212,175,55,.15);background:conic-gradient(from var(--ang),#8b6d1f,#d4af37 20%,#fff6c9 30%,#d4af37 40%,#8b6d1f 60%,#d4af37 80%,#8b6d1f);animation:rotateBorder 5s linear infinite}
+@keyframes rotateBorder{to{--ang:360deg}}
+.khatma-special-card{position:relative;z-index:1;background-color:var(--bg-color);background-image:linear-gradient(var(--card-bg-glass),var(--card-bg-glass));border-radius:20px;padding:25px 20px;text-align:center}
 .khatma-inner-header{font-size:1.25rem;color:var(--accent-color);font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px}
 .khatma-inner-header i{font-size:1.3rem;color:var(--accent-color)}
 .khatma-inputs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin:15px 0}
@@ -101,6 +107,9 @@ html[dir="ltr"] .close-modal{left:auto;right:16px}
 .btn-export{background:var(--input-bg);border:1px solid var(--border-color);color:var(--accent-color);padding:10px 18px;border-radius:12px;font-size:.88rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .2s ease,border-color .2s ease}
 .btn-export:hover{border-color:var(--accent-color);transform:translateY(-2px)}
 footer{text-align:center;padding:25px 0 10px;color:var(--text-muted);font-size:.88rem;border-top:1px solid var(--line-color);margin-top:30px}
+.occ-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:10px}
+.occ-chip{background:var(--card-bg-glass);border:1px solid var(--border-color);border-radius:14px;padding:12px;text-align:center;font-size:.88rem;box-shadow:var(--shadow-sm)}
+.occ-name{font-weight:700;color:var(--accent-color);font-size:1rem}
 /* زر المتابعة العائم */
 .follow-fab{position:fixed;bottom:20px;right:16px;z-index:900;direction:ltr;display:flex;flex-direction:row-reverse;align-items:center;height:56px;min-width:56px;border-radius:28px;color:#fff;text-decoration:none;background:#1877F2;border:1px solid rgba(255,255,255,.2);box-shadow:0 6px 18px rgba(0,0,0,.35);overflow:hidden;transition:background-color .4s ease}
 .follow-fab i{width:54px;height:54px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff}
@@ -113,7 +122,7 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
 .modal-overlay.active,.modal-overlay.active *{visibility:visible}
 .modal-overlay.active{position:absolute!important;left:0!important;top:0!important;width:100%!important;height:auto!important;background:transparent!important;backdrop-filter:none!important;padding:0!important;margin:0!important;display:block!important}
 .modal-box{max-width:100%!important;max-height:none!important;box-shadow:none!important;border:none!important;background:transparent!important;color:#000!important;padding:10px!important;overflow:visible!important}
-.close-modal,.plan-export-btns,.toolbar,header,.quote-box-card,.khatma-special-wrapper,.section-card,.social-links,.divider-with-text,.section-title,footer,.follow-fab{display:none!important}
+.no-print,.close-modal,.plan-export-btns,.toolbar,header,.quote-box-card,.khatma-special-wrapper,.section-card,.social-links,.divider-with-text,.section-title,footer,.follow-fab{display:none!important}
 .plan-summary-bar{background:#f5f5f5!important;color:#000!important;border:1px solid #ddd!important}
 .plan-table{border:1px solid #000!important;color:#000!important;width:100%!important}
 .plan-table th{background-color:#eaeaea!important;color:#000!important;border:1px solid #000!important}
@@ -190,8 +199,13 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
                 <i class="fa-solid fa-table-list"></i> <span id="txt-btn-build">إنشاء جدول الختمة</span>
             </button>
             <button type="button" class="btn-export btn-share-open" style="margin:8px 4px 0"><i class="fa-solid fa-share-nodes"></i> <span class="txt-share"></span></button>
+            <button type="button" class="btn-export btn-read-open" style="margin:8px 4px 0"><i class="fa-solid fa-book-open"></i> <span class="txt-read"></span></button>
+            <p id="miniProgress" style="font-size:.85rem;color:var(--accent-color);margin-top:10px;min-height:1.2em"></p>
         </div>
     </section>
+
+    <h2 class="section-title animate-fade-up delay-4" id="txt-occ-title">مناسبات قادمة</h2>
+    <div class="occ-grid animate-fade-up delay-4" id="occGrid"></div>
 
     <h2 class="section-title animate-fade-up delay-4" id="txt-about-title">من أنا "مؤسس الموقع"</h2>
 
@@ -242,6 +256,14 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
             <h3 id="txt-plan-modal-title" style="font-size:1.3rem;margin-top:5px">جدول خطة الختمة المتكامل</h3>
         </div>
         <div class="plan-summary-bar" id="planSummaryBar"></div>
+        <div id="progressBox" style="margin:10px 0">
+            <div style="height:10px;border-radius:8px;background:var(--line-color);overflow:hidden"><div id="progressFill" style="height:100%;width:0;background:var(--accent-color);transition:width .4s"></div></div>
+            <p id="progressText" style="font-size:.88rem;margin-top:6px;text-align:center"></p>
+            <div class="plan-export-btns" style="margin-top:8px">
+                <button type="button" class="btn-export btn-read-open"><i class="fa-solid fa-book-open"></i> <span class="txt-read"></span></button>
+                <button type="button" class="btn-export" id="btnMissed"><i class="fa-solid fa-rotate"></i> <span id="txt-missed"></span></button>
+            </div>
+        </div>
         <div class="plan-table-wrapper">
             <table class="plan-table" id="planTable">
                 <thead><tr>
@@ -251,12 +273,22 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
                 <tbody id="planTableBody"></tbody>
             </table>
         </div>
+        <div class="no-print" style="display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0 0;font-size:.88rem">
+            <label for="alarmTime" id="txt-alarm-lbl"></label>
+            <input type="time" id="alarmTime" value="06:00" class="form-input" style="width:auto;padding:6px 10px">
+        </div>
         <div class="plan-export-btns">
             <button type="button" class="btn-export" id="btnExportICS"><i class="fa-solid fa-calendar-plus"></i> <span id="txt-exp-ics">تصدير للتقويم (.ics)</span></button>
             <button type="button" class="btn-export" id="btnExportWord"><i class="fa-solid fa-file-word"></i> <span id="txt-exp-word">تحميل ملف Word</span></button>
             <button type="button" class="btn-export" id="btnExportPDF"><i class="fa-solid fa-print"></i> <span id="txt-exp-pdf">طباعة / حفظ PDF</span></button>
             <button type="button" class="btn-export btn-share-open"><i class="fa-solid fa-share-nodes"></i> <span class="txt-share"></span></button>
         </div>
+        <div class="plan-export-btns no-print">
+            <button type="button" class="btn-export" id="btnBackup"><i class="fa-solid fa-file-export"></i> <span id="txt-backup"></span></button>
+            <button type="button" class="btn-export" id="btnRestore"><i class="fa-solid fa-file-import"></i> <span id="txt-restore"></span></button>
+            <input type="file" id="restoreFile" accept="application/json,.json" hidden>
+        </div>
+        <p id="planStatus" class="no-print" style="font-size:.88rem;color:var(--accent-color);text-align:center;min-height:1.4em;margin-top:8px"></p>
     </div>
 </div>
 
@@ -456,7 +488,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const today = new Date();
     const todayStr = today.toISOString().split('T')[0];
     startDateInput.value = todayStr;
-    startDateInput.setAttribute('min', todayStr);
 
     function updateDurationSelectOptions(lang) {
         const currentSelected = durationSelect.value || "30";
@@ -471,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function calculateDatesAndTimes() {
-        if (!startDateInput.value || startDateInput.value < todayStr) startDateInput.value = todayStr;
+        if (!startDateInput.value) startDateInput.value = todayStr;
 
         const duration = parseInt(durationSelect.value) || 30;
         const startVal = new Date(startDateInput.value + 'T12:00:00');
@@ -502,6 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('txt-est-no-tadabbur').innerText = line(L.no, Math.max(1, est(1)), Math.max(3, est(3)));
         document.getElementById('txt-est-tadabbur').innerText = line(L.yes, Math.max(4, est(4)), Math.max(13, est(13)));
+        renderProgress();
     }
 
     startDateInput.addEventListener('change', calculateDatesAndTimes);
@@ -604,6 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
         set('txt-exp-ics', t.expIcs); set('txt-exp-word', t.expWord); set('txt-exp-pdf', t.expPdf);
 
         updateShareLabels();
+        updateProgressLabels();
         renderFab();
         calculateDatesAndTimes();
         displayNextQuote();
@@ -615,61 +648,201 @@ document.addEventListener('DOMContentLoaded', () => {
     const planSummaryBar = document.getElementById('planSummaryBar');
     let currentPlanData = [];
 
-    document.getElementById('btnBuildPlan').addEventListener('click', () => {
+    // ===== التقدم المحفوظ (في متصفح المستخدم) =====
+    const PK = 'daryahia_progress', DAY = 86400000;
+    const loadAll = () => { try { return JSON.parse(localStorage.getItem(PK)) || {}; } catch (e) { return {}; } };
+    const saveAll = (o) => { try { localStorage.setItem(PK, JSON.stringify(o)); } catch (e) {} };
+    const planKey = () => `${durationSelect.value}_${startDateInput.value}`;
+    const getPlanState = () => { const a = loadAll()[planKey()]; return { done: (a && a.done) || [], adj: (a && a.adj) || null }; };
+    const setPlanState = (st) => { const a = loadAll(); a[planKey()] = st; saveAll(a); };
+    const juzStartPage = n => n <= 1 ? 1 : 2 + 20 * (n - 1);
+    const juzOfPage = pg => pg < 22 ? 1 : Math.min(30, Math.floor((pg - 2) / 20) + 1);
+    const dayIndexToday = (startVal) => { const t = new Date(); t.setHours(12, 0, 0, 0); return Math.round((t - startVal) / DAY); };
+
+    const PT = {
+        ar: { stat: (d, n, p, s) => `أنجزت ${d} من ${n} يوم (${p}%)${s > 1 ? ` • 🔥 ${s} أيام متتالية` : ''}`, read: 'اقرأ ورد اليوم', missed: 'فاتني أيام', backup: 'نسخة احتياطية', restore: 'استيراد نسخة', alarm: 'تنبيه التقويم الساعة:', resched: (p, d) => `تمت إعادة توزيع ${p} صفحة على ${d} يوم`, nomiss: 'لا توجد أيام فائتة 👏', okImp: 'تم استيراد التقدم ✓', badImp: 'ملف غير صالح', saved: 'تم حفظ النسخة الاحتياطية ✓', rest: 'يوم راحة', pg: 'ص', occ: 'مناسبات قادمة' },
+        en: { stat: (d, n, p, s) => `Completed ${d} of ${n} days (${p}%)${s > 1 ? ` • 🔥 ${s}-day streak` : ''}`, read: "Read today's portion", missed: 'I missed days', backup: 'Backup', restore: 'Import backup', alarm: 'Calendar reminder at:', resched: (p, d) => `Redistributed ${p} pages over ${d} days`, nomiss: 'No missed days 👏', okImp: 'Progress imported ✓', badImp: 'Invalid file', saved: 'Backup saved ✓', rest: 'Rest day', pg: 'p.', occ: 'Upcoming occasions' },
+        es: { stat: (d, n, p, s) => `Completaste ${d} de ${n} días (${p}%)${s > 1 ? ` • 🔥 ${s} días seguidos` : ''}`, read: 'Leer la porción de hoy', missed: 'Me perdí días', backup: 'Copia de seguridad', restore: 'Importar copia', alarm: 'Recordatorio a las:', resched: (p, d) => `${p} páginas redistribuidas en ${d} días`, nomiss: 'Sin días perdidos 👏', okImp: 'Progreso importado ✓', badImp: 'Archivo no válido', saved: 'Copia guardada ✓', rest: 'Día libre', pg: 'pág.', occ: 'Próximas ocasiones' },
+        fr: { stat: (d, n, p, s) => `${d} jours sur ${n} accomplis (${p}%)${s > 1 ? ` • 🔥 ${s} jours d'affilée` : ''}`, read: 'Lire le passage du jour', missed: "J'ai manqué des jours", backup: 'Sauvegarde', restore: 'Importer une sauvegarde', alarm: 'Rappel à :', resched: (p, d) => `${p} pages redistribuées sur ${d} jours`, nomiss: 'Aucun jour manqué 👏', okImp: 'Progression importée ✓', badImp: 'Fichier invalide', saved: 'Sauvegarde enregistrée ✓', rest: 'Jour de repos', pg: 'p.', occ: 'Prochaines occasions' }
+    };
+    const OCC_N = {
+        ar: { n: { ramadan: 'رمضان', fitr: 'عيد الفطر', arafah: 'يوم عرفة', adha: 'عيد الأضحى', ashura: 'يوم عاشوراء', white: 'الأيام البيض' }, left: n => n === 0 ? 'اليوم' : n === 1 ? 'غداً' : `باقي ${n} يوم` },
+        en: { n: { ramadan: 'Ramadan', fitr: 'Eid al-Fitr', arafah: 'Day of Arafah', adha: 'Eid al-Adha', ashura: 'Day of Ashura', white: 'White Days' }, left: n => n === 0 ? 'Today' : n === 1 ? 'Tomorrow' : `${n} days left` },
+        es: { n: { ramadan: 'Ramadán', fitr: 'Eid al-Fitr', arafah: 'Día de Arafa', adha: 'Eid al-Adha', ashura: 'Día de Ashura', white: 'Días Blancos' }, left: n => n === 0 ? 'Hoy' : n === 1 ? 'Mañana' : `Faltan ${n} días` },
+        fr: { n: { ramadan: 'Ramadan', fitr: 'Aïd al-Fitr', arafah: "Jour d'Arafat", adha: 'Aïd al-Adha', ashura: "Jour d'Achoura", white: 'Jours Blancs' }, left: n => n === 0 ? "Aujourd'hui" : n === 1 ? 'Demain' : `Dans ${n} jours` }
+    };
+
+    const OCC = [{ k: 'ramadan', m: 9, d: 1 }, { k: 'fitr', m: 10, d: 1 }, { k: 'arafah', m: 12, d: 9 }, { k: 'adha', m: 12, d: 10 }, { k: 'ashura', m: 1, d: 10 }, { k: 'white', m: 0, d: 13 }];
+    function nextOccasions(from) {
+        const f = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { day: 'numeric', month: 'numeric', year: 'numeric' });
+        const found = {}, out = [];
+        for (let off = 0; off < 400 && out.length < OCC.length; off++) {
+            const dt = new Date(from); dt.setDate(from.getDate() + off);
+            const p = {}; f.formatToParts(dt).forEach(x => { p[x.type] = x.value; });
+            OCC.forEach(o => { if (!found[o.k] && +p.day === o.d && (o.m === 0 || +p.month === o.m)) { found[o.k] = 1; out.push({ k: o.k, off, date: dt }); } });
+        }
+        return out;
+    }
+
+    function renderOccasions() {
+        const O = OCC_N[currentLang] || OCC_N.ar;
+        const t = new Date(); t.setHours(12, 0, 0, 0);
+        document.getElementById('occGrid').innerHTML = nextOccasions(t).slice(0, 4).map(o =>
+            `<div class="occ-chip"><div class="occ-name">${O.n[o.k]}</div><div>${O.left(o.off)}</div><small style="color:var(--text-muted)">${hijri(o.date, HIJRI_FULL)}<br>${greg(o.date, HIJRI_FULL)}</small></div>`).join('');
+    }
+
+    function updateProgressLabels() {
+        const P = PT[currentLang] || PT.ar;
+        document.querySelectorAll('.txt-read').forEach(e => e.textContent = P.read);
+        document.getElementById('txt-missed').textContent = P.missed;
+        document.getElementById('txt-backup').textContent = P.backup;
+        document.getElementById('txt-restore').textContent = P.restore;
+        document.getElementById('txt-alarm-lbl').textContent = P.alarm;
+        document.getElementById('txt-occ-title').textContent = P.occ;
+        renderOccasions();
+        renderProgress();
+    }
+
+    function renderProgress() {
+        const duration = parseInt(durationSelect.value) || 30;
+        const st = getPlanState();
+        const done = st.done.length, pct = Math.round(done * 100 / duration);
+        const startVal = new Date(startDateInput.value + 'T12:00:00');
+        let k = Math.min(dayIndexToday(startVal), duration - 1);
+        if (!st.done.includes(k + 1)) k--;
+        let streak = 0;
+        while (k >= 0 && st.done.includes(k + 1)) { streak++; k--; }
+        const P = PT[currentLang] || PT.ar;
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressText').textContent = P.stat(done, duration, pct, streak);
+        document.getElementById('miniProgress').textContent = done > 0 ? P.stat(done, duration, pct, streak) : '';
+    }
+
+    function baseStartPage(i, duration) {
+        if (duration === 604) return i + 1;
+        if (duration === 302) return 2 * i + 1;
+        if (duration === 60) return juzStartPage(Math.floor(i / 2) + 1) + (i % 2 ? 10 : 0);
+        return juzStartPage(Math.floor(i * (30 / duration)) + 1);
+    }
+    function baseRanges(duration) {
+        const sp = Array.from({ length: duration }, (_, i) => baseStartPage(i, duration));
+        return sp.map((a, i) => [a, i === duration - 1 ? 604 : sp[i + 1] - 1]);
+    }
+    function rangeText(a, b) {
+        const P = PT[currentLang] || PT.ar, j1 = juzOfPage(a), j2 = juzOfPage(b), jt = i18n[currentLang].juzText;
+        return `${jt} ${j1 === j2 ? j1 : j1 + ' - ' + j2} (${P.pg} ${a}${a !== b ? ' - ' + b : ''})`;
+    }
+
+    function buildPlan(openModal) {
         const duration = parseInt(durationSelect.value);
         const startVal = new Date(startDateInput.value + 'T12:00:00');
         const endVal = new Date(endDateInput.value + 'T12:00:00');
+        const st = getPlanState(), base = baseRanges(duration), todayIdx = dayIndexToday(startVal);
+        const P = PT[currentLang] || PT.ar;
+        try { localStorage.setItem('daryahia_active', JSON.stringify({ d: duration, s: startDateInput.value })); } catch (e) {}
 
         planTableBody.innerHTML = '';
         currentPlanData = [];
-
         planSummaryBar.innerHTML = `
             <span><strong>${i18n[currentLang].lblDuration}</strong> ${duration} ${currentLang === 'ar' ? 'يوم' : 'days'}</span>
             <span><strong>${i18n[currentLang].lblStartDate}</strong> ${hijri(startVal, HIJRI_FULL)} <small>(${greg(startVal, HIJRI_FULL)})</small></span>
             <span><strong>${i18n[currentLang].lblEndDate}</strong> ${hijri(endVal, HIJRI_FULL)} <small>(${greg(endVal, HIJRI_FULL)})</small></span>`;
 
+        let lastSp = 1;
         for (let i = 0; i < duration; i++) {
-            const curDate = new Date(startVal);
-            curDate.setDate(startVal.getDate() + i);
-
-            const dateFormatted = hijri(curDate, DATE_ROW);
-            const gregFormatted = greg(curDate, DATE_ROW);
-
-            let readingText = '';
-            if (duration === 604) {
-                const pg = i + 1;
-                const juzNum = Math.min(30, Math.floor((pg - 1) / 20) + 1);
-                readingText = currentLang === 'ar' ? `صفحة ${pg} - [الجزء ${juzNum}]` : `Page ${pg} - [Juz ${juzNum}]`;
-            } else if (duration === 302) {
-                const startPg = (i * 2) + 1;
-                const endPg = Math.min(604, (i + 1) * 2);
-                const juzNum = Math.min(30, Math.floor((startPg - 1) / 20) + 1);
-                readingText = currentLang === 'ar'
-                    ? `صفحتان (ص ${startPg} - ${endPg}) - [الجزء ${juzNum}]`
-                    : `2 Pages (p. ${startPg}-${endPg}) - [Juz ${juzNum}]`;
-            } else if (duration === 60) {
-                const juzNum = Math.floor(i / 2) + 1;
-                const halfNum = (i % 2 === 0) ? (currentLang === 'ar' ? 'النصف الأول' : '1st Half') : (currentLang === 'ar' ? 'النصف الثاني' : '2nd Half');
-                readingText = currentLang === 'ar' ? `نصف جزء (الجزء ${juzNum} - ${halfNum})` : `Half Juz (Juz ${juzNum} - ${halfNum})`;
-            } else {
-                const startJuz = Math.floor(i * (30 / duration)) + 1;
-                const endJuz = Math.min(30, Math.floor((i + 1) * (30 / duration)));
-                readingText = (startJuz === endJuz)
-                    ? `${i18n[currentLang].juzText} ${startJuz}`
-                    : `${i18n[currentLang].juzText} ${startJuz} - ${endJuz}`;
-            }
-
-            currentPlanData.push({ dayNum: i + 1, dateStr: dateFormatted, gregStr: gregFormatted, rawDate: curDate, juzText: readingText });
+            const curDate = new Date(startVal); curDate.setDate(startVal.getDate() + i);
+            const dateFormatted = hijri(curDate, DATE_ROW), gregFormatted = greg(curDate, DATE_ROW);
+            const r = (st.adj && (i in st.adj.rows)) ? st.adj.rows[i] : base[i];
+            const done = st.done.includes(i + 1);
+            let readingText = r ? rangeText(r[0], r[1]) : P.rest;
+            if (r) lastSp = r[0];
+            if (st.adj && i < st.adj.from && !done) readingText += ' ↪';
+            currentPlanData.push({ dayNum: i + 1, dateStr: dateFormatted, gregStr: gregFormatted, rawDate: curDate, juzText: readingText, sp: lastSp });
 
             const tr = document.createElement('tr');
+            if (i === todayIdx) tr.style.background = 'var(--accent-light)';
             tr.innerHTML = `
                 <td><strong>${i18n[currentLang].thDay} ${i + 1}</strong></td>
                 <td>${dateFormatted}<br><small style="color:var(--text-muted)">${gregFormatted}</small></td>
                 <td><span style="color:var(--accent-color);font-weight:700">${readingText}</span></td>
-                <td><input type="checkbox" style="width:18px;height:18px;accent-color:var(--accent-color);cursor:pointer"></td>`;
+                <td><input type="checkbox" data-day="${i + 1}" ${done ? 'checked' : ''} style="width:18px;height:18px;accent-color:var(--accent-color);cursor:pointer"></td>`;
             planTableBody.appendChild(tr);
         }
-        planModal.classList.add('active');
+        planTableBody.querySelectorAll('input[type=checkbox]').forEach(cb => cb.addEventListener('change', () => {
+            const s2 = getPlanState(), d = +cb.dataset.day;
+            s2.done = cb.checked ? Array.from(new Set(s2.done.concat(d))) : s2.done.filter(x => x !== d);
+            setPlanState(s2); renderProgress();
+        }));
+        renderProgress();
+        if (openModal) planModal.classList.add('active');
+    }
+
+    document.getElementById('btnBuildPlan').addEventListener('click', () => buildPlan(true));
+
+    // اقرأ ورد اليوم: أول يوم لم يُنجز حتى اليوم، ويفتح الصفحة على quran.com
+    document.querySelectorAll('.btn-read-open').forEach(b => b.addEventListener('click', () => {
+        buildPlan(false);
+        const st = getPlanState(), n = currentPlanData.length;
+        const t = Math.max(0, Math.min(dayIndexToday(new Date(startDateInput.value + 'T12:00:00')), n - 1));
+        let idx = currentPlanData.findIndex((x, i) => i <= t && !st.done.includes(x.dayNum));
+        if (idx < 0) idx = t;
+        window.open(`https://quran.com/page/${currentPlanData[idx].sp || 1}`, '_blank', 'noopener');
+    }));
+
+    // فاتني أيام: إعادة توزيع الصفحات المتبقية على الأيام المتبقية
+    document.getElementById('btnMissed').addEventListener('click', () => {
+        const P = PT[currentLang] || PT.ar, planStatus = document.getElementById('planStatus');
+        const duration = parseInt(durationSelect.value), base = baseRanges(duration), st = getPlanState();
+        const t = Math.max(0, Math.min(dayIndexToday(new Date(startDateInput.value + 'T12:00:00')), duration - 1));
+        let missed = 0; for (let i = 0; i < t; i++) if (!st.done.includes(i + 1)) missed++;
+        if (!missed) { planStatus.textContent = P.nomiss; return; }
+        const pages = [];
+        for (let i = 0; i < duration; i++) {
+            if (st.done.includes(i + 1)) continue;
+            const r = (st.adj && (i in st.adj.rows)) ? st.adj.rows[i] : base[i];
+            if (r) for (let q = r[0]; q <= r[1]; q++) pages.push(q);
+        }
+        let targets = []; for (let i = t; i < duration; i++) if (!st.done.includes(i + 1)) targets.push(i);
+        if (!targets.length) targets = [duration - 1];
+        const rows = {};
+        if (st.adj) Object.keys(st.adj.rows).forEach(k => { if (st.done.includes(+k + 1)) rows[k] = st.adj.rows[k]; });
+        const per = Math.floor(pages.length / targets.length), extra = pages.length % targets.length;
+        let pos = 0;
+        targets.forEach((day, k) => { const c = per + (k < extra ? 1 : 0); rows[day] = c ? [pages[pos], pages[pos + c - 1]] : null; pos += c; });
+        st.adj = { from: t, rows };
+        setPlanState(st); buildPlan(true);
+        planStatus.textContent = P.resched(pages.length, targets.length);
+    });
+
+    // نسخة احتياطية: تصدير واستيراد التقدم كملف
+    function applyActive() {
+        try {
+            const a = JSON.parse(localStorage.getItem('daryahia_active'));
+            if (a && Array.from(durationSelect.options).some(o => o.value === String(a.d)) && /^\d{4}-\d{2}-\d{2}$/.test(a.s)) { durationSelect.value = String(a.d); startDateInput.value = a.s; return true; }
+        } catch (e) {}
+        return false;
+    }
+    document.getElementById('btnBackup').addEventListener('click', () => {
+        let active = null; try { active = JSON.parse(localStorage.getItem('daryahia_active')); } catch (e) {}
+        const blob = new Blob([JSON.stringify({ v: 1, progress: loadAll(), active })], { type: 'application/json' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'dar-yahia-backup.json'; a.click();
+        document.getElementById('planStatus').textContent = (PT[currentLang] || PT.ar).saved;
+    });
+    document.getElementById('btnRestore').addEventListener('click', () => document.getElementById('restoreFile').click());
+    document.getElementById('restoreFile').addEventListener('change', (e) => {
+        const f = e.target.files[0]; if (!f) return;
+        const P = PT[currentLang] || PT.ar, planStatus = document.getElementById('planStatus');
+        const rd = new FileReader();
+        rd.onload = () => {
+            try {
+                const d = JSON.parse(rd.result);
+                if (!d || typeof d.progress !== 'object' || !Object.values(d.progress).every(v => v && Array.isArray(v.done))) throw new Error('bad');
+                saveAll(Object.assign(loadAll(), d.progress));
+                if (d.active && d.active.d && d.active.s) { localStorage.setItem('daryahia_active', JSON.stringify(d.active)); applyActive(); calculateDatesAndTimes(); }
+                buildPlan(true); planStatus.textContent = P.okImp;
+            } catch (err) { planStatus.textContent = P.badImp; }
+        };
+        rd.readAsText(f); e.target.value = '';
     });
 
     document.getElementById('closePlanModalBtn').addEventListener('click', () => planModal.classList.remove('active'));
@@ -677,21 +850,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getExportFileName(ext) { return `dar-yahia.phsyf-${startDateInput.value || 'plan'}.${ext}`; }
 
-    // تصدير ICS (التقويمات تشترط تواريخ ميلادية داخلياً)
+    // تصدير ICS مع تنبيه (التقويمات تشترط تواريخ ميلادية داخلياً)
     document.getElementById('btnExportICS').addEventListener('click', () => {
-        let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Dar Yahia//Quran Khatma Plan//AR\nCALSCALE:GREGORIAN\n";
+        if (!currentPlanData.length) buildPlan(false);
+        const at = document.getElementById('alarmTime').value;
+        const esc = (t) => String(t).replace(/,/g, '\\,');
+        const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+        const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Dar Yahia//Quran Khatma Plan//AR', 'CALSCALE:GREGORIAN'];
         currentPlanData.forEach(item => {
             const d = item.rawDate;
             const ds = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
-            ics += "BEGIN:VEVENT\n";
-            ics += `DTSTART;VALUE=DATE:${ds}\n`;
-            ics += `SUMMARY:ورد القرآن - ${item.juzText}\n`;
-            ics += `DESCRIPTION:خطة ختْم القرآن الكريم - ${i18n.ar.title} - اليوم ${item.dayNum}\n`;
-            ics += "END:VEVENT\n";
+            L.push('BEGIN:VEVENT', `UID:daryahia-${ds}-${item.dayNum}@daryahia`, `DTSTAMP:${stamp}`, `DTSTART;VALUE=DATE:${ds}`,
+                `SUMMARY:${esc('ورد القرآن - ' + item.juzText)}`,
+                `DESCRIPTION:${esc('خطة ختْم القرآن الكريم - ' + i18n.ar.title + ' - اليوم ' + item.dayNum + ' - ' + item.dateStr)}`);
+            if (at) {
+                const [h, m] = at.split(':').map(Number);
+                L.push('BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:ورد القرآن اليوم', `TRIGGER;RELATED=START:PT${h}H${m}M`, 'END:VALARM');
+            }
+            L.push('END:VEVENT');
         });
-        ics += "END:VCALENDAR";
+        L.push('END:VCALENDAR');
         const link = document.createElement('a');
-        link.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8;' }));
+        link.href = URL.createObjectURL(new Blob([L.join('\r\n')], { type: 'text/calendar;charset=utf-8;' }));
         link.download = getExportFileName('ics');
         link.click();
     });
@@ -963,6 +1143,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (qd && Array.from(durationSelect.options).some(o => o.value === qd)) durationSelect.value = qd;
     if (qs && /^\d{4}-\d{2}-\d{2}$/.test(qs) && qs >= todayStr) startDateInput.value = qs;
     if (qd || qs) calculateDatesAndTimes();
+    else if (applyActive()) calculateDatesAndTimes();
+
 });
 </script>
 </body>
