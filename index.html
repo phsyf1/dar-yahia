@@ -5,24 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" id="theme-color-meta" content="#0b1329">
 <title>دَار يحيي | Dar Yahia</title>
+<meta name="description" content="دَار يحيي: منصة لتنظيم وتتبع ختْم القرآن الكريم، جدول يومي بالتاريخ الهجري والميلادي.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="دَار يحيي | Dar Yahia">
+<meta property="og:title" content="دَار يحيي | Dar Yahia">
+<meta property="og:description" content="خطط لختمتك واتبع وردك اليومي بالتاريخ الهجري، وشارك خطتك مع أحبابك.">
+<meta property="og:locale" content="ar_AR">
+<meta name="twitter:card" content="summary">
+<script>
+/* لغة ووضع وحجم خط الجهاز قبل ظهور الصفحة لمنع الوميض */
+(function(){var d=document.documentElement,L=['ar','en','es','fr'],l,t,f;
+try{l=localStorage.getItem('daryahia_lang');t=localStorage.getItem('daryahia_theme');f=parseFloat(localStorage.getItem('daryahia_font'));if(f)d.style.fontSize=(16*f)+'px'}catch(e){}
+if(L.indexOf(l)<0){l=((navigator.language||'ar')+'').slice(0,2).toLowerCase();if(L.indexOf(l)<0)l='ar'}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}
+d.setAttribute('lang',l);d.setAttribute('dir',l==='ar'?'rtl':'ltr');d.setAttribute('data-theme',t);window.__L=l;})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 <style>
 @font-face{font-family:'Hafs';src:url('https://cdn.jsdelivr.net/gh/moujali/quran-fonts@master/UthmanTN1Ver10.otf') format('opentype');font-display:swap}
 :root{--bg-color:#0b1329;--bg-gradient:radial-gradient(circle at top right,rgba(212,175,55,.15),transparent 50%),radial-gradient(circle at bottom left,rgba(212,175,55,.08),transparent 50%),#0b1329;--card-bg-glass:rgba(21,32,62,.78);--text-color:#fff;--text-muted:#cbd5e1;--accent-color:#d4af37;--accent-light:rgba(212,175,55,.2);--border-color:rgba(212,175,55,.35);--line-color:rgba(255,255,255,.15);--input-bg:rgba(21,32,62,.85);--quote-bracket-color:#94a3b8;--shadow:0 10px 30px rgba(0,0,0,.4);--shadow-sm:0 4px 12px rgba(0,0,0,.2)}
 [data-theme="light"]{--bg-color:#f8fafc;--bg-gradient:radial-gradient(circle at top right,rgba(212,175,55,.2),transparent 50%),radial-gradient(circle at bottom left,rgba(212,175,55,.12),transparent 50%),#f8fafc;--card-bg-glass:rgba(255,255,255,.88);--text-color:#0b1329;--text-muted:#475569;--accent-color:#b8860b;--accent-light:rgba(184,134,11,.15);--border-color:rgba(184,134,11,.35);--line-color:rgba(0,0,0,.12);--input-bg:rgba(255,255,255,.9);--quote-bracket-color:#64748b;--shadow:0 10px 25px rgba(0,0,0,.08);--shadow-sm:0 2px 10px rgba(0,0,0,.05)}
+html[data-theme="dark"]{color-scheme:dark}
+html[data-theme="light"]{color-scheme:light}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Tajawal',sans-serif;transition:background-color .4s ease,color .4s ease,border-color .4s ease}
+:focus-visible{outline:2px solid var(--accent-color);outline-offset:2px}
 body{background:var(--bg-gradient);background-attachment:fixed;color:var(--text-color);line-height:1.8;padding:12px 15px 90px;min-height:100vh;overflow-x:hidden}
 .container{max-width:950px;margin:0 auto}
-.animate-fade-up{animation:fadeUp 1s cubic-bezier(.16,1,.3,1) forwards;opacity:0}
+.animate-fade-up{animation:fadeUp 1s cubic-bezier(.16,1,.3,1) both}
 .delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}.delay-3{animation-delay:.45s}.delay-4{animation-delay:.6s}.delay-5{animation-delay:.75s}
 @keyframes fadeUp{0%{opacity:0;transform:translateY(25px) scale(.98)}100%{opacity:1;transform:none}}
 .section-title{font-size:1.3rem;color:var(--text-color);margin:30px 0 15px;border-right:4px solid var(--accent-color);padding-right:10px;font-weight:700}
 html[dir="ltr"] .section-title{border-right:none;border-left:4px solid var(--accent-color);padding-right:0;padding-left:10px}
 .toolbar{position:sticky;top:10px;z-index:1000;display:flex;align-items:center;gap:8px;margin-bottom:25px;width:100%}
-.search-box{display:flex;align-items:center;background:var(--input-bg);border:1px solid var(--border-color);border-radius:14px;padding:2px 12px;flex:1;box-shadow:var(--shadow-sm);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);height:42px}
+.search-box{display:flex;align-items:center;background:var(--input-bg);border:1px solid var(--border-color);border-radius:14px;padding:2px 12px;flex:1;min-width:0;box-shadow:var(--shadow-sm);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);height:42px}
 .search-box input{background:transparent;border:none;outline:none;color:var(--text-color);font-size:.9rem;width:100%;padding:6px}
 .search-btn{background:none;border:none;color:var(--accent-color);font-size:1rem;cursor:pointer}
 .control-btn{background:var(--input-bg);border:1px solid var(--border-color);color:var(--accent-color);width:42px;height:42px;border-radius:14px;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--shadow-sm);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .2s ease,border-color .3s ease}
@@ -40,17 +60,28 @@ h1{font-size:2.2rem;font-weight:700;margin-bottom:6px;letter-spacing:.5px}
 .subtitle{color:var(--accent-color);font-size:1.05rem;margin-bottom:10px;font-weight:600}
 .bio{color:var(--text-muted);max-width:680px;margin:0 auto;font-size:.95rem;line-height:1.8}
 .simple-divider{width:100%;height:1px;background-color:var(--line-color);margin:25px 0;border:none}
-.quote-box-card{background:var(--card-bg-glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border-color);border-radius:20px;padding:22px 20px;margin-bottom:35px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.quote-box-card{background:var(--card-bg-glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border-color);border-radius:20px;padding:34px 20px 22px;margin-bottom:35px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden;cursor:pointer}
+.quote-actions{position:absolute;top:8px;inset-inline-end:10px;display:flex;gap:6px;align-items:center}
+.q-btn{background:transparent;border:1px solid var(--border-color);color:var(--accent-color);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+.q-btn:hover{background:var(--accent-light)}
+.q-pause{position:absolute;top:12px;inset-inline-start:14px;color:var(--text-muted);font-size:.8rem;display:none}
+.quote-box-card.paused .q-pause{display:block}
 .quote-content-wrapper{min-height:110px;display:flex;align-items:center;justify-content:center;transition:opacity .6s cubic-bezier(.4,0,.2,1);opacity:1}
 .quote-content-wrapper.fade-out{opacity:0}
 .quote-container{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}
-.quote-main-text{font-family:'Hafs','Amiri Quran','Amiri',serif;font-size:1.35rem;line-height:2.2;color:var(--text-color)}
+.quote-main-text{font-family:'Hafs','Amiri Quran',serif;font-size:1.35rem;line-height:2.2;color:var(--text-color)}
 .quote-franco-text{font-size:.88rem;color:var(--text-muted);font-style:italic;direction:ltr}
 .quote-translation-text{font-size:.92rem;color:var(--text-muted)}
 .quote-bracket{color:var(--quote-bracket-color);font-size:.82rem;font-weight:500;margin-top:6px;display:block}
-.khatma-special-wrapper{position:relative;margin-bottom:35px;border-radius:22px;padding:3px;overflow:hidden;box-shadow:0 10px 30px rgba(212,175,55,.15)}
-.khatma-special-wrapper::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(transparent,var(--accent-color),transparent 30%,#fff 50%,transparent 70%);animation:rotateBorder 6s linear infinite;z-index:0}
-@keyframes rotateBorder{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+.khatma-special-wrapper{position:relative;margin-bottom:35px;border-radius:22px;padding:3px;box-shadow:0 10px 30px rgba(212,175,55,.15)}
+.ring{position:absolute;inset:1.5px;width:calc(100% - 3px);height:calc(100% - 3px);overflow:visible;pointer-events:none;z-index:2}
+.ring rect{fill:none;stroke-width:3;stroke-linecap:round}
+.ring .base{stroke:var(--border-color)}
+.ring .g{animation:ringMove 8s linear infinite}
+.ring .g1{stroke:var(--accent-color);opacity:.28;stroke-dasharray:0 34 32 34}
+.ring .g2{stroke:var(--accent-color);opacity:.75;stroke-dasharray:0 40 20 40}
+.ring .g3{stroke:#fff3c4;stroke-dasharray:0 46 8 46;filter:drop-shadow(0 0 3px rgba(255,236,170,.9))}
+@keyframes ringMove{to{stroke-dashoffset:-100}}
 .khatma-special-card{position:relative;z-index:1;background:var(--card-bg-glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:20px;padding:25px 20px;text-align:center}
 .khatma-inner-header{font-size:1.25rem;color:var(--accent-color);font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px}
 .khatma-inner-header i{font-size:1.3rem;color:var(--accent-color)}
@@ -62,10 +93,22 @@ html[dir="ltr"] .input-group{text-align:left}
 .custom-select:focus{border-color:var(--accent-color)}
 .custom-select option{background:#15203e;color:#fff}
 [data-theme="light"] .custom-select option{background:#fff;color:#0b1329}
-/* التاريخ الهجري */
 .hijri-field{position:relative}
 .hijri-display{background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-color);padding:10px 14px;border-radius:12px;font-size:.95rem;min-height:44px}
 .hijri-field input[type=date]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0}
+.input-group .chips{justify-content:flex-start;margin:2px 0 0}
+.chip-btn,.chip{background:var(--input-bg);border:1px solid var(--border-color);color:var(--accent-color);border-radius:999px;padding:4px 12px;font-size:.8rem;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;position:relative}
+.chip-btn:hover,.chip.on{background:var(--accent-color);color:#fff;border-color:var(--accent-color)}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip:focus-within{outline:2px solid var(--accent-color);outline-offset:2px}
+.opt-box{background:var(--accent-light);border:1px solid var(--border-color);border-radius:12px;padding:10px 14px;margin:10px 0;text-align:right}
+html[dir="ltr"] .opt-box{text-align:left}
+.opt-box summary{cursor:pointer;font-weight:700;color:var(--accent-color);font-size:.92rem}
+.opt-hint{font-size:.8rem;color:var(--text-muted);margin:6px 0}
+.helper-row{display:flex;flex-direction:column;gap:6px;margin:8px 0;font-size:.88rem}
+.helper-row input[type=range]{accent-color:var(--accent-color);width:100%}
+.helper-res{font-weight:700;color:var(--text-color);font-size:.9rem;margin:8px 0}
 .time-estimate-box{background:var(--accent-light);border:1px dashed var(--accent-color);border-radius:14px;padding:12px 16px;margin:15px 0 20px;font-size:.92rem;color:var(--text-color);display:flex;flex-direction:column;gap:4px;text-align:center}
 .time-estimate-title{font-weight:700;color:var(--accent-color)}
 .btn-action-primary{background:var(--accent-color);color:#fff;border:none;padding:12px 28px;border-radius:14px;font-size:1rem;font-weight:bold;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 15px rgba(212,175,55,.3);transition:transform .2s ease,opacity .2s ease}
@@ -97,27 +140,41 @@ html[dir="ltr"] .close-modal{left:auto;right:16px}
 .plan-table{width:100%;border-collapse:collapse;text-align:center;font-size:.9rem}
 .plan-table th{background:var(--input-bg);color:var(--accent-color);padding:12px;border-bottom:1px solid var(--border-color)}
 .plan-table td{padding:10px;border-bottom:1px solid var(--line-color);color:var(--text-color)}
+.plan-table .month-row td{background:var(--accent-light);color:var(--accent-color);font-weight:700;padding:6px;font-size:.88rem}
+.dua-card{background:var(--accent-light);border:1px solid var(--border-color);border-radius:14px;padding:14px 16px;margin:6px 0;text-align:center}
+.dua-card h4{color:var(--accent-color);margin-bottom:6px}
+.dua-ar{font-family:'Hafs','Amiri Quran',serif;font-size:1.15rem;line-height:2.1;color:var(--text-color)}
+.dua-tr,.dua-note{font-size:.82rem;color:var(--text-muted);margin-top:6px}
 .plan-export-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:15px}
 .btn-export{background:var(--input-bg);border:1px solid var(--border-color);color:var(--accent-color);padding:10px 18px;border-radius:12px;font-size:.88rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .2s ease,border-color .2s ease}
 .btn-export:hover{border-color:var(--accent-color);transform:translateY(-2px)}
 footer{text-align:center;padding:25px 0 10px;color:var(--text-muted);font-size:.88rem;border-top:1px solid var(--line-color);margin-top:30px}
-/* زر المتابعة العائم */
-.follow-fab{position:fixed;bottom:20px;right:16px;z-index:900;direction:ltr;display:flex;flex-direction:row-reverse;align-items:center;height:56px;min-width:56px;border-radius:28px;color:#fff;text-decoration:none;background:#1877F2;border:1px solid rgba(255,255,255,.2);box-shadow:0 6px 18px rgba(0,0,0,.35);overflow:hidden;transition:background-color .4s ease}
+.follow-fab{position:fixed;bottom:20px;right:16px;z-index:900;direction:ltr;display:flex;flex-direction:row-reverse;align-items:center;height:56px;min-width:56px;border-radius:28px;color:#fff;text-decoration:none;background:#1877F2;border:1px solid rgba(255,255,255,.2);box-shadow:0 6px 18px rgba(0,0,0,.35);overflow:hidden;transition:background-color .4s ease,opacity .3s ease,transform .3s ease}
+.follow-fab.hide{opacity:0;pointer-events:none;transform:translateY(20px)}
+body:has(.modal-overlay.active) .follow-fab{display:none}
 .follow-fab i{width:54px;height:54px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff}
 .fab-text{max-width:0;opacity:0;white-space:nowrap;direction:rtl;font-weight:700;font-size:.92rem;transition:max-width .5s ease,opacity .4s ease,padding-left .5s ease}
 html[dir="ltr"] .fab-text{direction:ltr}
 .follow-fab.open .fab-text{max-width:190px;opacity:1;padding-left:18px}
+#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:#15203e;color:#fff;border:1px solid var(--border-color);border-radius:12px;padding:8px 16px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;z-index:10000}
+#toast.show{opacity:1;transform:translateX(-50%)}
+@media (max-width:480px){
+.control-btn{width:38px;height:38px}.toolbar{gap:6px}.search-box{height:38px}
+.follow-fab{height:46px;min-width:46px;border-radius:23px;bottom:14px;right:12px}.follow-fab i{width:44px;height:44px;font-size:1.25rem}.fab-text{font-size:.82rem}
+}
+@media (prefers-reduced-motion:reduce){.animate-fade-up{animation:none}.ring .g{animation:none}.follow-fab,.fab-text{transition:none}}
 @media print{
 body *{visibility:hidden}
 body{background:#fff!important;color:#000!important;padding:0!important;margin:0!important}
 .modal-overlay.active,.modal-overlay.active *{visibility:visible}
 .modal-overlay.active{position:absolute!important;left:0!important;top:0!important;width:100%!important;height:auto!important;background:transparent!important;backdrop-filter:none!important;padding:0!important;margin:0!important;display:block!important}
 .modal-box{max-width:100%!important;max-height:none!important;box-shadow:none!important;border:none!important;background:transparent!important;color:#000!important;padding:10px!important;overflow:visible!important}
-.close-modal,.plan-export-btns,.toolbar,header,.quote-box-card,.khatma-special-wrapper,.section-card,.social-links,.divider-with-text,.section-title,footer,.follow-fab{display:none!important}
-.plan-summary-bar{background:#f5f5f5!important;color:#000!important;border:1px solid #ddd!important}
+.close-modal,.plan-export-btns,.toolbar,header,.quote-box-card,.khatma-special-wrapper,.section-card,.social-links,.divider-with-text,.section-title,footer,.follow-fab,#toast{display:none!important}
+.plan-summary-bar,.dua-card{background:#f5f5f5!important;color:#000!important;border:1px solid #ddd!important}
+.dua-ar,.dua-card h4,.dua-tr,.dua-note{color:#000!important}
 .plan-table{border:1px solid #000!important;color:#000!important;width:100%!important}
 .plan-table th{background-color:#eaeaea!important;color:#000!important;border:1px solid #000!important}
-.plan-table td{border:1px solid #000!important;color:#000!important}
+.plan-table td,.plan-table .month-row td{border:1px solid #000!important;color:#000!important;background:#fff!important}
 }
 </style>
 </head>
@@ -125,13 +182,13 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
 
 <div class="container">
     <div class="toolbar animate-fade-up">
-        <form class="search-box" id="searchForm">
+        <form class="search-box" id="searchForm" role="search">
             <input type="text" id="searchInput" placeholder="اكتب للبحث..">
             <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
-        <button class="control-btn" id="shareBtn" type="button" title="مشاركة المنصة" aria-label="Share"><i class="fa-solid fa-share-nodes"></i></button>
+        <button class="control-btn" id="shareBtn" type="button"><i class="fa-solid fa-share-nodes"></i></button>
         <div class="lang-wrapper">
-            <button class="control-btn" id="langBtn" type="button" aria-label="Language Menu"><i class="fa-solid fa-globe"></i></button>
+            <button class="control-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-globe"></i></button>
             <div class="lang-dropdown" id="langDropdown">
                 <button type="button" class="lang-option" data-lang="ar">العربية</button>
                 <button type="button" class="lang-option" data-lang="en">English</button>
@@ -139,7 +196,8 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
                 <button type="button" class="lang-option" data-lang="fr">Français</button>
             </div>
         </div>
-        <button class="control-btn" id="themeToggle" type="button" aria-label="Toggle Theme"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+        <button class="control-btn" id="fontBtn" type="button"><span style="font-weight:700;font-size:.95rem">Aa</span></button>
+        <button class="control-btn" id="themeToggle" type="button"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
     </div>
 
     <header class="animate-fade-up delay-1">
@@ -150,20 +208,26 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
         <hr class="simple-divider">
     </header>
 
-    <h2 class="section-title animate-fade-up delay-2" id="txt-quote-title">لماذا نقرأ القرآن ونتعلمه؟!</h2>
-
-    <section class="quote-box-card animate-fade-up delay-2">
-        <div class="quote-content-wrapper" id="quoteWrapper"><div class="quote-container" id="quoteTextDisplay"></div></div>
-    </section>
-
-    <section class="khatma-special-wrapper animate-fade-up delay-3">
+    <section class="khatma-special-wrapper animate-fade-up delay-2">
+        <svg class="ring" aria-hidden="true">
+            <rect class="base" x="0" y="0" width="100%" height="100%" rx="20.5" ry="20.5"/>
+            <rect class="g g1" x="0" y="0" width="100%" height="100%" rx="20.5" ry="20.5" pathLength="100"/>
+            <rect class="g g2" x="0" y="0" width="100%" height="100%" rx="20.5" ry="20.5" pathLength="100"/>
+            <rect class="g g3" x="0" y="0" width="100%" height="100%" rx="20.5" ry="20.5" pathLength="100"/>
+        </svg>
         <div class="khatma-special-card">
             <div class="khatma-inner-header"><i class="fa-solid fa-kaaba"></i><span id="txt-khatma-header">تحديد وتعديل خطة الختمة</span></div>
-            <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:10px" id="txt-khatma-desc">اختر المدة وتاريخ بداية الختمة وسيتم حساب الورد اليومي وتوزيعه تلقائياً بدءاً من اليوم الذي تحدده.</p>
+            <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:10px" id="txt-khatma-desc"></p>
+
+            <div class="chips" id="quickPlans">
+                <button type="button" class="chip-btn" data-q="week" id="q-week"></button>
+                <button type="button" class="chip-btn" data-q="month" id="q-month"></button>
+                <button type="button" class="chip-btn" data-q="ramadan" id="q-ramadan"></button>
+            </div>
 
             <div class="khatma-inputs-grid">
                 <div class="input-group">
-                    <label id="lbl-duration"><i class="fa-solid fa-clock"></i> مدة الختمة:</label>
+                    <label id="lbl-duration" for="khatmaDuration"><i class="fa-solid fa-clock"></i> مدة الختمة:</label>
                     <select id="khatmaDuration" class="custom-select"></select>
                 </div>
                 <div class="input-group">
@@ -172,6 +236,12 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
                         <div class="hijri-display" id="startHijri"></div>
                         <input type="date" id="khatmaStartDate" aria-label="Start date">
                     </div>
+                    <div class="chips" id="dateChips">
+                        <button type="button" class="chip-btn" data-d="today" id="c-today"></button>
+                        <button type="button" class="chip-btn" data-d="tomorrow" id="c-tomorrow"></button>
+                        <button type="button" class="chip-btn" data-d="nextmonth" id="c-nextmonth"></button>
+                        <button type="button" class="chip-btn" data-d="ramadan" id="c-ramadan"></button>
+                    </div>
                 </div>
                 <div class="input-group">
                     <label id="lbl-end-date"><i class="fa-solid fa-flag-checkered"></i> تاريخ الانتهاء المتوقع:</label>
@@ -179,6 +249,27 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
                     <input type="hidden" id="khatmaEndDate">
                 </div>
             </div>
+
+            <details class="opt-box" id="restBox">
+                <summary id="txt-rest-sum"></summary>
+                <p class="opt-hint" id="txt-rest-hint"></p>
+                <div class="chips" id="restChips"></div>
+            </details>
+
+            <details class="opt-box" id="helperBox">
+                <summary id="txt-h-sum"></summary>
+                <div class="helper-row">
+                    <label for="helpMinutes" id="txt-h-time"></label>
+                    <select id="helpMinutes" class="custom-select"></select>
+                </div>
+                <div class="helper-row">
+                    <label for="speedRange"><span id="txt-h-speed"></span> <b id="speedVal">2</b></label>
+                    <input type="range" id="speedRange" min="1" max="12" step="0.5" value="2">
+                    <span class="opt-hint" id="txt-h-hint"></span>
+                </div>
+                <div class="helper-res" id="helperResult" aria-live="polite"></div>
+                <button type="button" class="btn-export" id="btnApplySuggested"><i class="fa-solid fa-check"></i> <span id="txt-h-apply"></span></button>
+            </details>
 
             <div class="time-estimate-box">
                 <span class="time-estimate-title" id="txt-est-title"><i class="fa-solid fa-hourglass-half"></i> الوقت اليومي المتوقع لإنجاز الورد:</span>
@@ -193,11 +284,22 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
         </div>
     </section>
 
+    <h2 class="section-title animate-fade-up delay-3" id="txt-quote-title">لماذا نقرأ القرآن ونتعلمه؟!</h2>
+
+    <section class="quote-box-card animate-fade-up delay-3" id="quoteCard">
+        <span class="q-pause" id="qPauseIcon"><i class="fa-solid fa-pause"></i></span>
+        <div class="quote-actions">
+            <button type="button" class="q-btn" id="qCopy"><i class="fa-regular fa-copy"></i></button>
+            <button type="button" class="q-btn" id="qShare"><i class="fa-solid fa-share-nodes"></i></button>
+        </div>
+        <div class="quote-content-wrapper" id="quoteWrapper"><div class="quote-container" id="quoteTextDisplay"></div></div>
+    </section>
+
     <h2 class="section-title animate-fade-up delay-4" id="txt-about-title">من أنا "مؤسس الموقع"</h2>
 
     <section class="section-card animate-fade-up delay-4">
         <p style="font-size:.95rem;line-height:1.8;color:var(--text-color)" id="txt-about-content">
-            <a href="https://phsyf1.github.io/physf/" target="_blank" class="author-link" id="txt-author-name">فارس محمد داهش</a>.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.
+            <a href="https://phsyf1.github.io/physf/" target="_blank" rel="noopener" class="author-link" id="txt-author-name">فارس محمد داهش</a>.. شاعر وصانع محتوى مصري، من مواليد ٣ يوليو ٢٠٠٣ م الموافق ٣ جمادى الأولى ١٤٢٤ هـ، بمحافظة أسيوط وبالتحديد بمدينة الغنايم.. أسعى في مسيرة حياتي إلى ترك أثر نافع بين الناس، سواء بتلاواتي أو قصائدي الشعرية أو محتواي المرئي على مواقع التواصل الاجتماعي.
         </p>
     </section>
 
@@ -207,6 +309,7 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
         <form class="contact-form" action="https://formsubmit.co/faris.dahesh@gmail.com" method="POST">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" id="honey" style="display:none" tabindex="-1" autocomplete="off">
             <input type="text" name="name" class="form-input" id="inputName" placeholder="اسم الكريم" required>
             <input type="email" name="email" class="form-input" id="inputEmail" placeholder="بريدك الإلكتروني" required>
             <textarea name="message" class="form-textarea" id="inputMsg" placeholder="اكتب رسالتك هنا..." required></textarea>
@@ -218,23 +321,22 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
     <section class="animate-fade-up delay-5">
         <div class="divider-with-text"><span id="txt-follow-me">شرفنا بمتابعتك</span></div>
         <div class="social-links">
-            <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" class="social-btn"><i class="fa-brands fa-youtube"></i> <span id="lbl-social-yt">يوتيوب</span></a>
-            <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" class="social-btn"><i class="fa-brands fa-tiktok"></i> <span id="lbl-social-tt">تيك توك</span></a>
-            <a href="https://t.me/phsyf1" target="_blank" class="social-btn"><i class="fa-brands fa-telegram"></i> <span id="lbl-social-tg">تيليجرام</span></a>
-            <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i> <span id="lbl-social-fb">فيسبوك</span></a>
+            <a href="https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw" target="_blank" rel="noopener" class="social-btn"><i class="fa-brands fa-youtube"></i> <span id="lbl-social-yt">يوتيوب</span></a>
+            <a href="https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt" target="_blank" rel="noopener" class="social-btn"><i class="fa-brands fa-tiktok"></i> <span id="lbl-social-tt">تيك توك</span></a>
+            <a href="https://t.me/phsyf1" target="_blank" rel="noopener" class="social-btn"><i class="fa-brands fa-telegram"></i> <span id="lbl-social-tg">تيليجرام</span></a>
+            <a href="https://www.facebook.com/share/1DSeWq9K93/" target="_blank" rel="noopener" class="social-btn"><i class="fa-brands fa-facebook-f"></i> <span id="lbl-social-fb">فيسبوك</span></a>
         </div>
     </section>
 
     <footer><p id="txt-footer">© 2026 - جميع الحقوق محفوظة</p></footer>
 </div>
 
-<!-- زر المتابعة العائم -->
 <a class="follow-fab" id="followFab" href="#" target="_blank" rel="noopener" aria-label="Follow">
     <i id="fabIcon" class="fa-brands fa-facebook-f"></i>
     <span class="fab-text" id="fabText"></span>
 </a>
 
-<div class="modal-overlay" id="planModal">
+<div class="modal-overlay" id="planModal" role="dialog" aria-modal="true" aria-labelledby="txt-plan-modal-title">
     <div class="modal-box">
         <button class="close-modal" id="closePlanModalBtn">&times;</button>
         <div style="text-align:center;margin-bottom:10px">
@@ -251,6 +353,13 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
                 <tbody id="planTableBody"></tbody>
             </table>
         </div>
+        <div class="dua-card">
+            <h4 id="txt-dua-title"></h4>
+            <p class="dua-ar">رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ ۝ وَتُبْ عَلَيْنَا إِنَّكَ أَنتَ التَّوَّابُ الرَّحِيمُ <small>[البقرة: ١٢٧ - ١٢٨]</small></p>
+            <p class="dua-ar">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ <small>[البقرة: ٢٠١]</small></p>
+            <p class="dua-tr" id="txt-dua-tr"></p>
+            <p class="dua-note" id="txt-dua-note"></p>
+        </div>
         <div class="plan-export-btns">
             <button type="button" class="btn-export" id="btnExportICS"><i class="fa-solid fa-calendar-plus"></i> <span id="txt-exp-ics">تصدير للتقويم (.ics)</span></button>
             <button type="button" class="btn-export" id="btnExportWord"><i class="fa-solid fa-file-word"></i> <span id="txt-exp-word">تحميل ملف Word</span></button>
@@ -260,16 +369,16 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
     </div>
 </div>
 
-<div class="modal-overlay" id="searchModal">
+<div class="modal-overlay" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
     <div class="modal-box" style="max-width:400px;text-align:center">
         <button class="close-modal" id="closeSearchModalBtn">&times;</button>
         <i class="fa-solid fa-circle-info" style="font-size:2.5rem;color:var(--accent-color);margin-bottom:12px"></i>
-        <h3 id="searchModalTitle" style="margin-bottom:8px">عذراً.. المحتوى غير متوفر</h3>
-        <p id="searchModalMsg" style="font-size:.9rem;color:var(--text-muted)">لم نجد نتائج تطابق بحثك في خطة الختمة الحالية.</p>
+        <h3 id="searchModalTitle" style="margin-bottom:8px"></h3>
+        <p id="searchModalMsg" style="font-size:.9rem;color:var(--text-muted)"></p>
     </div>
 </div>
 
-<div class="modal-overlay" id="shareModal">
+<div class="modal-overlay" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="txt-share-title">
     <div class="modal-box" style="max-width:480px;text-align:center">
         <button class="close-modal" id="closeShareModalBtn">&times;</button>
         <h3 id="txt-share-title" style="margin-bottom:12px"></h3>
@@ -284,10 +393,14 @@ body{background:#fff!important;color:#000!important;padding:0!important;margin:0
     </div>
 </div>
 
+<div id="toast" role="status" aria-live="polite"></div>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    const $ = (id) => document.getElementById(id);
 
-    const quotesDatabase = [
+    /* ================= البيانات ================= */
+    const quotes = [
         { type:'quran', ar:"وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ", franco:"Wa laqad yassarnal-Qur'ana lidh-dhikri fahal min muddakir",
           en:"And We have certainly made the Quran easy for remembrance, so is there any who will remember?",
           es:"Y en verdad hemos hecho el Corán fácil de recordar. ¿Hay, pues, quien reflexione?",
@@ -320,53 +433,18 @@ document.addEventListener('DOMContentLoaded', () => {
           bracketAr:"[رواه مسلم]", bracketEn:"[Narrated by Muslim]", bracketEs:"[Narrado por Muslim]", bracketFr:"[Rapporté par Muslim]" }
     ];
 
+    const OPT_VALS = [604, 302, 60, 30, 15, 10, 7, 3];
     const khatmaOptions = {
-        ar: [
-            { val:"604", text:"604 يوماً (صفحة واحدة يومياً)" },
-            { val:"302", text:"302 يوماً (صفحتان يومياً)" },
-            { val:"60", text:"60 يوماً (نصف جزء يومياً)" },
-            { val:"30", text:"30 يوماً (جزء يومياً)" },
-            { val:"15", text:"15 يوماً (جزآن يومياً)" },
-            { val:"10", text:"10 أيام (3 أجزاء يومياً)" },
-            { val:"7", text:"7 أيام (4.3 أجزاء يومياً)" },
-            { val:"3", text:"3 أيام (10 أجزاء يومياً)" }
-        ],
-        en: [
-            { val:"604", text:"604 Days (1 Page daily)" },
-            { val:"302", text:"302 Days (2 Pages daily)" },
-            { val:"60", text:"60 Days (Half Juz daily)" },
-            { val:"30", text:"30 Days (1 Juz daily)" },
-            { val:"15", text:"15 Days (2 Juz daily)" },
-            { val:"10", text:"10 Days (3 Juz daily)" },
-            { val:"7", text:"7 Days (4.3 Juz daily)" },
-            { val:"3", text:"3 Days (10 Juz daily)" }
-        ],
-        es: [
-            { val:"604", text:"604 Días (1 Página al día)" },
-            { val:"302", text:"302 Días (2 Páginas al día)" },
-            { val:"60", text:"60 Días (Medio Juz al día)" },
-            { val:"30", text:"30 Días (1 Juz al día)" },
-            { val:"15", text:"15 Días (2 Juz al día)" },
-            { val:"10", text:"10 Días (3 Juz al día)" },
-            { val:"7", text:"7 Días (4.3 Juz al día)" },
-            { val:"3", text:"3 Días (10 Juz al día)" }
-        ],
-        fr: [
-            { val:"604", text:"604 Jours (1 Page par jour)" },
-            { val:"302", text:"302 Jours (2 Pages par jour)" },
-            { val:"60", text:"60 Jours (Demi-Juz par jour)" },
-            { val:"30", text:"30 Jours (1 Juz par jour)" },
-            { val:"15", text:"15 Jours (2 Juz par jour)" },
-            { val:"10", text:"10 Jours (3 Juz par jour)" },
-            { val:"7", text:"7 Jours (4.3 Juz par jour)" },
-            { val:"3", text:"3 Jours (10 Juz par jour)" }
-        ]
+        ar: [[604,"604 يوماً (صفحة واحدة يومياً)"],[302,"302 يوماً (صفحتان يومياً)"],[60,"60 يوماً (نصف جزء يومياً)"],[30,"30 يوماً (جزء يومياً)"],[15,"15 يوماً (جزآن يومياً)"],[10,"10 أيام (3 أجزاء يومياً)"],[7,"7 أيام (4.3 أجزاء يومياً)"],[3,"3 أيام (10 أجزاء يومياً)"]],
+        en: [[604,"604 Days (1 Page daily)"],[302,"302 Days (2 Pages daily)"],[60,"60 Days (Half Juz daily)"],[30,"30 Days (1 Juz daily)"],[15,"15 Days (2 Juz daily)"],[10,"10 Days (3 Juz daily)"],[7,"7 Days (4.3 Juz daily)"],[3,"3 Days (10 Juz daily)"]],
+        es: [[604,"604 Días (1 Página al día)"],[302,"302 Días (2 Páginas al día)"],[60,"60 Días (Medio Juz al día)"],[30,"30 Días (1 Juz al día)"],[15,"15 Días (2 Juz al día)"],[10,"10 Días (3 Juz al día)"],[7,"7 Días (4.3 Juz al día)"],[3,"3 Días (10 Juz al día)"]],
+        fr: [[604,"604 Jours (1 Page par jour)"],[302,"302 Jours (2 Pages par jour)"],[60,"60 Jours (Demi-Juz par jour)"],[30,"30 Jours (1 Juz par jour)"],[15,"15 Jours (2 Juz par jour)"],[10,"10 Jours (3 Juz par jour)"],[7,"7 Jours (4.3 Juz par jour)"],[3,"3 Jours (10 Juz par jour)"]]
     };
 
     const i18n = {
         ar: { title:"دَار يحيي", subtitle:"منصة تنظيم وتتبع ختْم القرآن الكريم",
             bio:"مرحباً بك في دَار يحيي.. المنصة الأولى لتسهيل وتتبع جدول ختْم القُرآن الكريم وتوزيع الأجزاء بكل يسر وسهولة وفقاً لوقتك المتاح.",
-            searchPlaceholder:"اكتب للبحث..", quoteTitle:"لماذا نقرأ القرآن ونتعلمه؟! ",
+            searchPlaceholder:"اكتب للبحث: يوم أو جزء أو شهر..", quoteTitle:"لماذا نقرأ القرآن ونتعلمه؟! ",
             khatmaHeader:"تحديد وتعديل خطة الختمة",
             khatmaDesc:"اختر المدة وتاريخ بداية الختمة وسيتم حساب الورد اليومي وتوزيعه تلقائياً بدءاً من اليوم الذي تحدده.",
             lblDuration:"مدة الختمة:", lblStartDate:"تاريخ البداية:", lblEndDate:"تاريخ الانتهاء المتوقع:",
@@ -381,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
             thStatus:"ملاحظة الإنجاز", juzText:"الجزء", expIcs:"تصدير للتقويم (.ics)", expWord:"تحميل ملف Word", expPdf:"طباعة / حفظ PDF" },
         en: { title:"Dar Yahia", subtitle:"Quran Completion & Tracking Platform",
             bio:"Welcome to Dar Yahia.. The leading platform for organizing and tracking Quran recitation schedules effortlessly.",
-            searchPlaceholder:"Type to search..", quoteTitle:"Why do we read and learn the Quran?!",
+            searchPlaceholder:"Search a day, juz or month..", quoteTitle:"Why do we read and learn the Quran?!",
             khatmaHeader:"Plan & Customize Recitation",
             khatmaDesc:"Select duration and start date to automatically generate your daily Quran reading portion.",
             lblDuration:"Duration:", lblStartDate:"Start Date:", lblEndDate:"Expected End Date:",
@@ -396,7 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
             thStatus:"Status", juzText:"Juz", expIcs:"Export Calendar (.ics)", expWord:"Download Word File", expPdf:"Print / Save PDF" },
         es: { title:"Dar Yahia", subtitle:"Plataforma de Seguimiento del Corán",
             bio:"Bienvenido a Dar Yahia.. La plataforma principal para organizar su plan de lectura del Corán.",
-            searchPlaceholder:"Escriba para buscar..", quoteTitle:"¿Por qué leemos y aprendemos el Corán?!",
+            searchPlaceholder:"Busque día, juz o mes..", quoteTitle:"¿Por qué leemos y aprendemos el Corán?!",
             khatmaHeader:"Planificar la Lectura",
             khatmaDesc:"Elija la duración y la fecha de inicio para calcular la porción diaria de lectura.",
             lblDuration:"Duración:", lblStartDate:"Fecha de Inicio:", lblEndDate:"Fecha Final Estimada:",
@@ -411,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
             thStatus:"Estado", juzText:"Juz", expIcs:"Exportar Calendario (.ics)", expWord:"Descargar Word", expPdf:"Imprimir / Guardar PDF" },
         fr: { title:"Dar Yahia", subtitle:"Plateforme de Suivi de Lecture du Coran",
             bio:"Bienvenue sur Dar Yahia.. La plateforme idéale pour organiser votre programme de lecture du Coran.",
-            searchPlaceholder:"Tapez pour rechercher..", quoteTitle:"Pourquoi lisons-nous le Coran?!",
+            searchPlaceholder:"Cherchez jour, juz ou mois..", quoteTitle:"Pourquoi lisons-nous le Coran?!",
             khatmaHeader:"Planifier la Lecture",
             khatmaDesc:"Choisissez la durée et la date pour calculer votre lecture quotidienne.",
             lblDuration:"Durée:", lblStartDate:"Date de Début:", lblEndDate:"Date de Fin Prévue:",
@@ -426,543 +504,540 @@ document.addEventListener('DOMContentLoaded', () => {
             thStatus:"Statut", juzText:"Juz", expIcs:"Exporter Calendrier (.ics)", expWord:"Télécharger Word", expPdf:"Imprimer / Sauvegarder PDF" }
     };
 
+    const XX = {
+        ar: { qWeek:'ختمة في أسبوع', qMonth:'ختمة في شهر', qRamadan:'ختمة رمضان', cToday:'اليوم', cTomorrow:'غداً', cNextMonth:'أول الشهر الهجري القادم', cRamadan:'أول رمضان',
+            hSum:'ساعدني أختار المدة المناسبة', hTime:'وقتي اليومي للقراءة:', hSpeed:'سرعتي (دقيقة لكل صفحة):', hHint:'بدون تدبر ≈ 1–3 دقائق، ومع التدبر ≈ 4–13 دقيقة للصفحة', hApply:'اعتمد المدة المقترحة',
+            hRes:(d,p,m)=>`المدة المقترحة: ${d} يوماً (≈ ${p} صفحة يومياً، حوالي ${m} بسرعتك)`,
+            rSum:'أيام الراحة (اختياري)', rHint:'الأيام المحددة لا يُحتسب فيها ورد، ويتمدد تاريخ الانتهاء تلقائياً.', rAll:'لا بد من يوم واحد على الأقل للقراءة.',
+            dTitle:'الدعاء عند ختم القرآن', dTr:'', dNote:'لم يثبت عن النبي ﷺ دعاء مخصوص لختم القرآن. والثابت أن أنس بن مالك رضي الله عنه كان إذا ختم القرآن جمع أهله ودعا (ذكره النووي في «الأذكار» عن ابن أبي داود بإسنادين صحيحين). فادعُ بما تيسّر لك من خيري الدنيا والآخرة، وهذه أدعية من القرآن الكريم.',
+            half:'نصف جزء', h1:'النصف الأول', h2:'النصف الثاني', page:'صفحة', pg:'ص', dayW:'يوماً',
+            close:'إغلاق', fontL:'حجم الخط', shareSite:'مشاركة الموقع', langL:'اللغة', themeL:'تبديل الوضع', copy:'نسخ', share:'مشاركة', copied:'تم النسخ ✓',
+            tl:{ no:'بدون تدبر', yes:'في حالة التدبر', from:'من', to:'إلى', min:'دقيقة', hr:'ساعة', and:' و ' } },
+        en: { qWeek:'Khatma in a week', qMonth:'Khatma in a month', qRamadan:'Ramadan Khatma', cToday:'Today', cTomorrow:'Tomorrow', cNextMonth:'Next Hijri month', cRamadan:'1 Ramadan',
+            hSum:'Help me choose a duration', hTime:'My daily reading time:', hSpeed:'My speed (minutes per page):', hHint:'Without Tadabbur ≈ 1–3 min, with Tadabbur ≈ 4–13 min per page', hApply:'Use suggested duration',
+            hRes:(d,p,m)=>`Suggested: ${d} days (≈ ${p} pages daily, about ${m} at your pace)`,
+            rSum:'Rest days (optional)', rHint:'No reading is scheduled on selected days; the end date extends automatically.', rAll:'At least one reading day is required.',
+            dTitle:'Supplication at the end of the Quran', dTr:'"Our Lord, accept this from us; You are the Hearing, the Knowing. And accept our repentance; You are the Accepting of repentance, the Merciful." [Al-Baqarah 127–128] — "Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire." [Al-Baqarah 201]',
+            dNote:'No specific supplication for completing the Quran is reported from the Prophet ﷺ. What is established is that Anas ibn Malik (may Allah be pleased with him) would gather his family and make supplication when he finished (mentioned by An-Nawawi in "Al-Adhkar" from Ibn Abi Dawud with two sound chains). Supplicate with whatever is good for this life and the next; these are duas from the Quran.',
+            half:'Half Juz', h1:'1st half', h2:'2nd half', page:'Page', pg:'p.', dayW:'Days',
+            close:'Close', fontL:'Font size', shareSite:'Share site', langL:'Language', themeL:'Toggle theme', copy:'Copy', share:'Share', copied:'Copied ✓',
+            tl:{ no:'Without Tadabbur', yes:'With Tadabbur', from:'from', to:'to', min:'min', hr:'h', and:' ' } },
+        es: { qWeek:'Jatma en una semana', qMonth:'Jatma en un mes', qRamadan:'Jatma de Ramadán', cToday:'Hoy', cTomorrow:'Mañana', cNextMonth:'Próximo mes hijri', cRamadan:'1 de Ramadán',
+            hSum:'Ayúdame a elegir la duración', hTime:'Mi tiempo diario de lectura:', hSpeed:'Mi ritmo (minutos por página):', hHint:'Sin tadabbur ≈ 1–3 min, con tadabbur ≈ 4–13 min por página', hApply:'Usar la duración sugerida',
+            hRes:(d,p,m)=>`Sugerencia: ${d} días (≈ ${p} páginas al día, unos ${m} a su ritmo)`,
+            rSum:'Días de descanso (opcional)', rHint:'No se programa lectura en los días marcados; la fecha final se extiende automáticamente.', rAll:'Se requiere al menos un día de lectura.',
+            dTitle:'Súplica al terminar el Corán', dTr:'"Señor nuestro, acepta esto de nosotros; Tú eres el Oyente, el Omnisciente. Y acepta nuestro arrepentimiento; Tú eres el que acepta el arrepentimiento, el Misericordioso." [Al-Baqara 127–128] — "Señor nuestro, concédenos el bien en esta vida y el bien en la otra, y protégenos del castigo del Fuego." [Al-Baqara 201]',
+            dNote:'No se ha transmitido del Profeta ﷺ una súplica específica para terminar el Corán. Lo establecido es que Anas ibn Malik (que Allah esté complacido con él) reunía a su familia y suplicaba al terminarlo (mencionado por An-Nawawi en «Al-Adhkar», de Ibn Abi Dawud, con dos cadenas sólidas). Suplique por lo bueno de esta vida y de la otra; estas son súplicas del Corán.',
+            half:'Medio Juz', h1:'1ª mitad', h2:'2ª mitad', page:'Página', pg:'pág.', dayW:'Días',
+            close:'Cerrar', fontL:'Tamaño de letra', shareSite:'Compartir sitio', langL:'Idioma', themeL:'Cambiar tema', copy:'Copiar', share:'Compartir', copied:'Copiado ✓',
+            tl:{ no:'Sin tadabbur', yes:'Con tadabbur', from:'de', to:'a', min:'min', hr:'h', and:' ' } },
+        fr: { qWeek:'Khatma en une semaine', qMonth:'Khatma en un mois', qRamadan:'Khatma du Ramadan', cToday:"Aujourd'hui", cTomorrow:'Demain', cNextMonth:'Prochain mois hégirien', cRamadan:'1er Ramadan',
+            hSum:'Aidez-moi à choisir la durée', hTime:'Mon temps de lecture quotidien :', hSpeed:'Mon rythme (minutes par page) :', hHint:'Sans tadabbur ≈ 1–3 min, avec tadabbur ≈ 4–13 min par page', hApply:'Utiliser la durée suggérée',
+            hRes:(d,p,m)=>`Suggestion : ${d} jours (≈ ${p} pages par jour, environ ${m} à votre rythme)`,
+            rSum:'Jours de repos (facultatif)', rHint:'Aucune lecture les jours cochés ; la date de fin se prolonge automatiquement.', rAll:'Au moins un jour de lecture est requis.',
+            dTitle:'Invocation à la fin du Coran', dTr:'« Notre Seigneur, accepte ceci de notre part ; Tu es l\'Audient, l\'Omniscient. Et accepte notre repentir ; Tu es Celui qui accepte le repentir, le Miséricordieux. » [Al-Baqara 127–128] — « Notre Seigneur, accorde-nous belle part ici-bas et belle part dans l\'au-delà, et protège-nous du châtiment du Feu. » [Al-Baqara 201]',
+            dNote:'Aucune invocation précise pour la fin du Coran n\'est rapportée du Prophète ﷺ. Ce qui est établi, c\'est qu\'Anas ibn Malik (qu\'Allah l\'agrée) réunissait sa famille et invoquait à la fin (mentionné par An-Nawawi dans « Al-Adhkar », d\'après Ibn Abi Dawud, par deux chaînes authentiques). Invoquez pour le bien de cette vie et de l\'autre ; ce sont des invocations du Coran.',
+            half:'Demi-Juz', h1:'1re moitié', h2:'2e moitié', page:'Page', pg:'p.', dayW:'Jours',
+            close:'Fermer', fontL:'Taille du texte', shareSite:'Partager le site', langL:'Langue', themeL:'Changer de thème', copy:'Copier', share:'Partager', copied:'Copié ✓',
+            tl:{ no:'Sans tadabbur', yes:'Avec tadabbur', from:'de', to:'à', min:'min', hr:'h', and:' ' } }
+    };
+
     const fabTexts = {
         ar: ["شرفنا بالمتابعة", "اضغط للمتابعة", "اشترك بالقناة", "انقر للانضمام"],
         en: ["Follow us", "Tap to follow", "Subscribe", "Tap to join"],
         es: ["Síguenos", "Toca para seguir", "Suscríbete", "Toca para unirte"],
         fr: ["Suivez-nous", "Appuyez pour suivre", "Abonnez-vous", "Appuyez pour rejoindre"]
     };
+    const shareTexts = {
+        ar: { btn:'شارك خطتي', title:'شارك خطتك', head:'ختمتي بإذن الله', from:'البداية', to:'الانتهاء', cta:'ابدأ ختمتك الآن', share:'مشاركة', download:'تنزيل الصورة', copy:'نسخ الرابط', copied:'تم نسخ الرابط ✓', saved:'تم تنزيل الصورة ✓', text:'بدأت ختمتي مع دَار يحيي، انضم إليّ:' },
+        en: { btn:'Share my plan', title:'Share your plan', head:'My Khatma, God willing', from:'Start', to:'End', cta:'Start your Khatma now', share:'Share', download:'Download image', copy:'Copy link', copied:'Link copied ✓', saved:'Image saved ✓', text:'I started my Khatma with Dar Yahia, join me:' },
+        es: { btn:'Compartir mi plan', title:'Comparte tu plan', head:'Mi Jatma, si Dios quiere', from:'Inicio', to:'Fin', cta:'Empieza tu Jatma ahora', share:'Compartir', download:'Descargar imagen', copy:'Copiar enlace', copied:'Enlace copiado ✓', saved:'Imagen guardada ✓', text:'Empecé mi Jatma con Dar Yahia, ¡únete!' },
+        fr: { btn:'Partager mon plan', title:'Partagez votre plan', head:'Ma Khatma, si Dieu le veut', from:'Début', to:'Fin', cta:'Commencez votre Khatma', share:'Partager', download:"Télécharger l'image", copy:'Copier le lien', copied:'Lien copié ✓', saved:'Image enregistrée ✓', text:"J'ai commencé ma Khatma avec Dar Yahia, rejoignez-moi :" }
+    };
+    const formMsgs = {
+        ar: { sending:'جارٍ الإرسال...', ok:'تم إرسال رسالتك بنجاح، شكراً لتواصلك!', fail:'تعذر الإرسال تلقائياً، سيُفتح تطبيق البريد لإرسال رسالتك.' },
+        en: { sending:'Sending...', ok:'Your message was sent. Thank you!', fail:"Couldn't send automatically. Opening your email app." },
+        es: { sending:'Enviando...', ok:'¡Mensaje enviado! Gracias por contactarnos.', fail:'No se pudo enviar automáticamente. Abriendo su aplicación de correo.' },
+        fr: { sending:'Envoi...', ok:'Message envoyé ! Merci de nous avoir contactés.', fail:"Envoi automatique impossible. Ouverture de votre application de messagerie." }
+    };
 
-    let currentLang = localStorage.getItem('daryahia_lang') || 'ar';
+    let currentLang = window.__L || 'ar';
+    const X = () => XX[currentLang] || XX.ar;
+    const LOC = () => ({ ar:'ar-EG', en:'en-US', es:'es-ES', fr:'fr-FR' }[currentLang] || 'ar-EG');
+    const isoLocal = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    let toastT;
+    function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2200); }
 
-    const startDateInput = document.getElementById('khatmaStartDate');
-    const endDateInput = document.getElementById('khatmaEndDate');
-    const durationSelect = document.getElementById('khatmaDuration');
+    /*PURE*/
+    const JS = [1,22,42,62,82,102,122,142,162,182,202,222,242,262,282,302,322,342,362,382,402,422,442,462,482,502,522,542,562,582,605];
+    const JUZ_PLANS = [30, 15, 10, 7, 3];
+    const juzOf = (p) => { let j = 1; for (let k = 0; k < 30; k++) if (p >= JS[k]) j = k + 1; return j; };
+    function pgPart(p0, p1) { const x = X(); return p0 === p1 ? `${x.page} ${p0}` : `${x.pg} ${p0}–${p1}`; }
+    function dayReading(i, N) {
+        const x = X(), jw = i18n[currentLang].juzText;
+        if (JUZ_PLANS.includes(N)) {
+            const sj = Math.floor(i * 30 / N) + 1, ej = Math.max(sj, Math.floor((i + 1) * 30 / N));
+            const p0 = JS[sj - 1], p1 = JS[ej] - 1;
+            return { p0, p1, t: `${jw} ${sj === ej ? sj : sj + '–' + ej} • ${pgPart(p0, p1)}` };
+        }
+        if (N === 60) {
+            const j = Math.floor(i / 2) + 1, s = JS[j - 1], e = JS[j] - 1, h = Math.floor((e - s + 1) / 2), first = i % 2 === 0;
+            const p0 = first ? s : s + h, p1 = first ? s + h - 1 : e;
+            return { p0, p1, t: `${x.half} • ${jw} ${j} (${first ? x.h1 : x.h2}) • ${pgPart(p0, p1)}` };
+        }
+        const p0 = Math.floor(i * 604 / N) + 1, p1 = Math.floor((i + 1) * 604 / N), a = juzOf(p0), b = juzOf(p1);
+        return { p0, p1, t: `${pgPart(p0, p1)} • ${jw} ${a === b ? a : a + '–' + b}` };
+    }
+    function readingDates(start, n, restSet) {
+        const out = [], d = new Date(start); let guard = 0;
+        while (out.length < n && guard++ < 6000) { if (!restSet.has(d.getDay())) out.push(new Date(d)); d.setDate(d.getDate() + 1); }
+        return out;
+    }
+    /*ENDPURE*/
 
-    // ===== التاريخ الهجري (تقويم أم القرى عبر Intl - بدون إنترنت) =====
+    /* ===== التاريخ: هجري بأرقام لاتينية موحّدة ===== */
     const HIJRI_FULL = { day: 'numeric', month: 'long', year: 'numeric' };
-    function hijri(d, opts) {
-        const loc = { ar: 'ar-EG', en: 'en-US', es: 'es-ES', fr: 'fr-FR' }[currentLang] || 'ar-EG';
-        try { return new Intl.DateTimeFormat(loc + '-u-ca-islamic-umalqura', opts).format(d); }
-        catch (e) { return d.toLocaleDateString(loc, opts); }
-    }
-
     const DATE_ROW = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-    function greg(d, opts) {
-        const loc = { ar: 'ar-EG', en: 'en-US', es: 'es-ES', fr: 'fr-FR' }[currentLang] || 'ar-EG';
-        return new Intl.DateTimeFormat(loc + '-u-ca-gregory', opts).format(d);
+    function hijri(d, opts) {
+        try { return new Intl.DateTimeFormat(LOC() + '-u-ca-islamic-umalqura-nu-latn', opts).format(d); }
+        catch (e) { return d.toLocaleDateString(LOC(), opts); }
+    }
+    function greg(d, opts) { return new Intl.DateTimeFormat(LOC() + '-u-ca-gregory-nu-latn', opts).format(d); }
+    const hnf = new Intl.DateTimeFormat('en-US-u-ca-islamic-umalqura-nu-latn', { day: 'numeric', month: 'numeric', year: 'numeric' });
+    function hnum(d) { const o = {}; hnf.formatToParts(d).forEach(p => { o[p.type] = parseInt(p.value, 10); }); return o; }
+    let _hs = null;
+    function hScan() {
+        if (_hs) return _hs;
+        const base = new Date(); base.setHours(12, 0, 0, 0); _hs = [];
+        for (let i = 0; i < 400; i++) { const d = new Date(base); d.setDate(base.getDate() + i); const p = hnum(d); _hs.push({ i, d, m: p.month, day: p.day }); }
+        return _hs;
     }
 
-    const today = new Date();
-    const todayStr = today.toISOString().split('T')[0];
+    const startDateInput = $('khatmaStartDate'), endDateInput = $('khatmaEndDate'), durationSelect = $('khatmaDuration');
+    const todayStr = isoLocal(new Date());
     startDateInput.value = todayStr;
     startDateInput.setAttribute('min', todayStr);
+    const rest = new Set();
+    let extraDur = null;
 
     function updateDurationSelectOptions(lang) {
-        const currentSelected = durationSelect.value || "30";
+        const keep = durationSelect.value || '30';
+        const list = (khatmaOptions[lang] || khatmaOptions.ar).map(o => [o[0], o[1]]);
+        if (extraDur && !list.some(o => o[0] === extraDur)) { list.push([extraDur, `${extraDur} ${X().dayW}`]); list.sort((a, b) => b[0] - a[0]); }
         durationSelect.innerHTML = '';
-        (khatmaOptions[lang] || khatmaOptions.ar).forEach(opt => {
-            const el = document.createElement('option');
-            el.value = opt.val;
-            el.innerText = opt.text;
-            if (opt.val === currentSelected) el.selected = true;
-            durationSelect.appendChild(el);
-        });
+        list.forEach(o => { const el = document.createElement('option'); el.value = o[0]; el.textContent = o[1]; if (String(o[0]) === String(keep)) el.selected = true; durationSelect.appendChild(el); });
+    }
+    function setDuration(n) {
+        n = parseInt(n, 10); if (!(n >= 1 && n <= 604)) return;
+        extraDur = OPT_VALS.includes(n) ? null : n;
+        updateDurationSelectOptions(currentLang);
+        durationSelect.value = String(n);
+        calculateDatesAndTimes();
+    }
+    function fmtMins(m) {
+        const L = X().tl;
+        if (m < 60) return `${m} ${L.min}`;
+        const h = Math.floor(m / 60), r = m % 60;
+        return `${h} ${L.hr}${r ? L.and + r + ' ' + L.min : ''}`;
     }
 
     function calculateDatesAndTimes() {
-        if (!startDateInput.value || startDateInput.value < todayStr) startDateInput.value = todayStr;
-
+        if (!startDateInput.value) startDateInput.value = todayStr;
         const duration = parseInt(durationSelect.value) || 30;
         const startVal = new Date(startDateInput.value + 'T12:00:00');
-        const endDate = new Date(startVal);
-        endDate.setDate(startVal.getDate() + (duration - 1));
-        endDateInput.value = endDate.toISOString().split('T')[0];
+        const dates = readingDates(startVal, duration, rest);
+        const endDate = dates[dates.length - 1] || startVal;
+        endDateInput.value = isoLocal(endDate);
+        $('startHijri').textContent = hijri(startVal, HIJRI_FULL);
+        $('endHijri').textContent = hijri(endDate, HIJRI_FULL);
 
-        document.getElementById('startHijri').textContent = hijri(startVal, HIJRI_FULL);
-        document.getElementById('endHijri').textContent = hijri(endDate, HIJRI_FULL);
-
-        // التقدير على أساس الصفحة: بدون تدبر 1-3 دقائق، مع التدبر 4-13 دقيقة
-        const pagesPerDay = 604 / duration;
-        const est = (perPage) => Math.round(pagesPerDay * perPage);
-        const L = {
-            ar: { no: 'بدون تدبر', yes: 'في حالة التدبر', from: 'من', to: 'إلى', min: 'دقيقة', hr: 'ساعة' },
-            en: { no: 'Without Tadabbur', yes: 'With Tadabbur', from: 'from', to: 'to', min: 'min', hr: 'h' },
-            es: { no: 'Sin tadabbur', yes: 'Con tadabbur', from: 'de', to: 'a', min: 'min', hr: 'h' },
-            fr: { no: 'Sans tadabbur', yes: 'Avec tadabbur', from: 'de', to: 'à', min: 'min', hr: 'h' }
-        }[currentLang] || {};
-
-        function formatMins(mins) {
-            if (mins < 60) return `${mins} ${L.min}`;
-            const h = Math.floor(mins / 60), r = mins % 60;
-            const rest = r ? (currentLang === 'ar' ? ' و ' : ' ') + `${r} ${L.min}` : '';
-            return `${h} ${L.hr}${rest}`;
-        }
-        const line = (label, a, b) => `• ${label}: ${L.from} ${formatMins(a)} ${L.to} ${formatMins(b)}`;
-
-        document.getElementById('txt-est-no-tadabbur').innerText = line(L.no, Math.max(1, est(1)), Math.max(3, est(3)));
-        document.getElementById('txt-est-tadabbur').innerText = line(L.yes, Math.max(4, est(4)), Math.max(13, est(13)));
+        const ppd = 604 / duration, est = (k) => Math.round(ppd * k), L = X().tl;
+        const line = (label, a, b) => `• ${label}: ${L.from} ${fmtMins(a)} ${L.to} ${fmtMins(b)}`;
+        $('txt-est-no-tadabbur').textContent = line(L.no, Math.max(1, est(1)), Math.max(3, est(3)));
+        $('txt-est-tadabbur').textContent = line(L.yes, Math.max(4, est(4)), Math.max(13, est(13)));
     }
-
-    startDateInput.addEventListener('change', calculateDatesAndTimes);
+    startDateInput.addEventListener('change', () => { if (startDateInput.value < todayStr) startDateInput.value = todayStr; calculateDatesAndTimes(); });
     durationSelect.addEventListener('change', calculateDatesAndTimes);
 
-    // ===== الثيم =====
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const themeColorMeta = document.getElementById('theme-color-meta');
-    const savedTheme = localStorage.getItem('daryahia_theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    themeIcon.className = savedTheme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-    themeColorMeta.setAttribute('content', savedTheme === 'light' ? '#f8fafc' : '#0b1329');
-
-    themeToggle.addEventListener('click', () => {
-        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('daryahia_theme', next);
-        themeIcon.className = next === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-        themeColorMeta.setAttribute('content', next === 'light' ? '#f8fafc' : '#0b1329');
+    /* ===== أزرار التواريخ والخطط السريعة ===== */
+    $('dateChips').addEventListener('click', (e) => {
+        const b = e.target.closest('[data-d]'); if (!b) return;
+        const sc = hScan(); let iso = todayStr;
+        if (b.dataset.d === 'tomorrow') { const d = new Date(); d.setDate(d.getDate() + 1); iso = isoLocal(d); }
+        else if (b.dataset.d === 'nextmonth') { const e1 = sc.find(x => x.day === 1 && x.i > 0); if (e1) iso = isoLocal(e1.d); }
+        else if (b.dataset.d === 'ramadan') { const e1 = sc.find(x => x.m === 9 && x.day === 1); if (e1) iso = isoLocal(e1.d); }
+        startDateInput.value = iso; calculateDatesAndTimes();
+    });
+    $('quickPlans').addEventListener('click', (e) => {
+        const b = e.target.closest('[data-q]'); if (!b) return;
+        if (b.dataset.q === 'week') setDuration(7);
+        else if (b.dataset.q === 'month') setDuration(30);
+        else {
+            const sc = hScan();
+            const a = sc[0].m === 9 ? sc[0] : sc.find(x => x.m === 9 && x.day === 1); if (!a) return;
+            const z = sc.find(x => x.i > a.i && x.m === 10 && x.day === 1);
+            startDateInput.value = isoLocal(a.d);
+            setDuration(Math.max(1, z ? z.i - a.i : 30));
+        }
+        toast(durationSelect.options[durationSelect.selectedIndex].text);
     });
 
-    // ===== تدوير الآيات والأحاديث =====
-    let currentQuoteIndex = 0;
-    const quoteWrapper = document.getElementById('quoteWrapper');
-    const quoteTextDisplay = document.getElementById('quoteTextDisplay');
+    /* ===== أيام الراحة ===== */
+    function renderRestChips() {
+        const box = $('restChips'); box.innerHTML = '';
+        const order = currentLang === 'ar' ? [6, 0, 1, 2, 3, 4, 5] : [0, 1, 2, 3, 4, 5, 6];
+        order.forEach(k => {
+            const d = new Date(2024, 0, 7 + k);
+            const lab = document.createElement('label'); lab.className = 'chip' + (rest.has(k) ? ' on' : '');
+            lab.innerHTML = `<input type="checkbox" value="${k}" ${rest.has(k) ? 'checked' : ''}><span>${new Intl.DateTimeFormat(LOC(), { weekday: 'long' }).format(d)}</span>`;
+            box.appendChild(lab);
+        });
+    }
+    $('restChips').addEventListener('change', (e) => {
+        const cb = e.target; if (cb.type !== 'checkbox') return;
+        const k = parseInt(cb.value, 10);
+        if (cb.checked && rest.size >= 6) { cb.checked = false; toast(X().rAll); return; }
+        cb.checked ? rest.add(k) : rest.delete(k);
+        cb.parentElement.classList.toggle('on', cb.checked);
+        calculateDatesAndTimes();
+    });
 
-    function displayNextQuote() {
+    /* ===== مساعد اختيار المدة ===== */
+    let suggested = 30;
+    function updateHelper() {
+        const mins = +$('helpMinutes').value, sp = +$('speedRange').value;
+        $('speedVal').textContent = sp;
+        const need = Math.ceil(604 / (mins / sp));
+        const d = OPT_VALS.slice().reverse().find(v => v >= need) || 604;
+        suggested = d;
+        const pages = Math.round(604 / d * 10) / 10;
+        $('helperResult').textContent = X().hRes(d, pages, fmtMins(Math.round(604 / d * sp)));
+    }
+    function fillHelperMinutes() {
+        const sel = $('helpMinutes'), keep = sel.value || '30'; sel.innerHTML = '';
+        [10, 15, 20, 30, 45, 60, 90, 120].forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = fmtMins(v); if (String(v) === keep) o.selected = true; sel.appendChild(o); });
+    }
+    $('helpMinutes').addEventListener('change', updateHelper);
+    $('speedRange').addEventListener('input', updateHelper);
+    $('btnApplySuggested').addEventListener('click', () => { setDuration(suggested); toast(durationSelect.options[durationSelect.selectedIndex].text); });
+
+    /* ===== الثيم وحجم الخط ===== */
+    const themeIcon = $('themeIcon'), themeColorMeta = $('theme-color-meta');
+    function applyTheme(t) {
+        document.documentElement.setAttribute('data-theme', t);
+        themeIcon.className = t === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        themeColorMeta.setAttribute('content', t === 'light' ? '#f8fafc' : '#0b1329');
+    }
+    applyTheme(document.documentElement.getAttribute('data-theme'));
+    $('themeToggle').addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(next); try { localStorage.setItem('daryahia_theme', next); } catch (e) {}
+    });
+    const FONT_STEPS = [1, 1.12, 1.25];
+    let fontIdx = 0;
+    try { fontIdx = Math.max(0, FONT_STEPS.indexOf(parseFloat(localStorage.getItem('daryahia_font')))); } catch (e) {}
+    $('fontBtn').addEventListener('click', () => {
+        fontIdx = (fontIdx + 1) % FONT_STEPS.length;
+        document.documentElement.style.fontSize = (16 * FONT_STEPS[fontIdx]) + 'px';
+        try { localStorage.setItem('daryahia_font', FONT_STEPS[fontIdx]); } catch (e) {}
+        toast(`${X().fontL}: ${Math.round(FONT_STEPS[fontIdx] * 100)}%`);
+    });
+
+    /* ===== الآيات والأحاديث ===== */
+    let qIdx = -1, qTimer = null, qManual = false, qHover = false;
+    const quoteWrapper = $('quoteWrapper'), quoteCard = $('quoteCard');
+    const quoteBracket = (it) => it['bracket' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || it.bracketAr;
+    function renderQuote() {
+        const it = quotes[qIdx]; if (!it) return;
+        let extra = '';
+        if (it.type === 'quran') {
+            if (currentLang === 'ar') extra += `<div class="quote-translation-text">${it.en}</div>`;
+            else { if (it.franco) extra += `<div class="quote-franco-text">${it.franco}</div>`; if (it[currentLang]) extra += `<div class="quote-translation-text">${it[currentLang]}</div>`; }
+        } else if (currentLang !== 'ar' && it[currentLang]) extra += `<div class="quote-translation-text">${it[currentLang]}</div>`;
+        $('quoteTextDisplay').innerHTML = `<div class="quote-main-text">${it.ar}</div>${extra}<div class="quote-bracket">${quoteBracket(it)}</div>`;
+    }
+    const qPaused = () => qManual || qHover;
+    function scheduleQuote() {
+        clearTimeout(qTimer);
+        const len = (quotes[qIdx] ? quotes[qIdx].ar.length : 40);
+        qTimer = setTimeout(nextQuote, Math.min(16000, Math.max(6000, 3500 + len * 45)));
+    }
+    function nextQuote() {
+        if (qPaused()) { scheduleQuote(); return; }
         quoteWrapper.classList.add('fade-out');
         setTimeout(() => {
-            let nextIdx;
-            do { nextIdx = Math.floor(Math.random() * quotesDatabase.length); }
-            while (nextIdx === currentQuoteIndex && quotesDatabase.length > 1);
-            currentQuoteIndex = nextIdx;
-            const item = quotesDatabase[currentQuoteIndex];
-            const bracketTxt = item[`bracket${currentLang.charAt(0).toUpperCase() + currentLang.slice(1)}`] || item.bracketAr;
-
-            let extraHtml = '';
-            if (item.type === 'quran') {
-                if (currentLang === 'ar') {
-                    extraHtml += `<div class="quote-translation-text">${item.en}</div>`;
-                } else {
-                    if (item.franco) extraHtml += `<div class="quote-franco-text">${item.franco}</div>`;
-                    if (item[currentLang]) extraHtml += `<div class="quote-translation-text">${item[currentLang]}</div>`;
-                }
-            } else if (currentLang !== 'ar' && item[currentLang]) {
-                extraHtml += `<div class="quote-translation-text">${item[currentLang]}</div>`;
-            }
-
-            quoteTextDisplay.innerHTML = `<div class="quote-main-text">${item.ar}</div>${extraHtml}<div class="quote-bracket">${bracketTxt}</div>`;
-            quoteWrapper.classList.remove('fade-out');
+            let n; do { n = Math.floor(Math.random() * quotes.length); } while (n === qIdx && quotes.length > 1);
+            qIdx = n; renderQuote(); quoteWrapper.classList.remove('fade-out'); scheduleQuote();
         }, 600);
     }
-    displayNextQuote();
-    setInterval(displayNextQuote, 5000);
-
-    // ===== اللغات =====
-    const langBtn = document.getElementById('langBtn');
-    const langDropdown = document.getElementById('langDropdown');
-
-    langBtn.addEventListener('click', (e) => { e.stopPropagation(); langDropdown.classList.toggle('show'); });
-    document.addEventListener('click', (e) => {
-        if (!langDropdown.contains(e.target) && e.target !== langBtn) langDropdown.classList.remove('show');
+    quoteCard.addEventListener('click', (e) => { if (e.target.closest('.q-btn')) return; qManual = !qManual; quoteCard.classList.toggle('paused', qManual || qHover); if (!qManual) scheduleQuote(); });
+    quoteCard.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { qHover = true; quoteCard.classList.add('paused'); } });
+    quoteCard.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { qHover = false; quoteCard.classList.toggle('paused', qManual); } });
+    const quoteText = () => { const it = quotes[qIdx]; return `${it.ar}\n${quoteBracket(it)}`; };
+    $('qCopy').addEventListener('click', async () => { try { await navigator.clipboard.writeText(quoteText()); toast(X().copied); } catch (e) {} });
+    $('qShare').addEventListener('click', async () => {
+        if (navigator.share) { try { await navigator.share({ text: quoteText() }); } catch (e) {} }
+        else { try { await navigator.clipboard.writeText(quoteText()); toast(X().copied); } catch (e) {} }
     });
-    document.querySelectorAll('.lang-option').forEach(btn => {
-        btn.addEventListener('click', () => { setLanguage(btn.getAttribute('data-lang')); langDropdown.classList.remove('show'); });
-    });
+
+    /* ===== اللغات ===== */
+    const langBtn = $('langBtn'), langDropdown = $('langDropdown');
+    langBtn.addEventListener('click', (e) => { e.stopPropagation(); const s = langDropdown.classList.toggle('show'); langBtn.setAttribute('aria-expanded', s); });
+    document.addEventListener('click', (e) => { if (!langDropdown.contains(e.target) && e.target !== langBtn) { langDropdown.classList.remove('show'); langBtn.setAttribute('aria-expanded', 'false'); } });
+    document.querySelectorAll('.lang-option').forEach(btn => btn.addEventListener('click', () => { setLanguage(btn.dataset.lang); langDropdown.classList.remove('show'); langBtn.setAttribute('aria-expanded', 'false'); }));
 
     function setLanguage(lang) {
         currentLang = lang;
-        localStorage.setItem('daryahia_lang', lang);
+        try { localStorage.setItem('daryahia_lang', lang); } catch (e) {}
         document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
         document.documentElement.setAttribute('lang', lang);
         updateDurationSelectOptions(lang);
-
-        const t = i18n[lang];
-        const set = (id, v) => { document.getElementById(id).innerText = v; };
+        const t = i18n[lang], x = X();
+        const set = (id, v) => { $(id).textContent = v; };
         set('txt-title', t.title); set('txt-subtitle', t.subtitle); set('txt-bio', t.bio);
-        document.getElementById('searchInput').placeholder = t.searchPlaceholder;
         set('txt-quote-title', t.quoteTitle); set('txt-khatma-header', t.khatmaHeader); set('txt-khatma-desc', t.khatmaDesc);
-        document.getElementById('lbl-duration').innerHTML = `<i class="fa-solid fa-clock"></i> ${t.lblDuration}`;
-        document.getElementById('lbl-start-date').innerHTML = `<i class="fa-solid fa-calendar-day"></i> ${t.lblStartDate}`;
-        document.getElementById('lbl-end-date').innerHTML = `<i class="fa-solid fa-flag-checkered"></i> ${t.lblEndDate}`;
-        document.getElementById('txt-est-title').innerHTML = `<i class="fa-solid fa-hourglass-half"></i> ${t.estTitle}`;
+        $('lbl-duration').innerHTML = `<i class="fa-solid fa-clock"></i> ${t.lblDuration}`;
+        $('lbl-start-date').innerHTML = `<i class="fa-solid fa-calendar-day"></i> ${t.lblStartDate}`;
+        $('lbl-end-date').innerHTML = `<i class="fa-solid fa-flag-checkered"></i> ${t.lblEndDate}`;
+        $('txt-est-title').innerHTML = `<i class="fa-solid fa-hourglass-half"></i> ${t.estTitle}`;
         set('txt-btn-build', t.btnBuild); set('txt-about-title', t.aboutTitle);
-
-        const authorName = lang === 'ar' ? "فارس محمد داهش" : "Faris Mohammed Dahesh Ash-Shiref";
-        document.getElementById('txt-about-content').innerHTML = `<a href="https://phsyf1.github.io/physf/" target="_blank" class="author-link" id="txt-author-name">${authorName}</a>.. ${t.aboutContentDesc}`;
-
-        set('txt-contact-title', t.contactTitle);
-        document.getElementById('inputName').placeholder = t.inputName;
-        document.getElementById('inputEmail').placeholder = t.inputEmail;
-        document.getElementById('inputMsg').placeholder = t.inputMsg;
-        set('txt-btn-send', t.btnSend); set('txt-follow-me', t.followMe);
+        const author = lang === 'ar' ? "فارس محمد داهش" : "Faris Mohammed Dahesh Ash-Shiref";
+        $('txt-about-content').innerHTML = `<a href="https://phsyf1.github.io/physf/" target="_blank" rel="noopener" class="author-link">${author}</a>.. ${t.aboutContentDesc}`;
+        set('txt-contact-title', t.contactTitle); set('txt-btn-send', t.btnSend); set('txt-follow-me', t.followMe);
         set('lbl-social-yt', t.socialYt); set('lbl-social-tt', t.socialTt); set('lbl-social-tg', t.socialTg); set('lbl-social-fb', t.socialFb);
-        set('txt-footer', t.footer);
-        set('searchModalTitle', t.notFoundTitle); set('searchModalMsg', t.notFoundMsg);
-        set('txt-plan-modal-title', t.planModalTitle);
-        set('th-day', t.thDay); set('th-date', t.thDate); set('th-juz', t.thJuz); set('th-status', t.thStatus);
+        set('txt-footer', t.footer); set('searchModalTitle', t.notFoundTitle); set('searchModalMsg', t.notFoundMsg);
+        set('txt-plan-modal-title', t.planModalTitle); set('th-day', t.thDay); set('th-date', t.thDate); set('th-juz', t.thJuz); set('th-status', t.thStatus);
         set('txt-exp-ics', t.expIcs); set('txt-exp-word', t.expWord); set('txt-exp-pdf', t.expPdf);
+        [['searchInput', t.searchPlaceholder], ['inputName', t.inputName], ['inputEmail', t.inputEmail], ['inputMsg', t.inputMsg]].forEach(p => { $(p[0]).placeholder = p[1]; $(p[0]).setAttribute('aria-label', p[1]); });
 
-        updateShareLabels();
-        renderFab();
+        set('q-week', x.qWeek); set('q-month', x.qMonth); set('q-ramadan', x.qRamadan);
+        set('c-today', x.cToday); set('c-tomorrow', x.cTomorrow); set('c-nextmonth', x.cNextMonth); set('c-ramadan', x.cRamadan);
+        set('txt-rest-sum', x.rSum); set('txt-rest-hint', x.rHint);
+        set('txt-h-sum', x.hSum); set('txt-h-time', x.hTime); set('txt-h-speed', x.hSpeed); set('txt-h-hint', x.hHint); set('txt-h-apply', x.hApply);
+        set('txt-dua-title', x.dTitle); set('txt-dua-tr', x.dTr); set('txt-dua-note', x.dNote);
+        $('txt-dua-tr').style.display = x.dTr ? '' : 'none';
+        $('shareBtn').setAttribute('aria-label', x.shareSite); langBtn.setAttribute('aria-label', x.langL);
+        $('themeToggle').setAttribute('aria-label', x.themeL); $('fontBtn').setAttribute('aria-label', x.fontL); $('fontBtn').title = x.fontL;
+        $('qCopy').setAttribute('aria-label', x.copy); $('qShare').setAttribute('aria-label', x.share);
+        document.querySelectorAll('.close-modal').forEach(b => b.setAttribute('aria-label', x.close));
+
+        fillHelperMinutes(); updateHelper(); renderRestChips(); updateShareLabels(); renderFab();
         calculateDatesAndTimes();
-        displayNextQuote();
+        if (qIdx >= 0) renderQuote();
     }
 
-    // ===== جدول الختمة =====
-    const planModal = document.getElementById('planModal');
-    const planTableBody = document.getElementById('planTableBody');
-    const planSummaryBar = document.getElementById('planSummaryBar');
+    /* ================= جدول الختمة ================= */
+    const planModal = $('planModal'), planTableBody = $('planTableBody'), planSummaryBar = $('planSummaryBar');
     let currentPlanData = [];
 
-    document.getElementById('btnBuildPlan').addEventListener('click', () => {
-        const duration = parseInt(durationSelect.value);
+    function buildPlan() {
+        const N = parseInt(durationSelect.value);
         const startVal = new Date(startDateInput.value + 'T12:00:00');
-        const endVal = new Date(endDateInput.value + 'T12:00:00');
-
-        planTableBody.innerHTML = '';
-        currentPlanData = [];
-
+        const dates = readingDates(startVal, N, rest);
+        const t = i18n[currentLang];
+        planTableBody.innerHTML = ''; currentPlanData = [];
         planSummaryBar.innerHTML = `
-            <span><strong>${i18n[currentLang].lblDuration}</strong> ${duration} ${currentLang === 'ar' ? 'يوم' : 'days'}</span>
-            <span><strong>${i18n[currentLang].lblStartDate}</strong> ${hijri(startVal, HIJRI_FULL)} <small>(${greg(startVal, HIJRI_FULL)})</small></span>
-            <span><strong>${i18n[currentLang].lblEndDate}</strong> ${hijri(endVal, HIJRI_FULL)} <small>(${greg(endVal, HIJRI_FULL)})</small></span>`;
-
-        for (let i = 0; i < duration; i++) {
-            const curDate = new Date(startVal);
-            curDate.setDate(startVal.getDate() + i);
-
-            const dateFormatted = hijri(curDate, DATE_ROW);
-            const gregFormatted = greg(curDate, DATE_ROW);
-
-            let readingText = '';
-            if (duration === 604) {
-                const pg = i + 1;
-                const juzNum = Math.min(30, Math.floor((pg - 1) / 20) + 1);
-                readingText = currentLang === 'ar' ? `صفحة ${pg} - [الجزء ${juzNum}]` : `Page ${pg} - [Juz ${juzNum}]`;
-            } else if (duration === 302) {
-                const startPg = (i * 2) + 1;
-                const endPg = Math.min(604, (i + 1) * 2);
-                const juzNum = Math.min(30, Math.floor((startPg - 1) / 20) + 1);
-                readingText = currentLang === 'ar'
-                    ? `صفحتان (ص ${startPg} - ${endPg}) - [الجزء ${juzNum}]`
-                    : `2 Pages (p. ${startPg}-${endPg}) - [Juz ${juzNum}]`;
-            } else if (duration === 60) {
-                const juzNum = Math.floor(i / 2) + 1;
-                const halfNum = (i % 2 === 0) ? (currentLang === 'ar' ? 'النصف الأول' : '1st Half') : (currentLang === 'ar' ? 'النصف الثاني' : '2nd Half');
-                readingText = currentLang === 'ar' ? `نصف جزء (الجزء ${juzNum} - ${halfNum})` : `Half Juz (Juz ${juzNum} - ${halfNum})`;
-            } else {
-                const startJuz = Math.floor(i * (30 / duration)) + 1;
-                const endJuz = Math.min(30, Math.floor((i + 1) * (30 / duration)));
-                readingText = (startJuz === endJuz)
-                    ? `${i18n[currentLang].juzText} ${startJuz}`
-                    : `${i18n[currentLang].juzText} ${startJuz} - ${endJuz}`;
+            <span><strong>${t.lblDuration}</strong> ${N} ${X().dayW}</span>
+            <span><strong>${t.lblStartDate}</strong> ${hijri(dates[0], HIJRI_FULL)} <small>(${greg(dates[0], HIJRI_FULL)})</small></span>
+            <span><strong>${t.lblEndDate}</strong> ${hijri(dates[N - 1], HIJRI_FULL)} <small>(${greg(dates[N - 1], HIJRI_FULL)})</small></span>`;
+        let prevKey = null;
+        const frag = document.createDocumentFragment();
+        dates.forEach((cur, i) => {
+            const hp = hnum(cur), key = hp.year * 100 + hp.month;
+            if (key !== prevKey) {
+                const mr = document.createElement('tr'); mr.className = 'month-row';
+                mr.innerHTML = `<td colspan="4">${hijri(cur, { month: 'long', year: 'numeric' })}</td>`;
+                frag.appendChild(mr); prevKey = key;
             }
-
-            currentPlanData.push({ dayNum: i + 1, dateStr: dateFormatted, gregStr: gregFormatted, rawDate: curDate, juzText: readingText });
-
+            const dateF = hijri(cur, DATE_ROW), gregF = greg(cur, DATE_ROW), rd = dayReading(i, N);
+            currentPlanData.push({ dayNum: i + 1, dateStr: dateF, gregStr: gregF, rawDate: cur, juzText: rd.t });
             const tr = document.createElement('tr');
+            tr.dataset.day = i + 1; tr.dataset.s = `${t.thDay} ${i + 1} ${dateF} ${gregF} ${rd.t}`.toLowerCase();
             tr.innerHTML = `
-                <td><strong>${i18n[currentLang].thDay} ${i + 1}</strong></td>
-                <td>${dateFormatted}<br><small style="color:var(--text-muted)">${gregFormatted}</small></td>
-                <td><span style="color:var(--accent-color);font-weight:700">${readingText}</span></td>
-                <td><input type="checkbox" style="width:18px;height:18px;accent-color:var(--accent-color);cursor:pointer"></td>`;
-            planTableBody.appendChild(tr);
-        }
-        planModal.classList.add('active');
-    });
-
-    document.getElementById('closePlanModalBtn').addEventListener('click', () => planModal.classList.remove('active'));
-    planModal.addEventListener('click', (e) => { if (e.target === planModal) planModal.classList.remove('active'); });
-
-    function getExportFileName(ext) { return `dar-yahia.phsyf-${startDateInput.value || 'plan'}.${ext}`; }
-
-    // تصدير ICS (التقويمات تشترط تواريخ ميلادية داخلياً)
-    document.getElementById('btnExportICS').addEventListener('click', () => {
-        let ics = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Dar Yahia//Quran Khatma Plan//AR\nCALSCALE:GREGORIAN\n";
-        currentPlanData.forEach(item => {
-            const d = item.rawDate;
-            const ds = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
-            ics += "BEGIN:VEVENT\n";
-            ics += `DTSTART;VALUE=DATE:${ds}\n`;
-            ics += `SUMMARY:ورد القرآن - ${item.juzText}\n`;
-            ics += `DESCRIPTION:خطة ختْم القرآن الكريم - ${i18n.ar.title} - اليوم ${item.dayNum}\n`;
-            ics += "END:VEVENT\n";
+                <td><strong>${t.thDay} ${i + 1}</strong></td>
+                <td>${dateF}<br><small style="color:var(--text-muted)">${gregF}</small></td>
+                <td><span style="color:var(--accent-color);font-weight:700">${rd.t}</span></td>
+                <td><input type="checkbox" aria-label="${t.thDay} ${i + 1}" style="width:18px;height:18px;accent-color:var(--accent-color);cursor:pointer"></td>`;
+            frag.appendChild(tr);
         });
-        ics += "END:VCALENDAR";
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8;' }));
-        link.download = getExportFileName('ics');
-        link.click();
-    });
+        planTableBody.appendChild(frag);
+        planModal.classList.add('active');
+    }
+    $('btnBuildPlan').addEventListener('click', buildPlan);
+    $('closePlanModalBtn').addEventListener('click', () => planModal.classList.remove('active'));
+    planModal.addEventListener('click', (e) => { if (e.target === planModal) planModal.classList.remove('active'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active')); });
 
-    // تصدير Word
-    document.getElementById('btnExportWord').addEventListener('click', () => {
-        const s = hijri(new Date(startDateInput.value + 'T12:00:00'), HIJRI_FULL);
-        const e = hijri(new Date(endDateInput.value + 'T12:00:00'), HIJRI_FULL);
+    const getExportFileName = (ext) => `dar-yahia.phsyf-${startDateInput.value || 'plan'}.${ext}`;
+    function download(blob, name) { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); }
+
+    $('btnExportICS').addEventListener('click', () => {
+        const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+        const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Dar Yahia//Quran Khatma Plan//AR', 'CALSCALE:GREGORIAN'];
+        currentPlanData.forEach(item => {
+            const d = item.rawDate, ds = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
+            ics.push('BEGIN:VEVENT', `UID:khatma-${ds}-${item.dayNum}@daryahia`, `DTSTAMP:${stamp}`, `DTSTART;VALUE=DATE:${ds}`,
+                `SUMMARY:ورد القرآن - ${item.juzText}`, `DESCRIPTION:خطة ختْم القرآن الكريم - ${i18n.ar.title} - اليوم ${item.dayNum}`, 'END:VEVENT');
+        });
+        ics.push('END:VCALENDAR');
+        download(new Blob([ics.join('\r\n')], { type: 'text/calendar;charset=utf-8;' }), getExportFileName('ics'));
+    });
+    $('btnExportWord').addEventListener('click', () => {
+        const s = hijri(new Date(startDateInput.value + 'T12:00:00'), HIJRI_FULL), e = hijri(new Date(endDateInput.value + 'T12:00:00'), HIJRI_FULL);
         let html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
         <head><meta charset='utf-8'><title>خطة الختمة - دَار يحيي</title>
         <style>body{font-family:Arial;direction:rtl;text-align:right}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ccc;padding:8px;text-align:center}th{background:#f2f2f2}</style>
-        </head><body>
-        <h2 style="text-align:center">خطة ختْم القرآن الكريم - دَار يحيي</h2>
+        </head><body><h2 style="text-align:center">خطة ختْم القرآن الكريم - دَار يحيي</h2>
         <p style="text-align:center">تاريخ البداية: ${s} | تاريخ الانتهاء: ${e}</p>
         <table><thead><tr><th>اليوم</th><th>التاريخ الهجري</th><th>التاريخ الميلادي</th><th>الورد اليومي (الأجزاء / الصفحات)</th></tr></thead><tbody>`;
-        currentPlanData.forEach(item => { html += `<tr><td>اليوم ${item.dayNum}</td><td>${item.dateStr}</td><td>${item.gregStr}</td><td>${item.juzText}</td></tr>`; });
+        currentPlanData.forEach(i => { html += `<tr><td>اليوم ${i.dayNum}</td><td>${i.dateStr}</td><td>${i.gregStr}</td><td>${i.juzText}</td></tr>`; });
         html += `</tbody></table></body></html>`;
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(new Blob(['\ufeff', html], { type: 'application/msword' }));
-        link.download = getExportFileName('doc');
-        link.click();
+        download(new Blob(['\ufeff', html], { type: 'application/msword' }), getExportFileName('doc'));
+    });
+    $('btnExportPDF').addEventListener('click', () => {
+        const old = document.title; document.title = `dar-yahia.phsyf-${startDateInput.value || 'plan'}`;
+        window.print(); setTimeout(() => { document.title = old; }, 1000);
     });
 
-    // تصدير PDF
-    document.getElementById('btnExportPDF').addEventListener('click', () => {
-        const originalTitle = document.title;
-        document.title = `dar-yahia.phsyf-${startDateInput.value || 'plan'}`;
-        window.print();
-        setTimeout(() => { document.title = originalTitle; }, 1000);
-    });
-
-    // ===== البحث =====
-    const searchModal = document.getElementById('searchModal');
-    document.getElementById('searchForm').addEventListener('submit', (e) => {
+    /* ===== البحث: رقم اليوم أو الجزء أو الصفحة أو اسم الشهر ===== */
+    const searchModal = $('searchModal');
+    $('searchForm').addEventListener('submit', (e) => {
         e.preventDefault();
-        const query = document.getElementById('searchInput').value.trim().toLowerCase();
-        if (!query) return;
-        document.getElementById('btnBuildPlan').click();
+        let q = $('searchInput').value.trim().toLowerCase().replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+        if (!q) return;
+        buildPlan();
+        const numeric = /^\d+$/.test(q), re = numeric ? new RegExp('(^|\\D)' + q + '(\\D|$)') : null;
         let found = 0;
         planTableBody.querySelectorAll('tr').forEach(r => {
-            if (r.innerText.toLowerCase().includes(query)) { r.style.display = ''; found++; }
-            else r.style.display = 'none';
+            if (r.classList.contains('month-row')) { r.style.display = 'none'; return; }
+            const ok = numeric ? (r.dataset.day === q || re.test(r.dataset.s)) : r.dataset.s.includes(q);
+            r.style.display = ok ? '' : 'none'; if (ok) found++;
         });
-        if (found === 0) { planModal.classList.remove('active'); searchModal.classList.add('active'); }
+        if (!found) { planModal.classList.remove('active'); searchModal.classList.add('active'); }
     });
-    document.getElementById('closeSearchModalBtn').addEventListener('click', () => searchModal.classList.remove('active'));
+    $('closeSearchModalBtn').addEventListener('click', () => searchModal.classList.remove('active'));
     searchModal.addEventListener('click', (e) => { if (e.target === searchModal) searchModal.classList.remove('active'); });
 
-    // ===== إرسال نموذج التواصل (AJAX + بديل البريد لو فشل) =====
-    const formMsgs = {
-        ar: { sending: 'جارٍ الإرسال...', ok: 'تم إرسال رسالتك بنجاح، شكراً لتواصلك!', fail: 'تعذر الإرسال تلقائياً، سيُفتح تطبيق البريد لإرسال رسالتك.' },
-        en: { sending: 'Sending...', ok: 'Your message was sent. Thank you!', fail: "Couldn't send automatically. Opening your email app." },
-        es: { sending: 'Enviando...', ok: '¡Mensaje enviado! Gracias por contactarnos.', fail: 'No se pudo enviar automáticamente. Abriendo su aplicación de correo.' },
-        fr: { sending: 'Envoi...', ok: 'Message envoyé ! Merci de nous avoir contactés.', fail: "Envoi automatique impossible. Ouverture de votre application de messagerie." }
-    };
+    /* ===== نموذج التواصل ===== */
     const CONTACT_EMAIL = 'faris.dahesh@gmail.com';
-    const contactForm = document.querySelector('.contact-form');
-    const formStatus = document.getElementById('formStatus');
-    const sendBtn = document.getElementById('btnSendMsg');
-
+    const contactForm = document.querySelector('.contact-form'), formStatus = $('formStatus'), sendBtn = $('btnSendMsg');
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const M = formMsgs[currentLang] || formMsgs.ar;
-        const name = document.getElementById('inputName').value.trim();
-        const email = document.getElementById('inputEmail').value.trim();
-        const message = document.getElementById('inputMsg').value.trim();
-        sendBtn.disabled = true;
-        formStatus.style.color = 'var(--text-muted)';
-        formStatus.textContent = M.sending;
+        const name = $('inputName').value.trim(), email = $('inputEmail').value.trim(), message = $('inputMsg').value.trim();
+        sendBtn.disabled = true; formStatus.style.color = 'var(--text-muted)'; formStatus.textContent = M.sending;
         try {
             const res = await fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({ name, email, message, _captcha: 'false', _template: 'table', _subject: 'رسالة جديدة من دَار يحيي' })
+                method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({ name, email, message, _honey: $('honey').value, _captcha: 'false', _template: 'table', _subject: 'رسالة جديدة من دَار يحيي' })
             });
             const data = await res.json().catch(() => ({}));
             if (!res.ok || !(data.success === true || data.success === 'true')) throw new Error('send failed');
-            formStatus.style.color = 'var(--accent-color)';
-            formStatus.textContent = M.ok;
-            contactForm.reset();
+            formStatus.style.color = 'var(--accent-color)'; formStatus.textContent = M.ok; contactForm.reset();
         } catch (err) {
-            formStatus.style.color = 'var(--accent-color)';
-            formStatus.textContent = M.fail;
-            const body = `${message}\n\n— ${name} (${email})`;
-            window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('رسالة من دَار يحيي')}&body=${encodeURIComponent(body)}`;
-        } finally {
-            sendBtn.disabled = false;
-        }
+            formStatus.style.color = 'var(--accent-color)'; formStatus.textContent = M.fail;
+            window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('رسالة من دَار يحيي')}&body=${encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')')}`;
+        } finally { sendBtn.disabled = false; }
     });
 
-    // ===== المشاركة =====
-    document.getElementById('shareBtn').addEventListener('click', async () => {
-        if (navigator.share) {
-            try { await navigator.share({ title: 'دَار يحيي', text: 'منصة تنظيم وتتبع ختْم القرآن الكريم', url: window.location.href }); } catch (e) {}
-        } else {
-            navigator.clipboard.writeText(window.location.href);
-            alert(i18n[currentLang].shareSuccess);
-        }
+    /* ===== مشاركة الموقع ===== */
+    $('shareBtn').addEventListener('click', async () => {
+        if (navigator.share) { try { await navigator.share({ title: i18n[currentLang].title, text: i18n[currentLang].subtitle, url: location.href }); } catch (e) {} }
+        else { try { await navigator.clipboard.writeText(location.href); } catch (e) {} toast(i18n[currentLang].shareSuccess); }
     });
 
-    // ===== زر المتابعة العائم (فيسبوك ← تيك توك ← يوتيوب ← تيليجرام) =====
+    /* ===== زر المتابعة العائم ===== */
     const fabSteps = [
         { icon: 'fa-brands fa-facebook-f', color: '#1877F2', url: 'https://www.facebook.com/share/1DSeWq9K93/' },
-        { icon: 'fa-brands fa-tiktok',     color: '#000000', url: 'https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt' },
-        { icon: 'fa-brands fa-youtube',    color: '#FF0000', url: 'https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw' },
-        { icon: 'fa-brands fa-telegram',   color: '#27A7E7', url: 'https://t.me/phsyf1' }
+        { icon: 'fa-brands fa-tiktok', color: '#000000', url: 'https://www.tiktok.com/@phsyf1?_r=1&_t=ZS-99tU3kJDbVt' },
+        { icon: 'fa-brands fa-youtube', color: '#FF0000', url: 'https://youtube.com/@phsyf1?si=189DkufT9nzzRWpw' },
+        { icon: 'fa-brands fa-telegram', color: '#27A7E7', url: 'https://t.me/phsyf1' }
     ];
-    const fab = document.getElementById('followFab');
-    const fabIcon = document.getElementById('fabIcon');
-    const fabText = document.getElementById('fabText');
+    const fab = $('followFab'), fabIcon = $('fabIcon'), fabText = $('fabText');
     let fabIdx = 0, fabOpen = false;
-
     function renderFab() {
-        const s = fabSteps[fabIdx];
-        fab.href = s.url;
-        fab.style.background = s.color;
-        fabIcon.className = s.icon;
-        fabText.textContent = (fabTexts[currentLang] || fabTexts.ar)[fabIdx];
+        const s = fabSteps[fabIdx]; fab.href = s.url; fab.style.background = s.color; fabIcon.className = s.icon;
+        fabText.textContent = (fabTexts[currentLang] || fabTexts.ar)[fabIdx]; fab.setAttribute('aria-label', fabText.textContent);
     }
-    renderFab();
     setInterval(() => {
-        if (!fabOpen) {
-            fab.classList.add('open'); fabOpen = true;
-        } else {
-            fab.classList.remove('open'); fabOpen = false;
-            setTimeout(() => { fabIdx = (fabIdx + 1) % fabSteps.length; renderFab(); }, 500);
-        }
+        if (!fabOpen) { fab.classList.add('open'); fabOpen = true; }
+        else { fab.classList.remove('open'); fabOpen = false; setTimeout(() => { fabIdx = (fabIdx + 1) % fabSteps.length; renderFab(); }, 500); }
     }, 3000);
+    document.addEventListener('focusin', (e) => { if (e.target.matches('input,textarea,select')) fab.classList.add('hide'); });
+    document.addEventListener('focusout', (e) => { if (e.target.matches('input,textarea,select')) fab.classList.remove('hide'); });
 
-    // ===== مشاركة الخطة: رابط ذكي + بطاقة صورة =====
-    const shareTexts = {
-        ar: { btn: 'شارك خطتي', title: 'شارك خطتك', head: 'ختمتي بإذن الله', from: 'البداية', to: 'الانتهاء', cta: 'ابدأ ختمتك الآن', share: 'مشاركة', download: 'تنزيل الصورة', copy: 'نسخ الرابط', copied: 'تم نسخ الرابط ✓', saved: 'تم تنزيل الصورة ✓', text: 'بدأت ختمتي مع دَار يحيي، انضم إليّ:' },
-        en: { btn: 'Share my plan', title: 'Share your plan', head: 'My Khatma, God willing', from: 'Start', to: 'End', cta: 'Start your Khatma now', share: 'Share', download: 'Download image', copy: 'Copy link', copied: 'Link copied ✓', saved: 'Image saved ✓', text: 'I started my Khatma with Dar Yahia, join me:' },
-        es: { btn: 'Compartir mi plan', title: 'Comparte tu plan', head: 'Mi Jatma, si Dios quiere', from: 'Inicio', to: 'Fin', cta: 'Empieza tu Jatma ahora', share: 'Compartir', download: 'Descargar imagen', copy: 'Copiar enlace', copied: 'Enlace copiado ✓', saved: 'Imagen guardada ✓', text: 'Empecé mi Jatma con Dar Yahia, ¡únete!' },
-        fr: { btn: 'Partager mon plan', title: 'Partagez votre plan', head: 'Ma Khatma, si Dieu le veut', from: 'Début', to: 'Fin', cta: 'Commencez votre Khatma', share: 'Partager', download: "Télécharger l'image", copy: 'Copier le lien', copied: 'Lien copié ✓', saved: 'Image enregistrée ✓', text: "J'ai commencé ma Khatma avec Dar Yahia, rejoignez-moi :" }
-    };
-    const shareModal = document.getElementById('shareModal');
-    const shareCanvas = document.getElementById('shareCanvas');
-    const shareStatus = document.getElementById('shareStatus');
+    /* ===== مشاركة الخطة: رابط ذكي + بطاقة صورة ===== */
+    const shareModal = $('shareModal'), shareCanvas = $('shareCanvas'), shareStatus = $('shareStatus');
     let shareFile = null, shareUrl = '';
-
     function updateShareLabels() {
         const T = shareTexts[currentLang] || shareTexts.ar;
         document.querySelectorAll('.txt-share').forEach(el => el.textContent = T.btn);
-        document.getElementById('txt-share-title').textContent = T.title;
-        document.getElementById('txt-sh-share').textContent = T.share;
-        document.getElementById('txt-sh-download').textContent = T.download;
-        document.getElementById('txt-sh-copy').textContent = T.copy;
+        $('txt-share-title').textContent = T.title; $('txt-sh-share').textContent = T.share; $('txt-sh-download').textContent = T.download; $('txt-sh-copy').textContent = T.copy;
     }
-
-    function roundRectPath(c, x, y, w, h, r) {
-        c.beginPath();
-        c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r);
-        c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath();
-    }
+    function roundRectPath(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
 
     async function drawShareCard() {
-        const T = shareTexts[currentLang] || shareTexts.ar;
-        const rtl = currentLang === 'ar';
+        const T = shareTexts[currentLang] || shareTexts.ar, rtl = currentLang === 'ar';
         try { await document.fonts.load('700 60px Tajawal'); await document.fonts.load('500 40px Tajawal'); } catch (e) {}
-
-        const W = 1080, H = 1350;
-        shareCanvas.width = W; shareCanvas.height = H;
-        const c = shareCanvas.getContext('2d');
-        c.direction = rtl ? 'rtl' : 'ltr';
-        c.textAlign = 'center';
-
-        const bg = c.createLinearGradient(0, 0, W, H);
-        bg.addColorStop(0, '#0b1329'); bg.addColorStop(1, '#15203e');
-        c.fillStyle = bg; c.fillRect(0, 0, W, H);
-        const glow = c.createRadialGradient(W, 0, 0, W, 0, 750);
-        glow.addColorStop(0, 'rgba(212,175,55,.3)'); glow.addColorStop(1, 'rgba(212,175,55,0)');
-        c.fillStyle = glow; c.fillRect(0, 0, W, H);
+        const W = 1080, H = 1350; shareCanvas.width = W; shareCanvas.height = H;
+        const c = shareCanvas.getContext('2d'); c.direction = rtl ? 'rtl' : 'ltr'; c.textAlign = 'center';
+        const bg = c.createLinearGradient(0, 0, W, H); bg.addColorStop(0, '#0b1329'); bg.addColorStop(1, '#15203e'); c.fillStyle = bg; c.fillRect(0, 0, W, H);
+        const glow = c.createRadialGradient(W, 0, 0, W, 0, 750); glow.addColorStop(0, 'rgba(212,175,55,.3)'); glow.addColorStop(1, 'rgba(212,175,55,0)'); c.fillStyle = glow; c.fillRect(0, 0, W, H);
         c.strokeStyle = '#d4af37'; c.lineWidth = 6; roundRectPath(c, 40, 40, W - 80, H - 80, 40); c.stroke();
-
         const txt = (str, x, y, weight, size, color, maxW) => {
             let sz = size; c.font = `${weight} ${sz}px Tajawal, sans-serif`;
             while (c.measureText(str).width > maxW && sz > 20) { sz -= 4; c.font = `${weight} ${sz}px Tajawal, sans-serif`; }
             c.fillStyle = color; c.fillText(str, x, y);
         };
-
         const t = i18n[currentLang];
-        txt(t.title, W / 2, 200, 700, 88, '#d4af37', W - 160);
-        txt(t.subtitle, W / 2, 272, 500, 34, '#cbd5e1', W - 160);
-        c.strokeStyle = 'rgba(212,175,55,.45)'; c.lineWidth = 2;
-        c.beginPath(); c.moveTo(200, 330); c.lineTo(W - 200, 330); c.stroke();
-
+        txt(t.title, W / 2, 200, 700, 88, '#d4af37', W - 160); txt(t.subtitle, W / 2, 272, 500, 34, '#cbd5e1', W - 160);
+        c.strokeStyle = 'rgba(212,175,55,.45)'; c.lineWidth = 2; c.beginPath(); c.moveTo(200, 330); c.lineTo(W - 200, 330); c.stroke();
         txt(T.head, W / 2, 450, 500, 54, '#ffffff', W - 160);
-
-        const optText = durationSelect.options[durationSelect.selectedIndex].text;
-        const m = optText.match(/^(.*?)\s*\((.*)\)$/);
+        const optText = durationSelect.options[durationSelect.selectedIndex].text, m = optText.match(/^(.*?)\s*\((.*)\)$/);
         txt(m ? m[1] : optText, W / 2, 610, 700, 140, '#d4af37', W - 160);
         if (m) txt(m[2], W / 2, 700, 500, 52, '#ffffff', W - 160);
-
-        const start = new Date(startDateInput.value + 'T12:00:00');
-        const end = new Date(endDateInput.value + 'T12:00:00');
+        const start = new Date(startDateInput.value + 'T12:00:00'), end = new Date(endDateInput.value + 'T12:00:00');
         c.fillStyle = 'rgba(212,175,55,.12)'; roundRectPath(c, 110, 790, W - 220, 270, 30); c.fill();
         c.strokeStyle = '#d4af37'; c.lineWidth = 2; c.setLineDash([12, 10]); roundRectPath(c, 110, 790, W - 220, 270, 30); c.stroke(); c.setLineDash([]);
-
-        const col = (label, d, x) => {
-            txt(label, x, 860, 500, 36, '#cbd5e1', 380);
-            txt(hijri(d, HIJRI_FULL), x, 935, 700, 50, '#ffffff', 380);
-            txt(greg(d, HIJRI_FULL), x, 992, 500, 34, '#cbd5e1', 380);
-        };
-        col(T.from, start, rtl ? W * 0.7 : W * 0.3);
-        col(T.to, end, rtl ? W * 0.3 : W * 0.7);
-
+        const col = (label, d, x) => { txt(label, x, 860, 500, 36, '#cbd5e1', 380); txt(hijri(d, HIJRI_FULL), x, 935, 700, 50, '#ffffff', 380); txt(greg(d, HIJRI_FULL), x, 992, 500, 34, '#cbd5e1', 380); };
+        col(T.from, start, rtl ? W * 0.7 : W * 0.3); col(T.to, end, rtl ? W * 0.3 : W * 0.7);
         txt(T.cta, W / 2, 1170, 700, 62, '#d4af37', W - 160);
-        c.direction = 'ltr';
-        const pretty = (location.host ? location.host + location.pathname.replace(/index\.html$/, '') : 'Dar Yahia');
-        txt(pretty, W / 2, 1245, 500, 38, '#cbd5e1', W - 160);
-        c.direction = rtl ? 'rtl' : 'ltr';
-
+        c.direction = 'ltr'; txt(location.host ? location.host + location.pathname.replace(/index\.html$/, '') : 'Dar Yahia', W / 2, 1245, 500, 38, '#cbd5e1', W - 160);
         const blob = await new Promise(r => shareCanvas.toBlob(r, 'image/png'));
         shareFile = blob ? new File([blob], 'khatma-dar-yahia.png', { type: 'image/png' }) : null;
     }
-
     function buildShareUrl() {
         const base = location.href.split(/[?#]/)[0];
-        return `${base}?d=${durationSelect.value}&s=${startDateInput.value}`;
+        return `${base}?d=${durationSelect.value}&s=${startDateInput.value}${rest.size ? '&r=' + Array.from(rest).join(',') : ''}`;
     }
-
     async function openShare() {
-        shareStatus.textContent = '';
-        shareUrl = buildShareUrl();
-        document.getElementById('shareLinkText').textContent = shareUrl;
-        updateShareLabels();
-        shareModal.classList.add('active');
-        await drawShareCard();
+        shareStatus.textContent = ''; shareUrl = buildShareUrl(); $('shareLinkText').textContent = shareUrl;
+        updateShareLabels(); shareModal.classList.add('active'); await drawShareCard();
     }
-
     document.querySelectorAll('.btn-share-open').forEach(b => b.addEventListener('click', openShare));
-    document.getElementById('closeShareModalBtn').addEventListener('click', () => shareModal.classList.remove('active'));
+    $('closeShareModalBtn').addEventListener('click', () => shareModal.classList.remove('active'));
     shareModal.addEventListener('click', (e) => { if (e.target === shareModal) shareModal.classList.remove('active'); });
-
-    document.getElementById('btnShareNative').addEventListener('click', async () => {
+    $('btnShareNative').addEventListener('click', async () => {
         const T = shareTexts[currentLang] || shareTexts.ar;
         try {
-            if (shareFile && navigator.canShare && navigator.canShare({ files: [shareFile] })) {
-                await navigator.share({ files: [shareFile], title: i18n[currentLang].title, text: `${T.text} ${shareUrl}` });
-            } else if (navigator.share) {
-                await navigator.share({ title: i18n[currentLang].title, text: T.text, url: shareUrl });
-            } else {
-                document.getElementById('btnShareDownload').click();
-            }
-        } catch (e) { /* أغلق المستخدم نافذة المشاركة */ }
+            if (shareFile && navigator.canShare && navigator.canShare({ files: [shareFile] })) await navigator.share({ files: [shareFile], title: i18n[currentLang].title, text: `${T.text} ${shareUrl}` });
+            else if (navigator.share) await navigator.share({ title: i18n[currentLang].title, text: T.text, url: shareUrl });
+            else $('btnShareDownload').click();
+        } catch (e) {}
     });
+    $('btnShareDownload').addEventListener('click', () => { if (!shareFile) return; download(shareFile, shareFile.name); shareStatus.textContent = (shareTexts[currentLang] || shareTexts.ar).saved; });
+    $('btnShareCopy').addEventListener('click', async () => { try { await navigator.clipboard.writeText(shareUrl); } catch (e) {} shareStatus.textContent = (shareTexts[currentLang] || shareTexts.ar).copied; });
 
-    document.getElementById('btnShareDownload').addEventListener('click', () => {
-        if (!shareFile) return;
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(shareFile);
-        a.download = shareFile.name;
-        a.click();
-        shareStatus.textContent = (shareTexts[currentLang] || shareTexts.ar).saved;
-    });
-
-    document.getElementById('btnShareCopy').addEventListener('click', async () => {
-        try { await navigator.clipboard.writeText(shareUrl); } catch (e) {}
-        shareStatus.textContent = (shareTexts[currentLang] || shareTexts.ar).copied;
-    });
-
-    // التشغيل الأولي
+    /* ================= التشغيل الأولي ================= */
     setLanguage(currentLang);
+    qIdx = Math.floor(Math.random() * quotes.length); renderQuote(); scheduleQuote();
 
-    // الرابط الذكي: ?d=30&s=2026-10-01
+    /* الرابط الذكي: ?d=30&s=2026-10-01&r=5,6 */
     const qp = new URLSearchParams(location.search);
-    const qd = qp.get('d'), qs = qp.get('s');
-    if (qd && Array.from(durationSelect.options).some(o => o.value === qd)) durationSelect.value = qd;
+    const qd = parseInt(qp.get('d'), 10), qs = qp.get('s'), qr = qp.get('r');
+    if (qr) { qr.split(',').map(Number).filter(n => Number.isInteger(n) && n >= 0 && n <= 6).forEach(n => rest.add(n)); if (rest.size >= 7) rest.clear(); renderRestChips(); }
     if (qs && /^\d{4}-\d{2}-\d{2}$/.test(qs) && qs >= todayStr) startDateInput.value = qs;
-    if (qd || qs) calculateDatesAndTimes();
+    if (qd >= 1 && qd <= 604) setDuration(qd); else if (qs || qr) calculateDatesAndTimes();
 });
 </script>
 </body>
